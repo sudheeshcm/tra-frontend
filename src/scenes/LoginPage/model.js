@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-
+import { dispatch } from '@rematch/core';
 import request from '@Services/ApiService';
 
 const initialState = {
@@ -26,6 +26,7 @@ const userModel = {
     },
 
     loginUserSuccess(state, currentUser) {
+      console.log(currentUser);
       return {
         ...state,
         currentUser,
@@ -43,51 +44,34 @@ const userModel = {
   effects: {
     async login(data) {
       try {
-        const response = await request({
-          method: 'POST',
-          url: '/api/login',
-          data,
+        localStorage.setItem('curretUser', JSON.stringify(data));
+        dispatch.user.loginUserSuccess({
+          currentUser: data,
         });
-
-        if (response.access_token) {
-          const { access_token, id } = response;
-
-          const userDetails = {
-            access_token,
-            id,
-          };
-
-          localStorage.setItem('curretUser', JSON.stringify(userDetails));
-
-          dispatch.user.loginUserSuccess({
-            currentUser: userDetails,
-          });
-
-          dispatch(push('/'));
-        }
+        dispatch(push('/'));
       } catch (error) {
         console.log(error, 'error');
       }
     },
-    async logout(...args) {
-      try {
-        const response = await request({
-          method: 'GET',
-          url: '/auth/users/logout',
-          params: {
-            access_token: args[1].user.details.accessToken,
-          },
-        });
+    // async logout(...args) {
+    //   try {
+    //     const response = await request({
+    //       method: 'GET',
+    //       url: '/auth/users/logout',
+    //       params: {
+    //         access_token: args[1].user.details.accessToken,
+    //       },
+    //     });
 
-        if (response.type === 'SUCCESS') {
-          localStorage.removeItem('curretUser');
-          dispatch.user.clearUserDetails();
-          dispatch(push('/pages/login-page'));
-        }
-      } catch (error) {
-        console.log(error, 'error');
-      }
-    },
+    //     if (response.type === 'SUCCESS') {
+    //       localStorage.removeItem('curretUser');
+    //       dispatch.user.clearUserDetails();
+    //       dispatch(push('/pages/login-page'));
+    //     }
+    //   } catch (error) {
+    //     console.log(error, 'error');
+    //   }
+    // },
   },
 };
 
