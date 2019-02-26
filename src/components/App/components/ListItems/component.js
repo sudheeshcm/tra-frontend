@@ -24,5 +24,13 @@ export default (
         <ListItemText primary="Networks" />
       </ListItem>
     </Link>
+    <Link to="/rera/buyer-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="RERA Buyer Form" />
+      </ListItem>
+    </Link>
   </div>
 );

@@ -6,9 +6,7 @@ export default class Overview extends Component {
     return (
       <div className="overview__contents__wrapper">
         <Typography variant="display2">Overview</Typography>
-        <p>
-        Telecommunication Regulatory Authority Application
-        </p>
+        <p>Telecommunication Regulatory Authority Application</p>
       </div>
     );
   }
