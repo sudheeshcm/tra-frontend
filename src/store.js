@@ -34,4 +34,5 @@ const store = init({
   },
 });
 
+export const { dispatch } = store;
 export default store;
