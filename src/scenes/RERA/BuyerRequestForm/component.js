@@ -16,6 +16,7 @@ const styles = () => ({
     fontWeight: '500',
     fontSize: '20px',
     textAlign: 'center',
+    marginTop: '100px',
   },
   formActions: {
     marginTop: '32px',
