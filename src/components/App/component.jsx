@@ -14,6 +14,7 @@ import Header from '@Components/Header';
 import Footer from '@Components/Footer';
 import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
+import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ListItems from './components/ListItems';
 
 const drawerWidth = 240;
@@ -70,6 +71,7 @@ function App(props) {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/networks" component={Networks} />
           <Route path="/networks/new" component={NewNetwork} />
+          <Route path="/rera/buyer-form" component={ReraBuyerForm} />
         </main>
         <Dialog />
         <Notification />
