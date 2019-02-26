@@ -12,6 +12,7 @@ import LoginPage from '@Scenes/LoginPage';
 import NewNetwork from '@Scenes/Networks/components/NewNetwork';
 import Header from '@Components/Header';
 import Footer from '@Components/Footer';
+import PrivateRoute from '@Components/PrivateRoute';
 import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
