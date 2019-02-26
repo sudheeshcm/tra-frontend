@@ -7,9 +7,11 @@ import List from '@material-ui/core/List';
 import { Route } from 'react-router-dom';
 import Overview from '@Scenes/Overview';
 import Networks from '@Scenes/Networks';
+import LoginPage from '@Scenes/LoginPage';
 import NewNetwork from '@Scenes/Networks/components/NewNetwork';
 import Header from '@Components/Header';
 import Footer from '@Components/Footer';
+import PrivateRoute from '@Components/PrivateRoute';
 import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
@@ -66,6 +68,7 @@ function App(props) {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/" component={Overview} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/networks" component={Networks} />
           <Route path="/networks/new" component={NewNetwork} />
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
