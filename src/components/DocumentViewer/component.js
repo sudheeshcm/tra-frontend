@@ -217,16 +217,13 @@ class DocumentViewerComponent extends React.Component {
           </div>
         )}
         <div className="document-preview__toggles">
-          {doc &&
-            doc.downloadable && (
-              <Control
-                onClick={() =>
-                  FileSaver.saveAs(currentFile, `${doc.title}.pdf`)
-                }
-                icon="file_download"
-                iconStyle={{ left: '-2px', fontSize: '22px' }}
-              />
-            )}
+          {doc && doc.downloadable && (
+            <Control
+              onClick={() => FileSaver.saveAs(currentFile, `${doc.title}.pdf`)}
+              icon="file_download"
+              iconStyle={{ left: '-2px', fontSize: '22px' }}
+            />
+          )}
         </div>
       </Fragment>
     );
@@ -409,18 +406,17 @@ class DocumentViewerComponent extends React.Component {
           <div className="document-preview__controls">
             {currentFile ? this.renderPDFControls() : null}
           </div>
-          {add &&
-            currentFile && (
-              <div className="document-preview__default-controls">
-                <Control
-                  onClick={() => {
-                    this.props.clearFile(this.props.revision);
-                  }}
-                  icon="close"
-                  iconStyle={{ left: '-2px', fontSize: '22px' }}
-                />
-              </div>
-            )}
+          {add && currentFile && (
+            <div className="document-preview__default-controls">
+              <Control
+                onClick={() => {
+                  this.props.clearFile(this.props.revision);
+                }}
+                icon="close"
+                iconStyle={{ left: '-2px', fontSize: '22px' }}
+              />
+            </div>
+          )}
           <div className="document-preview__view">
             {currentFile && (
               <div
@@ -433,42 +429,40 @@ class DocumentViewerComponent extends React.Component {
               </div>
             )}
 
-            {!add &&
-              !currentFile && (
-                <div className="document-preview__view__progress">
-                  <div className="document-preview__view__progress__wrapper">
-                    <div
-                      className="document-preview__view__progress__bar"
-                      style={{ transform: `translateX(${downloadProgress}%)` }}
-                    />
-                  </div>
-                  <div className="document-preview__view__progress__text">
-                    {downloadProgress ? `${downloadProgress}%` : 'Loading...'}
-                  </div>
-                </div>
-              )}
-            {add &&
-              !currentFile && (
-                <Dropzone
-                  className={`document-preview__view__dropzone ${error &&
-                    'dropzone__error'}`}
-                  onDrop={this.onDrop}
-                  accept=".pdf"
-                  multiple={false}
-                  ref={dropArea => {
-                    this.dropzone = dropArea;
-                  }}
-                >
-                  <SVG
-                    src="/static/img/upload.svg"
-                    className="document-preview__view__dropzone__image"
+            {!add && !currentFile && (
+              <div className="document-preview__view__progress">
+                <div className="document-preview__view__progress__wrapper">
+                  <div
+                    className="document-preview__view__progress__bar"
+                    style={{ transform: `translateX(${downloadProgress}%)` }}
                   />
-                  Click or drag and drop a document to upload
-                  <div className="document-preview__view__dropzone__error">
-                    {error}
-                  </div>
-                </Dropzone>
-              )}
+                </div>
+                <div className="document-preview__view__progress__text">
+                  {downloadProgress ? `${downloadProgress}%` : 'Loading...'}
+                </div>
+              </div>
+            )}
+            {add && !currentFile && (
+              <Dropzone
+                className={`document-preview__view__dropzone ${error &&
+                  'dropzone__error'}`}
+                onDrop={this.onDrop}
+                accept=".pdf"
+                multiple={false}
+                ref={dropArea => {
+                  this.dropzone = dropArea;
+                }}
+              >
+                <SVG
+                  src="/static/img/upload.svg"
+                  className="document-preview__view__dropzone__image"
+                />
+                Click or drag and drop a document to upload
+                <div className="document-preview__view__dropzone__error">
+                  {error}
+                </div>
+              </Dropzone>
+            )}
           </div>
         </div>
         {doc &&
