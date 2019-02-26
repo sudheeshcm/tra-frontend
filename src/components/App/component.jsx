@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import defaultTheme from '@Styles/theme';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -14,6 +13,7 @@ import Footer from '@Components/Footer';
 import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
+import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import ListItems from './components/ListItems';
 
 const drawerWidth = 240;
@@ -65,11 +65,11 @@ function App(props) {
           <List>{ListItems}</List>
         </Drawer>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
           <Route exact path="/" component={Overview} />
           <Route exact path="/networks" component={Networks} />
           <Route path="/networks/new" component={NewNetwork} />
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
+          <Route path="/rera/seller-form" component={ReraSellerForm} />
         </main>
         <Dialog />
         <Notification />

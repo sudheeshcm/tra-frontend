@@ -1,0 +1,477 @@
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+.document-preview {
+}
+
+.document-preview__main {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #092233;
+}
+
+.document-preview__controls {
+  position: relative;
+  z-index: 1;
+  height: 64px;
+  line-height: 32px;
+  color: #fff;
+  text-align: center;
+  background: rgba(saturate(mix(lighten(#000, 20%), lightgrey, 80%), 5%), 0.85);
+}
+
+.document-preview__control {
+  &__text {
+    float: left;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-weight: 500;
+  }
+}
+
+.document-preview__zoom {
+  position: absolute;
+  z-index: 1;
+  left: 24px;
+  top: 16px;
+
+  @include clearfix();
+}
+
+.document-preview__pagination {
+  display: inline-block;
+  position: relative;
+  top: 16px;
+
+  @include clearfix();
+
+  &__text {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+
+    em {
+      color: #fff;
+      font-size: 14px;
+      font-style: normal;
+    }
+  }
+}
+
+.document-preview__toggles {
+  position: absolute;
+  z-index: 1;
+  right: 24px;
+  top: 16px;
+
+  @include clearfix();
+}
+
+.document-preview__toggle--file-upload {
+  float: left;
+}
+
+.document-preview__view {
+  position: relative;
+  height: 100%;
+  margin-top: -64px;
+  text-align: center;
+
+  // hide the text "loading pdf" from the PDF component
+  // by giving it the same color as the bg
+  color: #092233;
+}
+
+.document-preview__view__progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -64px;
+  width: 100%;
+
+  &__wrapper {
+    border: 4px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 16px;
+    width: 320px;
+    margin: 0 auto 16px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &__bar {
+    position: relative;
+    left: -312px;
+    border-radius: 4px;
+    height: 8px;
+    width: 312px;
+    background: rgba(151, 141, 171, 0.4);
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: rgba(151, 141, 171, 0.5);
+  }
+}
+
+%cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.document-preview__canvas__wrapper {
+  display: block;
+  margin: 0 auto;
+
+  @extend %cover;
+}
+
+.document-preview__canvas__scroller {
+  bottom: 0;
+  height: auto;
+  padding: 64px 0;
+  overflow: auto;
+
+  @extend %cover;
+
+  // webkit scrollbar space
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    width: auto;
+    right: 2px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+.document-preview__canvas {
+  display: block;
+  margin: 0 auto;
+
+  &.is-movable {
+    // autoprefixer isn’t doing its job here
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+
+  &.is-moving {
+    // autoprefixer isn’t doing its job here
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+}
+
+.document-preview__view__dropzone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -145px;
+  margin-top: -255.24px;
+  padding: 24px;
+  width: 220px;
+  height: 320px; // 1:1414 = a4 ratio
+  border: 2px dashed rgba(151, 141, 171, 0.5);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(151, 141, 171, 0.5);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+
+  &__image {
+    opacity: 0.5;
+
+    svg {
+      display: block;
+      margin: 45px auto;
+      width: 124px;
+    }
+  }
+
+  &__error {
+    font-size: 16px;
+    color: red;
+    margin-top: 17px;
+  }
+
+  &.dropzone__error {
+    border-color: 'red';
+  }
+}
+
+.document-navigation {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 212px;
+  background: rgba(58, 58, 74, 0.85);
+  transform: translateY(156px);
+  transition: transform 0.3s;
+
+  &.is-active {
+    transform: translateY(0);
+
+    .document-navigation__toggle {
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .document-navigation__documents {
+      opacity: 1;
+      transition-delay: 0.1;
+    }
+  }
+}
+
+.document-navigation__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.document-navigation__toggle {
+  display: block;
+  position: relative;
+  z-index: 1;
+  padding: 8px;
+  color: #fff;
+  font-weight: 500;
+  height: 56px;
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__icon,
+  &__text {
+    position: relative;
+    z-index: 1;
+    display: block;
+  }
+}
+
+.document-navigation__documents {
+  opacity: 0;
+  padding: 16px 0;
+  transition: opacity 0.2s;
+
+  @include clearfix();
+}
+
+.document-navigation__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.document-navigation__title {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.document-navigation__main-doc {
+  z-index: 1;
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 0;
+  width: 172px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  &__doc {
+    display: block;
+    width: 90px;
+    height: 116px;
+    margin: 0 auto;
+
+    &:hover,
+    &.is-active {
+      box-shadow: 0 0 0 3px blue;
+    }
+  }
+}
+
+.document-navigation__supporting-docs {
+  position: relative;
+  float: right;
+  height: 180px;
+  width: 100%;
+  padding-left: 172px;
+}
+
+.document-navigation__supporting-doc {
+  display: block;
+  float: left;
+  margin: 0 16px;
+
+  &:hover,
+  &.is-active {
+    box-shadow: 0 0 0 3px blue;
+  }
+
+  &:hover:not(.is-active) {
+    ~ .document-navigation__supporting-doc__title {
+      opacity: 1;
+
+      &.is-active {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__title {
+    color: rgba(255, 255, 255, 1);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: opacity 0.2s;
+
+    &.is-active {
+      color: #fff;
+    }
+
+    &__text,
+    &__link {
+      color: #fff;
+      display: inline-block;
+      margin: 0 6px;
+    }
+
+    &__link {
+      text-decoration: underline;
+    }
+  }
+}
+
+.document-navigation__img {
+  width: 90px;
+  height: 116px;
+  transition: box-shadow 0.2s;
+}
+
+.document-navigation__scroller-wrapper {
+  position: relative;
+  height: 122px;
+  overflow: hidden;
+  padding: 0 72px;
+}
+
+.document-navigation__scroller {
+  height: 162px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 3px 16px;
+  white-space: nowrap;
+  list-style: none;
+  margin: 0;
+
+  @include clearfix();
+}
+
+.document-navigation__scrollee {
+  display: inline-block;
+  margin-right: -4px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.document-navigation__nav {
+  position: absolute;
+  top: 0;
+  width: 72px;
+  height: 122px;
+  line-height: 122px !important;
+  text-align: center;
+  color: #fff;
+  font-size: 38px;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &--left {
+    left: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
+}
+
+.word__document_preview {
+  .document-preview__word__document__image {
+    width: 125px;
+    height: 125px;
+    margin-top: 250px;
+  }
+
+  .title {
+    color: lightgrey;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 8px;
+  }
+}
+
+.document-preview__default-controls {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 1;
+  color: white;
+}
