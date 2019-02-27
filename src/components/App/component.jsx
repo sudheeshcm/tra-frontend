@@ -13,6 +13,7 @@ import Overview from '@Scenes/Overview';
 import Networks from '@Scenes/Networks';
 import LoginPage from '@Scenes/LoginPage';
 import NewNetwork from '@Scenes/Networks/components/NewNetwork';
+import ThankYou from '@Scenes/ThankYou';
 import Header from '@Components/Header';
 import Footer from '@Components/Footer';
 import PrivateRoute from '@Components/PrivateRoute';
@@ -88,6 +89,7 @@ function App(props) {
           <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
           <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
           <Route path="/mpd/buyer-verification-form" component={MPDBuyerVerificationForm} />
+          <Route path="/thank-you" component={ThankYou} />
         </main>
         <Dialog />
         <Notification />
