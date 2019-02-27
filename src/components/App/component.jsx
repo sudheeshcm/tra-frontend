@@ -24,14 +24,8 @@ import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import ListItems from './components/ListItems';
-import {
-  red,
-  deepPurple,
-  green,
-  lime,
-  orange,
-  amber,
-} from '@material-ui/core/colors';
+import data from '../../data.js';
+
 
 const drawerWidth = 240;
 
@@ -67,9 +61,7 @@ const styles = theme => ({
 
 function App(props) {
   const { classes } = props;
-  const Theme = createMuiTheme({
-    palette: { primary: props.storyDetails.primaryColor },
-  });
+  const Theme = createMuiTheme({ palette: { primary: data[props.stepDetails.step].primaryColor } });
 
   return (
     <MuiThemeProvider theme={Theme}>

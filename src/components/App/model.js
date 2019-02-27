@@ -5,11 +5,11 @@ export const initialState = {
   stepDetails: {
     step: 1,
     completed: false,
-  },
-  storyDetails: {
-    entity: 'RERA',
-    primaryColor: red
-  },
+   },
+  // storyDetails: {
+  //   entity: 'RERA',
+  //   primaryColor: red
+  // },
 };
 export default {
   state: initialState,
@@ -22,14 +22,14 @@ export default {
         completed,
       },
     }),
-    updateStory: (state, { entity, primaryColor }) => ({
-      ...state,
-      storyDetails: {
-        ...state.storyDetails,
-        entity,
-        primaryColor,
-      },
-    }),
+    // updateStory: (state, { entity, primaryColor }) => ({
+    //   ...state,
+    //   storyDetails: {
+    //     ...state.storyDetails,
+    //     entity,
+    //     primaryColor,
+    //   },
+    // }),
     resetApp: () => ({
       ...initialState,
     }),

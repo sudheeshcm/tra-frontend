@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import data from '../../data.js';
+
 
 
 const styles = theme => ({
@@ -26,7 +28,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 18,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -78,7 +80,7 @@ class LoginPage extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const Theme = createMuiTheme({ palette: { primary: this.props.storyDetails.primaryColor } });
+    const Theme = createMuiTheme({ palette: { primary: data[this.props.stepDetails.step].primaryColor} });
 
     return (
       <main className={classes.main}>

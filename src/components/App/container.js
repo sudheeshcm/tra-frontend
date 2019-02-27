@@ -5,7 +5,6 @@ import App from './component.jsx';
 function mapState(state) {
   return {
      stepDetails: state.app.stepDetails,
-     storyDetails: state.app.storyDetails,
 
   };
 }
