@@ -44,12 +44,6 @@ class DocumentViewerComponent extends React.Component {
     // this.props.fetchDocument();
   }
 
-  componentDidMount() {
-    if (window.componentHandler) {
-      window.componentHandler.upgradeDom();
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     const thisDoc = this.props.currentDocument;
     const nextDoc = nextProps.currentDocument;
@@ -101,7 +95,6 @@ class DocumentViewerComponent extends React.Component {
 
   componentWillUnmount() {
     this.props.clearFile('all');
-    window.componentHandler.downgradeDom();
   }
 
   onCanvasMouseMove = event => {
