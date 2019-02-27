@@ -1,0 +1,24 @@
+.buyer-fewa-noc-form {
+  position: relative;
+  display: flex;
+  height: 100%;
+  margin-top: 64px;
+
+  &__doc-viewer {
+    position: relative;
+    display: inline-block;
+    height: calc(100%-80px);
+    width: 60%;
+    max-width: 900px;
+  }
+
+  &__contents {
+    padding: 20px;
+    display: inline-block;
+    width: 40%;
+    box-sizing: border-box;
+    max-width: 500px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}

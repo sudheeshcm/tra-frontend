@@ -15,7 +15,14 @@ middlewares.push(routerMiddleware(history));
 if (!isProduction) {
   middlewares.push(
     immutableStateInvariantMiddleware({
-      ignore: ['loading', 'app.storyDetails'],
+      ignore: [
+        'loading',
+        'document.file',
+        'document.currentDocument',
+        'multiDocuments.files',
+        'multiDocuments.documents',
+        'app.storyDetails.primaryColor',
+      ],
     }),
   );
 }
