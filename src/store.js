@@ -15,7 +15,7 @@ middlewares.push(routerMiddleware(history));
 if (!isProduction) {
   middlewares.push(
     immutableStateInvariantMiddleware({
-      ignore: ['loading'],
+      ignore: ['loading', 'app.primaryColor'],
     }),
   );
 }

@@ -10,6 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+
 
 const styles = theme => ({
   main: {
@@ -33,7 +35,6 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -49,10 +50,14 @@ class LoginPage extends React.Component {
     super(props);
 
     this.state = {
-      userId: '',
+      email: '',
       password: '',
     };
   }
+
+  // componentDidMount() {
+  //   this.props.fetchDiplomas(99);
+  // }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -63,9 +68,9 @@ class LoginPage extends React.Component {
   handleFormSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
-    const { userId, password } = this.state;
+    const { email, password } = this.state;
     const loginPayload = {
-      userId,
+      email,
       password,
     };
     this.props.login(loginPayload);
@@ -73,6 +78,8 @@ class LoginPage extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const Theme = createMuiTheme({ palette: { primary: this.props.storyDetails.primaryColor } });
+
     return (
       <main className={classes.main}>
         <CssBaseline />
@@ -85,11 +92,11 @@ class LoginPage extends React.Component {
           </Typography>
           <form className={classes.form} onSubmit={this.handleFormSubmit}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="userId">Id</InputLabel>
+              <InputLabel htmlFor="email">Email</InputLabel>
               <Input
-                id="userId"
-                name="userId"
-                autoComplete="userId"
+                id="email"
+                name="email"
+                autoComplete="email"
                 autoFocus
                 onChange={this.handleChange}
               />
@@ -104,15 +111,17 @@ class LoginPage extends React.Component {
                 onChange={this.handleChange}
               />
             </FormControl>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign in
-            </Button>
+            <MuiThemeProvider theme={Theme}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign in
+                </Button>
+            </MuiThemeProvider>
           </form>
         </Paper>
       </main>
