@@ -24,7 +24,7 @@ import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
 import FewaAdminApprovalForm from '@Root/scenes/FEWA/AdminNOCRequestForm';
 import MojSellerNocForm from '@Root/scenes/MOJ/SellerNOCRequestForm';
-
+import MojAdminApprovalForm from '@Root/scenes/MOJ/AdminApprovalForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
@@ -95,6 +95,7 @@ function App(props) {
           <Route path="/thank-you" component={ThankYou} />
           <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
           <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
+          <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
         </main>
         <Dialog />
         <Notification />
