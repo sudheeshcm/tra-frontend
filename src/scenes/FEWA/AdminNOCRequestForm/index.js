@@ -1,4 +1,4 @@
-import AdminNOCRequestForm from './container';
+import AdminApprovalForm from './container';
 
 
-export default AdminNOCRequestForm;
+export default AdminApprovalForm;

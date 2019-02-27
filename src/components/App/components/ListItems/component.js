@@ -79,12 +79,21 @@ export default (
       </ListItem>
     </Link>
 
-    <Link to="/fewa/admin-noc-form">
+    <Link to="/fewa/admin-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
         <ListItemText primary="FEWA Admin NOC Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/moj/seller-noc-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MOJ Seller NOC form" />
       </ListItem>
     </Link>
 

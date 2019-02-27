@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import AdminNOCRequestForm from './component';
+import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({});
 
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AdminNOCRequestForm);
+)(AdminApprovalForm);

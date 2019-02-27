@@ -30,7 +30,7 @@ const styles = () => ({
   },
 });
 
-class AdminNOCRequestForm extends Component {
+class AdminApprovalForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
@@ -79,4 +79,4 @@ class AdminNOCRequestForm extends Component {
   }
 }
 
-export default withStyles(styles)(AdminNOCRequestForm);
+export default withStyles(styles)(AdminApprovalForm);
