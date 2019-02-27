@@ -40,5 +40,13 @@ export default (
         <ListItemText primary="RERA Seller Form" />
       </ListItem>
     </Link>
+    <Link to="/fewa/buyer-noc-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="FEWA Buyer NOC Form" />
+      </ListItem>
+    </Link>
   </div>
 );

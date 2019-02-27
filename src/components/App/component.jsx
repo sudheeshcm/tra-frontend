@@ -16,6 +16,7 @@ import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
+import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
 import ListItems from './components/ListItems';
 
 const drawerWidth = 240;
@@ -73,6 +74,8 @@ function App(props) {
           <Route path="/networks/new" component={NewNetwork} />
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
           <Route path="/rera/seller-form" component={ReraSellerForm} />
+
+          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
         </main>
         <Dialog />
         <Notification />
