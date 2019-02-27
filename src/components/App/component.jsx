@@ -22,6 +22,7 @@ import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
+import FewaAdminApprovalForm from '@Root/scenes/FEWA/AdminNOCRequestForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
@@ -90,6 +91,7 @@ function App(props) {
           <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
           <Route path="/mpd/buyer-verification-form" component={MPDBuyerVerificationForm} />
           <Route path="/thank-you" component={ThankYou} />
+          <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
         </main>
         <Dialog />
         <Notification />
