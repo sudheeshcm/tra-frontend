@@ -23,6 +23,7 @@ import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
+import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
 import ListItems from './components/ListItems';
 import {
   red,
@@ -94,6 +95,7 @@ function App(props) {
           <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
           <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
           <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          <Route path="/mpd/buyer-verification-form" component={MPDBuyerVerificationForm} />
         </main>
         <Dialog />
         <Notification />

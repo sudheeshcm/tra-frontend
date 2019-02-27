@@ -59,6 +59,14 @@ export default (
         <ListItemText primary="MPD Admin Form" />
       </ListItem>
     </Link>
+    <Link to="/mpd/buyer-verification-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MPD Buyer Verification Form" />
+      </ListItem>
+    </Link>
 
     <Link to="/fewa/buyer-noc-form">
       <ListItem button>
