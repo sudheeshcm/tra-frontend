@@ -51,6 +51,14 @@ export default (
       </ListItem>
     </Link>
 
+    <Link to="/mpd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MPD Admin Form" />
+      </ListItem>
+    </Link>
     <Link to="/mpd/buyer-verification-form">
       <ListItem button>
         <ListItemIcon>
@@ -60,42 +68,13 @@ export default (
       </ListItem>
     </Link>
 
-
-    <Link to="/mpd/admin-form">
-      <ListItem button>
-        <ListItemIcon>
-          <NetworkIcon />
-        </ListItemIcon>
-        <ListItemText primary="MPD Admin Form" />
-      </ListItem>
-    </Link>
-    
     <Link to="/fewa/buyer-noc-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="FEWA Buyer NOC Form" />
+        <ListItemText primary="FEWA Buyer NOC form" />
       </ListItem>
     </Link>
-
-    <Link to="/fewa/admin-form">
-      <ListItem button>
-        <ListItemIcon>
-          <NetworkIcon />
-        </ListItemIcon>
-        <ListItemText primary="FEWA Admin NOC Form" />
-      </ListItem>
-    </Link>
-
-    <Link to="/moj/seller-noc-form">
-      <ListItem button>
-        <ListItemIcon>
-          <NetworkIcon />
-        </ListItemIcon>
-        <ListItemText primary="MOJ Seller NOC form" />
-      </ListItem>
-    </Link>
-
   </div>
 );
