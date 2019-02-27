@@ -32,6 +32,7 @@ export default (
         <ListItemText primary="RERA Buyer Form" />
       </ListItem>
     </Link>
+
     <Link to="/rera/seller-form">
       <ListItem button>
         <ListItemIcon>
@@ -40,12 +41,31 @@ export default (
         <ListItemText primary="RERA Seller Form" />
       </ListItem>
     </Link>
+    <Link to="/rera/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+
+        <ListItemText primary="RERA Admin Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/mpd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MPD Admin Form" />
+      </ListItem>
+    </Link>
+
     <Link to="/fewa/buyer-noc-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="FEWA Buyer NOC Form" />
+        <ListItemText primary="FEWA Buyer NOC form" />
       </ListItem>
     </Link>
   </div>

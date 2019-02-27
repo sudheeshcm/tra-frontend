@@ -21,6 +21,7 @@ if (!isProduction) {
         'document.currentDocument',
         'multiDocuments.files',
         'multiDocuments.documents',
+        'app.storyDetails.primaryColor',
       ],
     }),
   );

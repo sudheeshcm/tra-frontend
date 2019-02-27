@@ -6,6 +6,7 @@ const initialState = {
   details: {},
   currentUser: null,
   loading: false,
+  stepColor: null,
 };
 
 const userModel = {
