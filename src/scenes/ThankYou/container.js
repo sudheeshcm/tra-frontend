@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import LoginPage from './component.js';
+import ThankYou from './component.js';
 
 function mapState(state) {
   return {
@@ -12,11 +12,11 @@ function mapState(state) {
 function mapDispatch(dispatch) {
   // console.log(dispatch.user);
   return {
-    login: dispatch.user.login,
+    updateStep: dispatch.app.updateStep,
   };
 }
 
 export default connect(
   mapState,
   mapDispatch,
-)(LoginPage);
+)(ThankYou);

@@ -57,6 +57,7 @@ class BuyerRequestForm extends Component {
           method: 'POST',
           url: `/rera/buyer-request`,
         }); */
+
     this.props.updateStep({ step: 1, completed: true });
     this.props.push('/thank-you');
   };

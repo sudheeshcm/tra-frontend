@@ -1,22 +1,24 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import LoginPage from './component.js';
+import App from './component';
 
 function mapState(state) {
   return {
     stepDetails: state.app.stepDetails,
-   
   };
 }
 
 function mapDispatch(dispatch) {
   // console.log(dispatch.user);
   return {
-    login: dispatch.user.login,
+    // login: dispatch.user.login,
   };
 }
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(LoginPage);
+export default withRouter(
+  connect(
+    mapState,
+    mapDispatch,
+  )(App),
+);

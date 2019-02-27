@@ -11,6 +11,7 @@ export default {
     setFile: (state, payload) => ({
       ...state,
       file: payload.file,
+      documentHash: payload.documentHash
     }),
     fetchSuccess: (state, payload) => ({
       ...state,

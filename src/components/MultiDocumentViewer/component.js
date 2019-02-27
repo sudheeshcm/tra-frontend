@@ -4,21 +4,19 @@ import SVG from 'react-inlinesvg';
 import Dropzone from 'react-dropzone';
 import FileSaver from 'file-saver';
 import PDF from 'react-pdf-js';
-import hashDocument from '@Utils/hashDocument';
+
 import Control from './components/Control';
 
-class DocumentViewerComponent extends React.Component {
+class MultiDocumentViewerComponent extends React.Component {
   static propTypes = {
     file: PropTypes.instanceOf(Object),
-    documentHash: PropTypes.string,
     setFile: PropTypes.func.isRequired,
     clearFile: PropTypes.func.isRequired,
-    fetchDocument: PropTypes.func.isRequired,
+    fetchDocuments: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     file: null,
-    documentHash: '',
   };
 
   constructor(props) {
@@ -33,10 +31,9 @@ class DocumentViewerComponent extends React.Component {
     this.state = {
       add: true,
       scale: 1,
-      supDocTitle: '',
-      activeDocId: props.currentDocument ? props.currentDocument.id : null,
+      reqDocTitle: '',
       currentFile: props.file,
-      currentDocumentHash: props.documentHash,
+      docNavActive: true,
       error: '',
     };
 
@@ -44,7 +41,7 @@ class DocumentViewerComponent extends React.Component {
   }
 
   componentWillMount() {
-    // this.props.fetchDocument(asdasdasd);
+    // this.props.fetchDocument();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +54,7 @@ class DocumentViewerComponent extends React.Component {
       (!this.fetchedDocFile || (thisDoc && thisDoc.id) !== nextDoc.id)
     ) {
       this.fetchedDocFile = true;
-      this.props.fetchDocumentFile({
+      this.props.fetchDocument({
         documentId: nextDoc.id,
         onDownloadProgress: this.onDownloadProgress,
       });
@@ -93,7 +90,7 @@ class DocumentViewerComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.clearFile();
+    this.props.clearFile('all');
   }
 
   onCanvasMouseMove = event => {
@@ -148,9 +145,7 @@ class DocumentViewerComponent extends React.Component {
 
     if (fileSize <= 200) {
       console.log('file: ', file);
-      const documentHash = await hashDocument(file);
-      this.props.setFile({ file, documentHash });
-
+      this.props.setFile({ file });
     } else {
       error = 'PDF size should be less than 200MB';
     }
@@ -242,14 +237,15 @@ class DocumentViewerComponent extends React.Component {
           className="document-preview__canvas__scroller"
           {...(this.state.canvasOverflow
             ? {
-              onMouseMove: this.onCanvasMouseMove,
-              onMouseDown: this.onCanvasMouseDown,
-              onMouseUp: this.onCanvasMouseUp,
-            }
+                onMouseMove: this.onCanvasMouseMove,
+                onMouseDown: this.onCanvasMouseDown,
+                onMouseUp: this.onCanvasMouseUp,
+              }
             : {})}
         >
           <PDF
             className="document-preview__canvas"
+            key={filePath}
             file={filePath}
             onDocumentComplete={this.onDocumentComplete}
             onPageComplete={this.onPageComplete}
@@ -262,9 +258,9 @@ class DocumentViewerComponent extends React.Component {
     return null;
   };
 
-  renderSupportingDocs = () => {
-    const { supDocTitle, activeDocId } = this.state;
-    const { currentDocument: doc } = this.props;
+  renderRequiredDocs = () => {
+    const { reqDocTitle } = this.state;
+    const { currentDocument: doc, requiredFiles, activeIndex } = this.props;
     return (
       <Fragment>
         <div className="document-navigation__wrapper">
@@ -277,7 +273,7 @@ class DocumentViewerComponent extends React.Component {
               keyboard_arrow_up
             </i>
             <div className="document-navigation__toggle__text">
-              View supporting documents
+              View other documents
             </div>
           </a>
         </div>
@@ -289,26 +285,21 @@ class DocumentViewerComponent extends React.Component {
             >
               close
             </a>
-            <div className="document-navigation__main-doc">
-              <div className="document-navigation__title">Current document</div>
-              <a
-                className={`document-navigation__main-doc__doc ${
-                  activeDocId === doc.id ? 'is-active' : ''
-                  }`}
-                onClick={() =>
-                  this.props.fetchDocumentFile(doc.id, this.onDownloadProgress)
-                }
-              >
+            {/* <div className="document-navigation__main-doc">
+              <div className="document-navigation__title">
+                Selected document
+              </div>
+              <a className="document-navigation__main-doc__doc is-active">
                 <img
-                  // src={imageUrl(doc.imageName)}
+                  src="/static/img/pdf.png"
                   className="document-navigation__img"
                   alt="alternate doc"
                 />
               </a>
-            </div>
+            </div> */}
             <div className="document-navigation__supporting-docs">
               <div className="document-navigation__title">
-                Supporting documents
+                Required documents
               </div>
               <div className="document-navigation__scroller-wrapper">
                 <a
@@ -325,28 +316,20 @@ class DocumentViewerComponent extends React.Component {
                   }}
                   className="document-navigation__scroller"
                 >
-                  {doc.supportingDocuments.map(supDoc => (
-                    <li
-                      key={supDoc.id}
-                      className="document-navigation__scrollee"
-                    >
+                  {requiredFiles.map((reqDoc, index) => (
+                    <li key={index} className="document-navigation__scrollee">
                       <a
                         className={`document-navigation__supporting-doc ${
-                          activeDocId === supDoc.id ? 'is-active' : ''
-                          }`}
+                          activeIndex === index ? 'is-active' : ''
+                        }`}
                         onMouseEnter={() =>
-                          this.setState({ supDocTitle: supDoc.title })
+                          this.setState({ reqDocTitle: reqDoc.title })
                         }
-                        onMouseLeave={() => this.setState({ supDocTitle: '' })}
-                        onClick={() =>
-                          this.props.fetchDocumentFile(
-                            supDoc.id,
-                            this.onDownloadProgress,
-                          )
-                        }
+                        onMouseLeave={() => this.setState({ reqDocTitle: '' })}
+                        onClick={() => this.props.setActiveIndex({ index })}
                       >
                         <img
-                          // src={imageUrl(supDoc.imageName)}
+                          src="/static/img/pdf.png"
                           className="document-navigation__img"
                           alt="alternate doc"
                         />
@@ -365,12 +348,7 @@ class DocumentViewerComponent extends React.Component {
               </div>
               <div className="document-navigation__supporting-doc__title">
                 <span className="document-navigation__supporting-doc__title__text">
-                  {supDocTitle ||
-                    (
-                      doc.supportingDocuments.find(
-                        supDoc => supDoc.id === activeDocId,
-                      ) || {}
-                    ).title}
+                  {reqDocTitle || requiredFiles[activeIndex].title}
                 </span>
               </div>
             </div>
@@ -389,7 +367,7 @@ class DocumentViewerComponent extends React.Component {
       error,
     } = this.state;
 
-    const { currentDocument: doc } = this.props;
+    const { currentDocument: doc, requiredFiles } = this.props;
 
     return (
       <div className="document-preview">
@@ -459,20 +437,16 @@ class DocumentViewerComponent extends React.Component {
             )}
           </div>
         </div>
-        {doc &&
-          doc.supportingDocuments &&
-          doc.supportingDocuments.length > 0 && (
-            <div
-              className={`document-navigation ${
-                docNavActive ? 'is-active' : ''
-                }`}
-            >
-              {this.renderSupportingDocs()}
-            </div>
-          )}
+        {requiredFiles && requiredFiles.length > 0 && (
+          <div
+            className={`document-navigation ${docNavActive ? 'is-active' : ''}`}
+          >
+            {this.renderRequiredDocs()}
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default DocumentViewerComponent;
+export default MultiDocumentViewerComponent;
