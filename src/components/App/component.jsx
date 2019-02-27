@@ -16,6 +16,9 @@ import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
+import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
+import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
+
 import ListItems from './components/ListItems';
 
 const drawerWidth = 240;
@@ -73,6 +76,8 @@ function App(props) {
           <Route path="/networks/new" component={NewNetwork} />
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
           <Route path="/rera/seller-form" component={ReraSellerForm} />
+          <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
+          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
         </main>
         <Dialog />
         <Notification />
