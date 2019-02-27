@@ -17,7 +17,7 @@ import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import ListItems from './components/ListItems';
-import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/colors'
+import data from '../../data.js';
 
 
 const drawerWidth = 240;
@@ -54,7 +54,7 @@ const styles = theme => ({
 
 function App(props) {
   const { classes } = props;
-  const Theme = createMuiTheme({ palette: { primary: props.storyDetails.primaryColor } });
+  const Theme = createMuiTheme({ palette: { primary: data[props.stepDetails.step].primaryColor } });
 
   return (
     <MuiThemeProvider theme={Theme}>
