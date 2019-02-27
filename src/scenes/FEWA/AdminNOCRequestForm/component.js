@@ -65,12 +65,12 @@ class AdminNOCRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            FEWA NOC Form Request
+            FEWA NOC - Admin Verification
           </Typography>
 
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit">
-              Submit
+              Approve
             </Button>
           </div>
         </div>
