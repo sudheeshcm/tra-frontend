@@ -25,7 +25,7 @@ import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
 import ListItems from './components/ListItems';
-import data from '../../data.js';
+import dataScenarios from '../../data.js';
 
 
 const drawerWidth = 240;
@@ -62,7 +62,7 @@ const styles = theme => ({
 
 function App(props) {
   const { classes } = props;
-  const Theme = createMuiTheme({ palette: { primary: data[props.stepDetails.step].primaryColor } });
+  const Theme = createMuiTheme({ palette: { primary: dataScenarios[props.stepDetails.step].primaryColor } });
 
   return (
     <MuiThemeProvider theme={Theme}>

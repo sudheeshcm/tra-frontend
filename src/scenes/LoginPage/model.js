@@ -1,5 +1,7 @@
 import { push } from 'connected-react-router';
-import { dispatch } from '@rematch/core';
+import { dispatch,  getState } from '@rematch/core';
+import dataScenarios from '../../data.js';
+
 //import request from '@Services/ApiService';
 
 const initialState = {
@@ -49,7 +51,7 @@ const userModel = {
         dispatch.user.loginUserSuccess({
           currentUser: data,
         });
-        dispatch(push('/'));
+        dispatch(push(dataScenarios[ getState().app.stepDetails.step].link));
       } catch (error) {
         console.log(error, 'error');
       }
