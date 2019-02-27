@@ -6,7 +6,6 @@ import App from './component';
 function mapState(state) {
   return {
     stepDetails: state.app.stepDetails,
-    storyDetails: state.app.storyDetails,
   };
 }
 

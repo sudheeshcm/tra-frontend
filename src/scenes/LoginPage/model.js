@@ -1,6 +1,6 @@
 import { push } from 'connected-react-router';
 import { dispatch } from '@rematch/core';
-import request from '@Services/ApiService';
+//import request from '@Services/ApiService';
 
 const initialState = {
   details: {},
