@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { dispatch} from '@rematch/core';
+import { push } from 'connected-react-router';
+
+
 import dataScenarios from '../../data.js';
 
 
@@ -47,35 +48,19 @@ const styles = theme => ({
   },
 });
 
-class LoginPage extends React.Component {
+class ThankYou extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      email: '',
-      password: '',
-    };
+    
   }
-
-  // componentDidMount() {
-  //   this.props.fetchDiplomas(99);
-  // }
-
-  handleChange = e => {
-    const { name, value } = e.target;
-
-    this.setState({ [name]: value });
-  };
 
   handleFormSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
-    const { email, password } = this.state;
-    const loginPayload = {
-      email,
-      password,
-    };
-    this.props.login(loginPayload);
+    var step = this.props.stepDetails.step;
+    ++step;
+    this.props.updateStep({step, completed: true});
+    dispatch(push('/login'));
   };
 
   render() {
@@ -86,33 +71,10 @@ class LoginPage extends React.Component {
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            THANK YOU! 
           </Typography>
           <form className={classes.form} onSubmit={this.handleFormSubmit}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email</InputLabel>
-              <Input
-                id="email"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={this.handleChange}
-              />
-            </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                name="password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={this.handleChange}
-              />
-            </FormControl>
             <MuiThemeProvider theme={Theme}>
                 <Button
                   type="submit"
@@ -121,7 +83,7 @@ class LoginPage extends React.Component {
                   color="primary"
                   className={classes.submit}
                 >
-                  Sign in
+                  NEXT STEP
                 </Button>
             </MuiThemeProvider>
           </form>
@@ -131,9 +93,8 @@ class LoginPage extends React.Component {
   }
 }
 
-LoginPage.propTypes = {
+ThankYou.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  login: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(LoginPage);
+export default withStyles(styles)(ThankYou);

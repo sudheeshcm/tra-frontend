@@ -2,7 +2,7 @@ import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/
 
 export default {
     1: {
-        primaryColor: red ,
+        primaryColor: deepPurple ,
         link: "/rera/buyer-form",
         entity: "RERA"
     },
