@@ -40,5 +40,24 @@ export default (
         <ListItemText primary="RERA Seller Form" />
       </ListItem>
     </Link>
+
+    <Link to="/rera/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="RERA Admin Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/mpd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="MPD Admin Form" />
+      </ListItem>
+    </Link>
+
   </div>
 );

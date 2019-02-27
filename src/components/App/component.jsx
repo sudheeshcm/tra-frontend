@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles';
 import defaultTheme from '@Styles/theme';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -16,7 +16,12 @@ import Notification from '@Components/Notification';
 import Dialog from '@Components/Dialog';
 import ReraBuyerForm from '@Root/scenes/RERA/BuyerRequestForm';
 import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
+import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
+import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
+
 import ListItems from './components/ListItems';
+import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/colors'
+
 
 const drawerWidth = 240;
 
@@ -52,9 +57,10 @@ const styles = theme => ({
 
 function App(props) {
   const { classes } = props;
+  const Theme = createMuiTheme({ palette: { primary: props.storyDetails.primaryColor } });
 
   return (
-    <MuiThemeProvider theme={defaultTheme}>
+    <MuiThemeProvider theme={Theme}>
       <div className={classes.root}>
         <Header classes={classes.appBar} />
         <Drawer
@@ -73,6 +79,8 @@ function App(props) {
           <Route path="/networks/new" component={NewNetwork} />
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
           <Route path="/rera/seller-form" component={ReraSellerForm} />
+          <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
+          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
         </main>
         <Dialog />
         <Notification />
