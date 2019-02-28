@@ -19,6 +19,7 @@ class DocumentViewerComponent extends React.Component {
   static defaultProps = {
     file: null,
     documentHash: '',
+    isVerificationMode: false,
   };
 
   constructor(props) {
@@ -148,9 +149,12 @@ class DocumentViewerComponent extends React.Component {
 
     if (fileSize <= 200) {
       console.log('file: ', file);
-      const documentHash = await hashDocument(file);
-      this.props.setFile({ file, documentHash });
+      this.props.setFile({ file });
 
+      if (this.props.isVerificationMode) {
+        const documentHash = await hashDocument(file);
+        this.props.setFile({ file, documentHash });
+      }
     } else {
       error = 'PDF size should be less than 200MB';
     }
