@@ -87,30 +87,40 @@ function App(props) {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/login" component={LoginPage} />
+          <Route path="/thank-you" component={ThankYou} />
+
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
           <Route path="/rera/seller-form" component={ReraSellerForm} />
-          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
           <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
-          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          {/* S1, S2, S3 */}
+
           <Route
             path="/mpd/buyer-verification-form"
             component={MPDBuyerVerificationForm}
           />
-          <Route path="/thank-you" component={ThankYou} />
+          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          {/* S4, S5 */}
+
+          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
           <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
+          {/* S6, S7 */}
+
           <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
           <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
-          <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
+          {/* S8, S9 */}
 
-          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
           <Route
             path="/abd/buyer-request-form"
             component={ABDBuyerRequestForm}
           />
-          <Route
-            path="/abd/admin-form"
-            component={ABDAdminApprovalForm}
-          />
+          <Route path="/abd/admin-form" component={ABDAdminApprovalForm} />
+          {/* S10, S11 */}
+
+          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
+          {/* S1 */}
+
+          <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
+          {/* S15 */}
         </main>
         <Dialog />
         <Notification />
