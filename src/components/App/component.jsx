@@ -64,6 +64,7 @@ const styles = theme => ({
 function App(props) {
   const { classes } = props;
   const Theme = createMuiTheme({
+    ...defaultTheme,
     palette: { primary: dataScenarios[props.stepDetails.step].primaryColor },
   });
 
