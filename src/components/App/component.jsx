@@ -30,6 +30,7 @@ import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
 import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
 
 import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
+import AdminTDApprovalForm from '@Root/scenes/RERA/AdminTDApprovalForm';
 import ListItems from './components/ListItems';
 import dataScenarios from '../../data.js';
 
@@ -117,7 +118,8 @@ function App(props) {
           {/* S10, S11 */}
 
           <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
-          {/* S1 */}
+          <Route path="/rera/admin-td-form" component={AdminTDApprovalForm} />
+          {/* S13, S14 */}
 
           <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
           {/* S15 */}
