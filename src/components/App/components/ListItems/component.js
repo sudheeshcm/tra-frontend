@@ -114,6 +114,15 @@ export default (
         <ListItemText primary="S11: ABD Admin Mortgage form" />
       </ListItem>
     </Link>
+    
+    <Link to="/enbd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S12: ENBD Admin Mortgage form" />
+      </ListItem>
+    </Link>
 
     <Link to="/rera/buyer-td-form">
       <ListItem button>

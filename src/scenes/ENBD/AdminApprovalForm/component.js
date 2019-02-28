@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import MultiDocumentViewer from '@Components/MultiDocumentViewer';
+import DocumentViewer from '@Components/DocumentViewer';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
 // import request from '@Services/ApiService';
 
@@ -31,55 +33,29 @@ const styles = () => ({
 });
 
 class AdminApprovalForm extends Component {
-  componentDidMount() {
-    this.props.setRequiredFiles([
-      {
-        title: 'OT',
-        required: true,
-      },
-      {
-        title: 'MPD NOC',
-        required: true,
-      },
-      {
-        title: 'FEWA NOC',
-        required: true,
-      },
-      {
-        title: 'MOJ NOC',
-        required: true,
-      },
-    ]);
-  }
-
-  componentWillUnmount() {
-    this.props.resetRequiredFiles();
-  }
-
   submitData = e => {
     e.preventDefault();
-        //API Call
+    //API Call
     this.props.updateStep({ completed: true });
     this.props.push('/thank-you');
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes,  otHash } = this.props;
 
     return (
-      <div className="buyer-fewa-noc-form">
-        <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+      <div className="seller-verification-form">
+        <div className="seller-verification-form__doc-viewer">
+          <DocumentViewer />
         </div>
 
-        <div className="buyer-fewa-noc-form__contents">
+        <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ABD Mortgage - Admin Verification
+            ENBD - Admin Verification
           </Typography>
-
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit">
-              Approve
+              APPROVE 
             </Button>
           </div>
         </div>

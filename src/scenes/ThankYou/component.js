@@ -59,7 +59,7 @@ class ThankYou extends React.Component {
     event.preventDefault();
     var step = this.props.stepDetails.step;
     ++step;
-    this.props.updateStep({step, completed: true});
+    this.props.updateStep({step});
     dispatch(push('/login'));
   };
 

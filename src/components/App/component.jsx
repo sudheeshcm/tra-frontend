@@ -21,6 +21,7 @@ import ReraSellerForm from '@Root/scenes/RERA/SellerVerificationForm';
 import FewaBuyerNocForm from '@Root/scenes/FEWA/BuyerNOCRequestForm';
 import ABDBuyerRequestForm from '@Root/scenes/ABD/BuyerRequestForm';
 import ABDAdminApprovalForm from '@Root/scenes/ABD/AdminApprovalForm';
+import ENBDAdminApprovalForm from '@Root/scenes/ENBD/AdminApprovalForm';
 import FewaAdminApprovalForm from '@Root/scenes/FEWA/AdminNOCRequestForm';
 import MojSellerNocForm from '@Root/scenes/MOJ/SellerNOCRequestForm';
 import MojAdminApprovalForm from '@Root/scenes/MOJ/AdminApprovalForm';
@@ -106,6 +107,10 @@ function App(props) {
           <Route
             path="/abd/admin-form"
             component={ABDAdminApprovalForm}
+          />
+          <Route
+            path="/enbd/admin-form"
+            component={ENBDAdminApprovalForm}
           />
         </main>
         <Dialog />
