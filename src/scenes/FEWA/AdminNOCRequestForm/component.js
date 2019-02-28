@@ -42,6 +42,9 @@ class AdminApprovalForm extends Component {
         required: true,
       },
     ]);
+    this.props.fetchDocuments({
+      documentHashes: [this.props.otHash, this.props.mpdNocHash],
+    });
   }
 
   componentWillUnmount() {
@@ -60,7 +63,7 @@ class AdminApprovalForm extends Component {
     return (
       <div className="buyer-fewa-noc-form">
         <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+          <MultiDocumentViewer isViewMode />
         </div>
 
         <div className="buyer-fewa-noc-form__contents">

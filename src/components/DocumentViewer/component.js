@@ -50,18 +50,6 @@ class DocumentViewerComponent extends React.Component {
     const thisDoc = this.props.currentDocument;
     const nextDoc = nextProps.currentDocument;
 
-    if (
-      nextDoc &&
-      nextDoc.id &&
-      (!this.fetchedDocFile || (thisDoc && thisDoc.id) !== nextDoc.id)
-    ) {
-      this.fetchedDocFile = true;
-      this.props.fetchDocumentFile({
-        documentId: nextDoc.id,
-        onDownloadProgress: this.onDownloadProgress,
-      });
-    }
-
     this.setState({
       add: !nextProps.currentDocument,
       currentFile: nextProps.file,

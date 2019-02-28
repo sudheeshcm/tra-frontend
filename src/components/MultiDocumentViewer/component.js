@@ -13,10 +13,12 @@ class MultiDocumentViewerComponent extends React.Component {
     setFile: PropTypes.func.isRequired,
     clearFile: PropTypes.func.isRequired,
     fetchDocuments: PropTypes.func.isRequired,
+    isViewMode: PropTypes.bool,
   };
 
   static defaultProps = {
     file: null,
+    isViewMode: false,
   };
 
   constructor(props) {
@@ -29,7 +31,7 @@ class MultiDocumentViewerComponent extends React.Component {
     };
 
     this.state = {
-      add: true,
+      add: !props.isViewMode,
       scale: 1,
       reqDocTitle: '',
       currentFile: props.file,
@@ -48,21 +50,10 @@ class MultiDocumentViewerComponent extends React.Component {
     const thisDoc = this.props.currentDocument;
     const nextDoc = nextProps.currentDocument;
 
-    if (
-      nextDoc &&
-      nextDoc.id &&
-      (!this.fetchedDocFile || (thisDoc && thisDoc.id) !== nextDoc.id)
-    ) {
-      this.fetchedDocFile = true;
-      this.props.fetchDocument({
-        documentId: nextDoc.id,
-        onDownloadProgress: this.onDownloadProgress,
-      });
-    }
-
     this.setState({
-      add: true, // update to show the document
+      add: !nextProps.currentDocument,
       currentFile: nextProps.file,
+      currentDocKey: Date.now(),
     });
   }
 
@@ -144,8 +135,7 @@ class MultiDocumentViewerComponent extends React.Component {
     let error = '';
 
     if (fileSize <= 200) {
-      console.log('file: ', file);
-      this.props.setFile({ file });
+      this.props.setFile({ file, index: this.props.activeIndex });
     } else {
       error = 'PDF size should be less than 200MB';
     }
@@ -223,6 +213,7 @@ class MultiDocumentViewerComponent extends React.Component {
     const { currentDocument } = this.props;
 
     let filePath = '';
+    const key = Date.now();
     if (currentFile && currentDocument && !add) {
       filePath = window.URL.createObjectURL(currentFile);
     } else if (currentFile && add) {
@@ -245,7 +236,7 @@ class MultiDocumentViewerComponent extends React.Component {
         >
           <PDF
             className="document-preview__canvas"
-            key={filePath}
+            key={this.state.currentDocKey}
             file={filePath}
             onDocumentComplete={this.onDocumentComplete}
             onPageComplete={this.onPageComplete}

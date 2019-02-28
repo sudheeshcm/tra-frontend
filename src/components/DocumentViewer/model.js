@@ -31,9 +31,7 @@ export default {
           url: `/doc/${payload.documentHash}`,
           responseType: 'blob',
         });
-        setTimeout(() => {
-          dispatch.document.fetchSuccess({ document: response });
-        }, 2000);
+        dispatch.document.fetchSuccess({ document: response });
       } catch (error) {
         console.log('error: ', error);
         dispatch.notification.show({
