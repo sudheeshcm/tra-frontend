@@ -8,20 +8,12 @@ import { Link } from 'react-router-dom';
 
 export default (
   <div>
-    <Link to="/">
+    <Link to="/login">
       <ListItem button>
         <ListItemIcon>
           <OverviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Overview" />
-      </ListItem>
-    </Link>
-    <Link to="/networks">
-      <ListItem button>
-        <ListItemIcon>
-          <NetworkIcon />
-        </ListItemIcon>
-        <ListItemText primary="Networks" />
+        <ListItemText primary="Login" />
       </ListItem>
     </Link>
     <Link to="/rera/buyer-form">
@@ -29,7 +21,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="RERA Buyer Form" />
+        <ListItemText primary="S1: RERA Buyer Form" />
       </ListItem>
     </Link>
 
@@ -38,7 +30,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="RERA Seller Form" />
+        <ListItemText primary="S2: RERA Seller Form" />
       </ListItem>
     </Link>
     <Link to="/rera/admin-form">
@@ -47,7 +39,7 @@ export default (
           <NetworkIcon />
         </ListItemIcon>
 
-        <ListItemText primary="RERA Admin Form" />
+        <ListItemText primary="S3: RERA Admin Form" />
       </ListItem>
     </Link>
 
@@ -56,26 +48,25 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="MPD Buyer Verification Form" />
+        <ListItemText primary="S4: MPD Buyer Verification Form" />
       </ListItem>
     </Link>
-
 
     <Link to="/mpd/admin-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="MPD Admin Form" />
+        <ListItemText primary="S5: MPD Admin Form" />
       </ListItem>
     </Link>
-    
+
     <Link to="/fewa/buyer-noc-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="FEWA Buyer NOC Form" />
+        <ListItemText primary="S6: FEWA Buyer NOC Form" />
       </ListItem>
     </Link>
 
@@ -84,7 +75,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="FEWA Admin NOC Form" />
+        <ListItemText primary="S7: FEWA Admin NOC Form" />
       </ListItem>
     </Link>
 
@@ -93,7 +84,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="MOJ Seller NOC form" />
+        <ListItemText primary="S8: MOJ Seller NOC form" />
       </ListItem>
     </Link>
 
@@ -102,19 +93,17 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="MOJ Admin NOC form" />
+        <ListItemText primary="S9: MOJ Admin NOC form" />
       </ListItem>
     </Link>
-
 
     <Link to="/abd/buyer-request-form">
       <ListItem button>
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="ABD Buyer Request Form" />
+        <ListItemText primary="S10: ABD Buyer Request Form" />
       </ListItem>
     </Link>
-
   </div>
 );
