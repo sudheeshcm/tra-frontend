@@ -9,7 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -50,16 +50,33 @@ class BuyerRequestForm extends Component {
     this.setState({ [field]: e.target.value });
   };
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
     const { sellerId, propId, buyerId } = this.state;
     console.log('sellerId, propId, buyerId: ', sellerId, propId, buyerId);
-    /* const { response } = await request({
-          method: 'POST',
-          url: `/rera/buyer-request`,
-        }); */
 
-    this.props.updateStep({ step: 1, completed: true });
+    const formData = {
+      'from': sellerId,
+      'to': buyerId ,
+      'property-id': propId
+    };
+
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: 'http://7fe767ba.ngrok.io/ajman/request_ot',
+
+      });
+      console.log(response)
+      this.props.setOtHash(response);
+
+    } catch (error) {
+      console.log(error, 'error');
+    }
+    
+    this.props.updateStep({ completed: true });
     this.props.push('/thank-you');
   };
 

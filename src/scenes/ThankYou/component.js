@@ -12,7 +12,6 @@ import { dispatch} from '@rematch/core';
 import { push } from 'connected-react-router';
 
 
-import dataScenarios from '../../data.js';
 
 
 
@@ -65,13 +64,11 @@ class ThankYou extends React.Component {
 
   render() {
     const { classes, stepDetails } = this.props;
-    const Theme = createMuiTheme({ palette: { primary: dataScenarios[this.props.stepDetails.step].primaryColor} });
 
     let nextStep;
 
     if (stepDetails.step < 15) {
       nextStep =    <form className={classes.form} onSubmit={this.handleFormSubmit}>
-      <               MuiThemeProvider theme={Theme}>
                          <Button
                            type="submit"
                            fullWidth
@@ -81,7 +78,6 @@ class ThankYou extends React.Component {
                          >
                            NEXT STEP
                          </Button>
-                      </MuiThemeProvider>
                     </form>
     } 
 

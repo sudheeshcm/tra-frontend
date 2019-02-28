@@ -4,12 +4,13 @@ import { push } from 'connected-react-router';
 import BuyerRequestForm from './component';
 
 const mapStateToProps = state => ({
-  buyerId: 123456 || state.currentUser.id,
+  buyerId: state.user.currentUser.id || '987654321',
 });
 
 const mapDispatchToProps = dispatch => ({
   push: args => dispatch(push(args)),
   updateStep: dispatch.app.updateStep,
+  setOtHash: dispatch.app.setOtHash
 });
 
 export default connect(
