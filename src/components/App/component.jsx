@@ -26,6 +26,8 @@ import MojAdminApprovalForm from '@Root/scenes/MOJ/AdminApprovalForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
+import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
+
 import ListItems from './components/ListItems';
 import dataScenarios from '../../data.js';
 
@@ -95,6 +97,8 @@ function App(props) {
           <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
           <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
           <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
+          <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
+
           <Route
             path="/abd/buyer-request-form"
             component={ABDBuyerRequestForm}
