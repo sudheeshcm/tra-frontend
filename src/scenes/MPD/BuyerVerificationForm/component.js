@@ -112,7 +112,7 @@ class BuyerVerificationForm extends Component {
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer />
+          <DocumentViewer isVerificationMode/>
         </div>
 
         <div className="seller-verification-form__contents">
