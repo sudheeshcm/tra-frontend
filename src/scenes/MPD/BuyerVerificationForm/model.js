@@ -46,52 +46,33 @@ const verifyModel = {
   },
   effects: {
     async verifyDocument(data) {
-      //Integrate API once available
+      const formData = {
+        'ot-hash': data,
+      };
       try {
         dispatch.verify.verifyDocumentLoading();
         dispatch.verify.verifyDocumentStarted();
-        setTimeout(() => {
-          dispatch.verify.verifyDocumentSuccess();
-          dispatch.notification.show({
-            content: 'Document Verified',
-            type: 'success',
-          });
-        }, 3000);
+        await request({
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          data: formData,
+          url: 'http://7fe767ba.ngrok.io/ajman/request_mpd_noc',
+        });
 
-        // dispatch.verify.verifyDocumentSuccess();
+        dispatch.verify.verifyDocumentSuccess();
+        dispatch.notification.show({
+          content: 'Document Verified',
+          type: 'success',
+        });
       } catch (error) {
-
-        setTimeout(() => {
-            dispatch.verify.verifyDocumentFailed();
-            dispatch.notification.show({
-                content: 'Verification Failed',
-                type: 'error',
-              });
-          }, 3000);
-       
-       
-        console.log(data, 'error');
+        console.log(error, 'error');
+        dispatch.verify.verifyDocumentFailed();
+        dispatch.notification.show({
+          content: 'Verification Failed',
+          type: 'error',
+        });
       }
     },
-    // async logout(...args) {
-    //   try {
-    //     const response = await request({
-    //       method: 'GET',
-    //       url: '/auth/users/logout',
-    //       params: {
-    //         access_token: args[1].user.details.accessToken,
-    //       },
-    //     });
-
-    //     if (response.type === 'SUCCESS') {
-    //       localStorage.removeItem('curretUser');
-    //       dispatch.user.clearUserDetails();
-    //       dispatch(push('/pages/login-page'));
-    //     }
-    //   } catch (error) {
-    //     console.log(error, 'error');
-    //   }
-    // },
   },
 };
 
