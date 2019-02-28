@@ -64,8 +64,26 @@ class ThankYou extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, stepDetails } = this.props;
     const Theme = createMuiTheme({ palette: { primary: dataScenarios[this.props.stepDetails.step].primaryColor} });
+
+    let nextStep;
+
+    if (stepDetails.step < 15) {
+      nextStep =    <form className={classes.form} onSubmit={this.handleFormSubmit}>
+      <               MuiThemeProvider theme={Theme}>
+                         <Button
+                           type="submit"
+                           fullWidth
+                           variant="contained"
+                           color="primary"
+                           className={classes.submit}
+                         >
+                           NEXT STEP
+                         </Button>
+                      </MuiThemeProvider>
+                    </form>
+    } 
 
     return (
       <main className={classes.main}>
@@ -74,19 +92,7 @@ class ThankYou extends React.Component {
           <Typography component="h1" variant="h5">
             THANK YOU! 
           </Typography>
-          <form className={classes.form} onSubmit={this.handleFormSubmit}>
-            <MuiThemeProvider theme={Theme}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  NEXT STEP
-                </Button>
-            </MuiThemeProvider>
-          </form>
+          {nextStep}
         </Paper>
       </main>
     );
