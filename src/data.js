@@ -1,5 +1,4 @@
 import {
-  red,
   deepPurple,
   green,
   lime,

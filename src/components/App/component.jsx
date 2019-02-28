@@ -8,7 +8,7 @@ import {
 import defaultTheme from '@Styles/theme';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import LoginPage from '@Scenes/LoginPage';
 import ThankYou from '@Scenes/ThankYou';
 import Header from '@Components/Header';
@@ -89,44 +89,78 @@ function App(props) {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/login" component={LoginPage} />
-          <Route path="/thank-you" component={ThankYou} />
+          <PrivateRoute path="/thank-you" component={ThankYou} />
 
-          <Route path="/rera/buyer-form" component={ReraBuyerForm} />
-          <Route path="/rera/seller-form" component={ReraSellerForm} />
-          <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
+          <PrivateRoute path="/rera/buyer-form" render={<ReraBuyerForm />} />
+          <PrivateRoute path="/rera/seller-form" component={ReraSellerForm} />
+          <PrivateRoute
+            path="/rera/admin-form"
+            component={ReraAdminApprovalForm}
+          />
           {/* S1, S2, S3 */}
 
-          <Route
+          <PrivateRoute
             path="/mpd/buyer-verification-form"
             component={MPDBuyerVerificationForm}
           />
-          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          <PrivateRoute
+            path="/mpd/admin-form"
+            component={MPDAdminApprovalForm}
+          />
           {/* S4, S5 */}
 
-          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
-          <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
+          <PrivateRoute
+            path="/fewa/buyer-noc-form"
+            component={FewaBuyerNocForm}
+          />
+          <PrivateRoute
+            path="/fewa/admin-form"
+            component={FewaAdminApprovalForm}
+          />
           {/* S6, S7 */}
 
-          <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
-          <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
+          <PrivateRoute
+            path="/moj/seller-noc-form"
+            component={MojSellerNocForm}
+          />
+          <PrivateRoute
+            path="/moj/admin-form"
+            component={MojAdminApprovalForm}
+          />
           {/* S8, S9 */}
 
-          <Route
+          <PrivateRoute
             path="/abd/buyer-request-form"
             component={ABDBuyerRequestForm}
           />
-          <Route path="/abd/admin-form" component={ABDAdminApprovalForm} />
+          <PrivateRoute
+            path="/abd/admin-form"
+            component={ABDAdminApprovalForm}
+          />
           {/* S10, S11 */}
 
-          <Route path="/enbd/admin-form" component={ENBDAdminApprovalForm} />
+          <PrivateRoute
+            path="/enbd/admin-form"
+            component={ENBDAdminApprovalForm}
+          />
           {/* S12 */}
 
-          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
-          <Route path="/rera/admin-td-form" component={AdminTDApprovalForm} />
+          <PrivateRoute
+            path="/rera/buyer-td-form"
+            component={BuyerTDRequestForm}
+          />
+          <PrivateRoute
+            path="/rera/admin-td-form"
+            component={AdminTDApprovalForm}
+          />
           {/* S13, S14 */}
 
-          <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
+          <PrivateRoute path="/fewa/buyer-form" component={BuyerTDUploadForm} />
           {/* S15 */}
+
+          {props.location.pathname !== '/login' && (
+            <Redirect from="*" to="/login" />
+          )}
         </main>
         <Dialog />
         <Notification />

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { func, shape, string } from 'prop-types';
+import { func, shape, object } from 'prop-types';
 
 const privateRoutePropTypes = {
   component: func,
   currentUser: shape({}),
-  render: func,
+  render: object,
 };
 
 const privateRouteDefaultProps = {
@@ -14,26 +14,21 @@ const privateRouteDefaultProps = {
   render: null,
 };
 
-const PrivateRoute = ({
-  component: Component,
-  currentUser,
-  render,
-  ...rest
-}) => (
+const PrivateRoute = ({ component, currentUser, render, ...rest }) => (
   <Route
     {...rest}
-    render={
-      currentUser && render
-        ? render
-        : props =>
-            currentUser ? (
-              <Component {...props} />
-            ) : (
-              <Redirect
-                to={{ pathname: '/', state: { from: props.location } }}
-              />
-            )
-    }
+    render={props => {
+      if (currentUser) {
+        render ? render : <component {...props} />;
+      } else {
+        return (
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        );
+      }
+      return null;
+    }}
   />
 );
 
