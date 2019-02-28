@@ -16,6 +16,14 @@ export default (
         <ListItemText primary="Login" />
       </ListItem>
     </Link>
+    <Link to="/thank-you">
+      <ListItem button>
+        <ListItemIcon>
+          <OverviewIcon />
+        </ListItemIcon>
+        <ListItemText primary="Thank You Screen" />
+      </ListItem>
+    </Link>
     <Link to="/rera/buyer-form">
       <ListItem button>
         <ListItemIcon>
@@ -114,7 +122,7 @@ export default (
         <ListItemText primary="S11: ABD Admin Mortgage form" />
       </ListItem>
     </Link>
-    
+
     <Link to="/enbd/admin-form">
       <ListItem button>
         <ListItemIcon>
@@ -150,6 +158,5 @@ export default (
         <ListItemText primary="S15: FEWA Buyer TD upload Form" />
       </ListItem>
     </Link>
-    
   </div>
 );
