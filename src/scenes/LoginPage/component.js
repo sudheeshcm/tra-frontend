@@ -10,8 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import dataScenarios from '../../data.js';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+// import dataScenarios from '../../data.js';
 
 
 
@@ -52,7 +52,7 @@ class LoginPage extends React.Component {
     super(props);
 
     this.state = {
-      email: '',
+      id: '',
       password: '',
     };
   }
@@ -70,9 +70,9 @@ class LoginPage extends React.Component {
   handleFormSubmit = event => {
     event.stopPropagation();
     event.preventDefault();
-    const { email, password } = this.state;
+    const { id, password } = this.state;
     const loginPayload = {
-      email,
+      id,
       password,
     };
     this.props.login(loginPayload);
@@ -80,7 +80,6 @@ class LoginPage extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const Theme = createMuiTheme({ palette: { primary: dataScenarios[this.props.stepDetails.step].primaryColor} });
 
     return (
       <main className={classes.main}>
@@ -94,11 +93,11 @@ class LoginPage extends React.Component {
           </Typography>
           <form className={classes.form} onSubmit={this.handleFormSubmit}>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email</InputLabel>
+              <InputLabel htmlFor="id">Id</InputLabel>
               <Input
-                id="email"
-                name="email"
-                autoComplete="email"
+                id="id"
+                name="id"
+                autoComplete="id"
                 autoFocus
                 onChange={this.handleChange}
               />
@@ -113,7 +112,6 @@ class LoginPage extends React.Component {
                 onChange={this.handleChange}
               />
             </FormControl>
-            <MuiThemeProvider theme={Theme}>
                 <Button
                   type="submit"
                   fullWidth
@@ -123,7 +121,6 @@ class LoginPage extends React.Component {
                 >
                   Sign in
                 </Button>
-            </MuiThemeProvider>
           </form>
         </Paper>
       </main>

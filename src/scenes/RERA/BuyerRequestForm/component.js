@@ -27,6 +27,7 @@ const styles = () => ({
     margin: '24px auto',
     marginTop: '32px',
     padding: '30px',
+    textAlign: 'center',
   },
   advancedButton: {
     marginRight: '8px',
@@ -67,7 +68,7 @@ class BuyerRequestForm extends Component {
 
     return (
       <div className="buyer-request-form">
-        <Typography variant="title" className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           RERA - Buyer Request
         </Typography>
         <Card className={classes.infoCard}>
