@@ -11,6 +11,11 @@ export default {
         width: '100%',
       },
     },
+    MuiList: {
+      root: {
+        maxHeight: '90vh',
+      },
+    },
     MuiFormControl: {
       root: {
         width: '100%',
