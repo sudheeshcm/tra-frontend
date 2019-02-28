@@ -28,7 +28,10 @@ import MojAdminApprovalForm from '@Root/scenes/MOJ/AdminApprovalForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
+import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
+
 import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
+import AdminTDApprovalForm from '@Root/scenes/RERA/AdminTDApprovalForm';
 import ListItems from './components/ListItems';
 import dataScenarios from '../../data.js';
 
@@ -86,32 +89,44 @@ function App(props) {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/login" component={LoginPage} />
+          <Route path="/thank-you" component={ThankYou} />
+
           <Route path="/rera/buyer-form" component={ReraBuyerForm} />
           <Route path="/rera/seller-form" component={ReraSellerForm} />
-          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
           <Route path="/rera/admin-form" component={ReraAdminApprovalForm} />
-          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          {/* S1, S2, S3 */}
+
           <Route
             path="/mpd/buyer-verification-form"
             component={MPDBuyerVerificationForm}
           />
-          <Route path="/thank-you" component={ThankYou} />
+          <Route path="/mpd/admin-form" component={MPDAdminApprovalForm} />
+          {/* S4, S5 */}
+
+          <Route path="/fewa/buyer-noc-form" component={FewaBuyerNocForm} />
           <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
+          {/* S6, S7 */}
+
           <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
           <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
-          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
+          {/* S8, S9 */}
+
           <Route
             path="/abd/buyer-request-form"
             component={ABDBuyerRequestForm}
           />
-          <Route
-            path="/abd/admin-form"
-            component={ABDAdminApprovalForm}
-          />
-          <Route
-            path="/enbd/admin-form"
-            component={ENBDAdminApprovalForm}
-          />
+          <Route path="/abd/admin-form" component={ABDAdminApprovalForm} />
+          {/* S10, S11 */}
+
+          <Route path="/enbd/admin-form" component={ENBDAdminApprovalForm} />
+          {/* S12 */}
+
+          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
+          <Route path="/rera/admin-td-form" component={AdminTDApprovalForm} />
+          {/* S13, S14 */}
+
+          <Route path="/fewa/buyer-form" component={BuyerTDUploadForm} />
+          {/* S15 */}
         </main>
         <Dialog />
         <Notification />
