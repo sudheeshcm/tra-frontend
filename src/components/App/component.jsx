@@ -8,7 +8,7 @@ import {
 import defaultTheme from '@Styles/theme';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import LoginPage from '@Scenes/LoginPage';
 import ThankYou from '@Scenes/ThankYou';
 import Header from '@Components/Header';

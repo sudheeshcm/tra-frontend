@@ -11,11 +11,12 @@ export default {
     setFile: (state, payload) => ({
       ...state,
       file: payload.file,
-      documentHash: payload.documentHash
+      documentHash: payload.documentHash,
     }),
     fetchSuccess: (state, payload) => ({
       ...state,
-      document: payload.document,
+      currentDocument: payload.document,
+      file: payload.document,
     }),
     clearFile: state => ({
       ...state,
@@ -23,19 +24,15 @@ export default {
     }),
   },
   effects: {
-    async fetchDocument(payload, state) {
+    async fetchDocument(payload) {
       try {
-        // const { currentUser } = state;
-        // const response = await request({
-        //   method: 'POST',
-        //   url: `document/${payload.documentId}`,
-        //   isExternal: true,
-        //   responseType: 'blob',
-        //   // headers: { 'x-auth-token': currentUser.token },
-        // });
-        // console.log('response: ', response);
+        const response = await request({
+          method: 'GET',
+          url: `/doc/${payload.documentHash}`,
+          responseType: 'blob',
+        });
         setTimeout(() => {
-          dispatch.document.fetchSuccess();
+          dispatch.document.fetchSuccess({ document: response });
         }, 2000);
       } catch (error) {
         console.log('error: ', error);

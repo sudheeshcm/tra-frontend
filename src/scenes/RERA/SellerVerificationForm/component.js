@@ -33,6 +33,12 @@ const styles = () => ({
 });
 
 class SellerVerificationForm extends Component {
+  componentDidMount() {
+    this.props.fetchDocument({
+      documentHash: this.props.otHash,
+    });
+  }
+
   submitData = e => {
     e.preventDefault();
     this.props.updateStep({ step: 2, completed: true });
@@ -45,7 +51,7 @@ class SellerVerificationForm extends Component {
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer />
+          <DocumentViewer isViewMode />
         </div>
 
         <div className="seller-verification-form__contents">
