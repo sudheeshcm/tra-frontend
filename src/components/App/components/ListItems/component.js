@@ -124,6 +124,15 @@ export default (
       </ListItem>
     </Link>
 
+    <Link to="/rera/admin-td-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S14: RERA Admin TD Form" />
+      </ListItem>
+    </Link>
+
     <Link to="/fewa/buyer-form">
       <ListItem button>
         <ListItemIcon>
