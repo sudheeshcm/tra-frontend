@@ -70,7 +70,9 @@ class BuyerRequestForm extends Component {
 
       });
       console.log(response)
-      this.props.setOtHash(response);
+      console.log(response["ot-hash"])
+      this.props.setOtHash(response["ot-hash"]);
+      this.props.getPDF(response["ot-hash"]);
 
     } catch (error) {
       console.log(error, 'error');

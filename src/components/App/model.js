@@ -36,7 +36,7 @@ export default {
       try {
         await request({
           method: "GET",
-          url: `http://7fe767ba.ngrok.io//doc/${hash}`,
+          url: `http://7fe767ba.ngrok.io/doc/${hash}`,
         });   
       } catch (error) {
         console.log(error, 'error');

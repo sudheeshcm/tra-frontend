@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   push: args => dispatch(push(args)),
   updateStep: dispatch.app.updateStep,
-  setOtHash: dispatch.app.setOtHash
+  setOtHash: dispatch.app.setOtHash,
+  getPDF: dispatch.app.getPDF
 });
 
 export default connect(
