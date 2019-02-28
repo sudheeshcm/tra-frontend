@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router';
-import { dispatch,  getState } from '@rematch/core';
+import { dispatch, getState } from '@rematch/core';
 import dataScenarios from '../../data.js';
 
 //import request from '@Services/ApiService';
@@ -29,7 +29,6 @@ const userModel = {
     },
 
     loginUserSuccess(state, currentUser) {
-      console.log(currentUser);
       return {
         ...state,
         currentUser,
@@ -45,13 +44,11 @@ const userModel = {
     },
   },
   effects: {
-    async login(data) {
+    async login(data, state) {
       try {
         localStorage.setItem('curretUser', JSON.stringify(data));
-        dispatch.user.loginUserSuccess({
-          currentUser: data,
-        });
-        dispatch(push(dataScenarios[ getState().app.stepDetails.step].link));
+        dispatch.user.loginUserSuccess(data);
+        dispatch(push(dataScenarios[state.app.stepDetails.step].link));
       } catch (error) {
         console.log(error, 'error');
       }

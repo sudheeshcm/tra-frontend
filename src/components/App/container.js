@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { push } from 'connected-react-router';
 
 import App from './component';
 
 function mapState(state) {
   return {
     stepDetails: state.app.stepDetails,
+    currentUser: state.user.currentUser,
   };
 }
 
 function mapDispatch(dispatch) {
-  // console.log(dispatch.user);
   return {
-    // login: dispatch.user.login,
+    push: args => dispatch(push(args)),
   };
 }
 

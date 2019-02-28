@@ -14,20 +14,23 @@ const privateRouteDefaultProps = {
   render: null,
 };
 
-const PrivateRoute = ({ component, currentUser, render, ...rest }) => (
+const PrivateRoute = ({
+  component: Component,
+  currentUser,
+  render,
+  ...rest
+}) => (
   <Route
     {...rest}
     render={props => {
       if (currentUser) {
-        render ? render : <component {...props} />;
-      } else {
-        return (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
-        );
+        return render || <Component {...props} />;
       }
-      return null;
+      return (
+        <Redirect
+          to={{ pathname: '/login', state: { from: props.location } }}
+        />
+      );
     }}
   />
 );

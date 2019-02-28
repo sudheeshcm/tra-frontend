@@ -67,107 +67,116 @@ const styles = theme => ({
   },
 });
 
-function App(props) {
-  const { classes } = props;
-  const Theme = createMuiTheme({
-    ...defaultTheme,
-    palette: { primary: dataScenarios[props.stepDetails.step].primaryColor },
-  });
+class App extends React.Component {
+  componentDidMount() {
+    if (this.props.location.pathname === '/') {
+      this.props.push('/login');
+    }
+  }
 
-  return (
-    <MuiThemeProvider theme={Theme}>
-      <div className={classes.root}>
-        <Header classes={classes.appBar} />
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.toolbar} />
-          <List>{ListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <Route exact path="/login" component={LoginPage} />
-          <PrivateRoute path="/thank-you" component={ThankYou} />
+  render() {
+    const { classes } = this.props;
+    const Theme = createMuiTheme({
+      ...defaultTheme,
+      palette: {
+        primary: dataScenarios[this.props.stepDetails.step].primaryColor,
+      },
+    });
 
-          <PrivateRoute path="/rera/buyer-form" render={<ReraBuyerForm />} />
-          <PrivateRoute path="/rera/seller-form" component={ReraSellerForm} />
-          <PrivateRoute
-            path="/rera/admin-form"
-            component={ReraAdminApprovalForm}
-          />
-          {/* S1, S2, S3 */}
+    return (
+      <MuiThemeProvider theme={Theme}>
+        <div className={classes.root}>
+          <Header classes={classes.appBar} />
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+          >
+            <div className={classes.toolbar} />
+            <List>{ListItems}</List>
+          </Drawer>
+          <main className={classes.content}>
+            <Route exact path="/login" component={LoginPage} />
+            <PrivateRoute path="/thank-you" component={ThankYou} />
 
-          <PrivateRoute
-            path="/mpd/buyer-verification-form"
-            component={MPDBuyerVerificationForm}
-          />
-          <PrivateRoute
-            path="/mpd/admin-form"
-            component={MPDAdminApprovalForm}
-          />
-          {/* S4, S5 */}
+            <PrivateRoute path="/rera/buyer-form" render={<ReraBuyerForm />} />
+            <PrivateRoute path="/rera/seller-form" component={ReraSellerForm} />
+            <PrivateRoute
+              path="/rera/admin-form"
+              component={ReraAdminApprovalForm}
+            />
+            {/* S1, S2, S3 */}
 
-          <PrivateRoute
-            path="/fewa/buyer-noc-form"
-            component={FewaBuyerNocForm}
-          />
-          <PrivateRoute
-            path="/fewa/admin-form"
-            component={FewaAdminApprovalForm}
-          />
-          {/* S6, S7 */}
+            <PrivateRoute
+              path="/mpd/buyer-verification-form"
+              component={MPDBuyerVerificationForm}
+            />
+            <PrivateRoute
+              path="/mpd/admin-form"
+              component={MPDAdminApprovalForm}
+            />
+            {/* S4, S5 */}
 
-          <PrivateRoute
-            path="/moj/seller-noc-form"
-            component={MojSellerNocForm}
-          />
-          <PrivateRoute
-            path="/moj/admin-form"
-            component={MojAdminApprovalForm}
-          />
-          {/* S8, S9 */}
+            <PrivateRoute
+              path="/fewa/buyer-noc-form"
+              component={FewaBuyerNocForm}
+            />
+            <PrivateRoute
+              path="/fewa/admin-form"
+              component={FewaAdminApprovalForm}
+            />
+            {/* S6, S7 */}
 
-          <PrivateRoute
-            path="/abd/buyer-request-form"
-            component={ABDBuyerRequestForm}
-          />
-          <PrivateRoute
-            path="/abd/admin-form"
-            component={ABDAdminApprovalForm}
-          />
-          {/* S10, S11 */}
+            <PrivateRoute
+              path="/moj/seller-noc-form"
+              component={MojSellerNocForm}
+            />
+            <PrivateRoute
+              path="/moj/admin-form"
+              component={MojAdminApprovalForm}
+            />
+            {/* S8, S9 */}
 
-          <PrivateRoute
-            path="/enbd/admin-form"
-            component={ENBDAdminApprovalForm}
-          />
-          {/* S12 */}
+            <PrivateRoute
+              path="/abd/buyer-request-form"
+              component={ABDBuyerRequestForm}
+            />
+            <PrivateRoute
+              path="/abd/admin-form"
+              component={ABDAdminApprovalForm}
+            />
+            {/* S10, S11 */}
 
-          <PrivateRoute
-            path="/rera/buyer-td-form"
-            component={BuyerTDRequestForm}
-          />
-          <PrivateRoute
-            path="/rera/admin-td-form"
-            component={AdminTDApprovalForm}
-          />
-          {/* S13, S14 */}
+            <PrivateRoute
+              path="/enbd/admin-form"
+              component={ENBDAdminApprovalForm}
+            />
+            {/* S12 */}
 
-          <PrivateRoute path="/fewa/buyer-form" component={BuyerTDUploadForm} />
-          {/* S15 */}
+            <PrivateRoute
+              path="/rera/buyer-td-form"
+              component={BuyerTDRequestForm}
+            />
+            <PrivateRoute
+              path="/rera/admin-td-form"
+              component={AdminTDApprovalForm}
+            />
+            {/* S13, S14 */}
 
-          {props.location.pathname !== '/login' && (
-            <Redirect from="*" to="/login" />
-          )}
-        </main>
-        <Dialog />
-        <Notification />
-        <Footer />
-      </div>
-    </MuiThemeProvider>
-  );
+            <PrivateRoute
+              path="/fewa/buyer-form"
+              component={BuyerTDUploadForm}
+            />
+            {/* S15 */}
+          </main>
+          <Dialog />
+          <Notification />
+          <Footer />
+        </div>
+      </MuiThemeProvider>
+    );
+  }
 }
 
 App.propTypes = {
