@@ -26,7 +26,7 @@ class Header extends React.Component {
               alt="logo"
             />
             <Typography
-              variant="title"
+              variant="h6"
               color="inherit"
               noWrap
               className="header__title"

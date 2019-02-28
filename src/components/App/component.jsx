@@ -27,6 +27,7 @@ import MojAdminApprovalForm from '@Root/scenes/MOJ/AdminApprovalForm';
 import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
+import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
 import ListItems from './components/ListItems';
 import dataScenarios from '../../data.js';
 
@@ -65,6 +66,7 @@ const styles = theme => ({
 function App(props) {
   const { classes } = props;
   const Theme = createMuiTheme({
+    ...defaultTheme,
     palette: { primary: dataScenarios[props.stepDetails.step].primaryColor },
   });
 
@@ -96,6 +98,7 @@ function App(props) {
           <Route path="/fewa/admin-form" component={FewaAdminApprovalForm} />
           <Route path="/moj/seller-noc-form" component={MojSellerNocForm} />
           <Route path="/moj/admin-form" component={MojAdminApprovalForm} />
+          <Route path="/rera/buyer-td-form" component={BuyerTDRequestForm} />
           <Route
             path="/abd/buyer-request-form"
             component={ABDBuyerRequestForm}

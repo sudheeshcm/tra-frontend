@@ -1,4 +1,11 @@
-import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/colors'
+import {
+  red,
+  deepPurple,
+  green,
+  lime,
+  orange,
+  amber,
+} from '@material-ui/core/colors';
 
 export default {
     1: {

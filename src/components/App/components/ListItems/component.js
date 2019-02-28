@@ -114,5 +114,15 @@ export default (
         <ListItemText primary="S11: ABD Admin Mortgage form" />
       </ListItem>
     </Link>
+
+    <Link to="/rera/buyer-td-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S13: RERA Buyer TD Request Form" />
+      </ListItem>
+    </Link>
+    
   </div>
 );
