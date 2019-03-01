@@ -39,10 +39,6 @@ class AdminApprovalForm extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.props.clearAllDocuments();
-  }
-
   submitData = async () => {
     const formData = {
       'ot-hash': this.props.otHash,

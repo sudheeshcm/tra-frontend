@@ -80,7 +80,7 @@ class DocumentViewerComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.clearFile();
+    this.props.clearAllDocuments();
   }
 
   onCanvasMouseMove = event => {

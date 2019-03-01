@@ -11,6 +11,7 @@ class MultiDocumentViewerComponent extends React.Component {
   static propTypes = {
     file: PropTypes.instanceOf(Object),
     setFile: PropTypes.func.isRequired,
+    clearAllFiles: PropTypes.func.isRequired,
     clearFile: PropTypes.func.isRequired,
     fetchDocuments: PropTypes.func.isRequired,
     isViewMode: PropTypes.bool,
@@ -40,10 +41,6 @@ class MultiDocumentViewerComponent extends React.Component {
     };
 
     this.fetchedDocFile = false;
-  }
-
-  componentWillMount() {
-    // this.props.fetchDocument();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -81,7 +78,7 @@ class MultiDocumentViewerComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.clearFile('all');
+    this.props.clearAllFiles();
   }
 
   onCanvasMouseMove = event => {

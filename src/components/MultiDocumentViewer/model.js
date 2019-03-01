@@ -52,6 +52,9 @@ export default {
         files: updatedFiles,
       };
     },
+    resetAll: () => ({
+      ...initialState,
+    }),
   },
   effects: {
     async fetchDocuments(payload, state) {
