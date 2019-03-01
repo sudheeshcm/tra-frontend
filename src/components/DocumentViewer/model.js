@@ -24,6 +24,11 @@ export default {
       ...state,
       file: null,
     }),
+    clearAll: state => ({
+      ...state,
+      file: null,
+      currentDocument: null,
+    }),
   },
   effects: {
     async fetchDocument(payload) {

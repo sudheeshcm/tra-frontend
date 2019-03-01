@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   updateStep: dispatch.app.updateStep,
   fetchDocument: dispatch.document.fetchDocument,
   showNotification: dispatch.notification.show,
+  clearAllDocuments: dispatch.document.clearAll,
 });
 
 export default connect(

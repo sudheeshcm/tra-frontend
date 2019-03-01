@@ -39,6 +39,10 @@ class AdminApprovalForm extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.props.clearAllDocuments();
+  }
+
   submitData = async () => {
     const formData = {
       'ot-hash': this.props.otHash,
@@ -59,12 +63,11 @@ class AdminApprovalForm extends Component {
         this.props.updateStep({ step: 3, completed: true });
         this.props.push('/thank-you');
       } else {
-        throw new Error('Failed to sign the document');
+        throw response;
       }
     } catch (err) {
-      console.log('S3: Admin RERA VerificationForm Error: ', err);
       this.props.showNotification({
-        content: 'Failed to sign the document',
+        content: err.error || 'Failed to sign the document',
         type: 'error',
       });
     }
