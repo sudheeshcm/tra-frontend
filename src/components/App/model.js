@@ -1,15 +1,15 @@
 import request from '@Services/ApiService';
 
 export const initialState = {
-  stepDetails: {
-    step: 3,
-    completed: false,
-  },
-  otHash: "e2e202a6772837698c321821ac21ca606eaaf0f067d7ba32ac45aa3d55d362ad",
-  mpdNocHash : '',
-  buyerId: '',
-  sellerId: '',
-  propId: '',
+    stepDetails: {
+        step: 1,
+        completed: false
+      },
+      otHash: '',
+      mpdNocHash: '',
+      buyerId: '',
+      sellerId: '',
+      propId: ''
 };
 export default {
   state: initialState,

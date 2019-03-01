@@ -58,7 +58,7 @@ class AdminApprovalForm extends Component {
               variables: {
                   mpdNocHash
               },
-              });
+            });
           this.props.showNotification({
             content: 'Successfully approved MPD NOC',
             type: 'success',
@@ -70,12 +70,12 @@ class AdminApprovalForm extends Component {
           this.props.updateStep({ step: 5, completed: true });
           this.props.push('/thank-you');
         } else {
-          throw new Error('Failed to approved the document');
+          throw response;
         }
       } catch (err) {
         console.log('S5 : Admin MPD VerificationForm Error: ', err);
         this.props.showNotification({
-          content: 'Failed to sign the document',
+          content: err.error || 'Failed to sign the document',
           type: 'error',
         });
       }

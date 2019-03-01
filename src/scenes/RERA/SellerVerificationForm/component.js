@@ -58,12 +58,11 @@ class SellerVerificationForm extends Component {
         this.props.updateStep({ step: 2, completed: true });
         this.props.push('/thank-you');
       } else {
-        throw new Error('Failed to sign the document');
+        throw response;
       }
     } catch (err) {
-      console.log('SellerVerificationForm Error: ', err);
       this.props.showNotification({
-        content: 'Failed to sign the document',
+        content: err.error || 'Failed to sign the document',
         type: 'error',
       });
     }

@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   setActiveIndex: dispatch.multiDocuments.setActiveIndex,
   setFile: dispatch.multiDocuments.setFile,
   clearFile: dispatch.multiDocuments.clearFile,
+  clearAllFiles: dispatch.multiDocuments.resetAll,
 });
 
 const MultiDocumentViewer = connect(

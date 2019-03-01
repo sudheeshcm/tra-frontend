@@ -13,6 +13,8 @@ const mapDispatchToProps = dispatch => ({
   updateStep: dispatch.app.updateStep,
   fetchDocument: dispatch.document.fetchDocument,
   showNotification: dispatch.notification.show,
+  downloadDocument: dispatch.document.download,
+  setVariableInStore: dispatch.app.setVariableInStore,
 });
 
 export default connect(
