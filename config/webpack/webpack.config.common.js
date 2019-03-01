@@ -118,7 +118,7 @@ const config = {
   plugins: [
     new webpack.EnvironmentPlugin({
       ENV: process.env.ENV || 'development',
-      API_BASE: process.env.API_BASE || 'http://d1d5b6d5.ngrok.io',
+      API_BASE: process.env.API_BASE || 'http://3cddf638.ngrok.io',
     }),
   ],
 };
