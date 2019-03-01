@@ -4,15 +4,17 @@ import { push } from 'connected-react-router';
 import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
-  sellerId: 123123 || state.currentUser.id,
-  buyerId: 123456,
-  propId: 'asdasd',
-  hash : "asdasdsadsa" || state.app.otHash
+  sellerId: state.app.sellerId,
+  buyerId: state.app.buyerId,
+  propId: state.app.propId,
+  otHash: state.app.otHash,
 });
 
 const mapDispatchToProps = dispatch => ({
   push: args => dispatch(push(args)),
   updateStep: dispatch.app.updateStep,
+  fetchDocument: dispatch.document.fetchDocument,
+  showNotification: dispatch.notification.show,
 });
 
 export default connect(
