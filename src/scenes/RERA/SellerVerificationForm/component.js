@@ -39,24 +39,27 @@ class SellerVerificationForm extends Component {
     });
   }
 
-  submitData = async e => {
-    e.preventDefault();
+  submitData = async () => {
     const formData = {
       'ot-hash': this.props.otHash,
     };
     try {
       const response = await request({
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
         data: formData,
         url: '/ajman/sign_ot_by_seller',
       });
-      this.props.showNotification({
-        content: 'Successfully signed the document',
-        type: 'success',
-      });
-      this.props.updateStep({ step: 2, completed: true });
-      this.props.push('/thank-you');
+
+      if (response.signed) {
+        this.props.showNotification({
+          content: 'Successfully signed the document',
+          type: 'success',
+        });
+        this.props.updateStep({ step: 2, completed: true });
+        this.props.push('/thank-you');
+      } else {
+        throw new Error('Failed to sign the document');
+      }
     } catch (err) {
       console.log('SellerVerificationForm Error: ', err);
       this.props.showNotification({
@@ -110,7 +113,11 @@ class SellerVerificationForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.submitData}
+            >
               Confirm
             </Button>
           </div>

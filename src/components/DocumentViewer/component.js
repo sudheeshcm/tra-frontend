@@ -33,7 +33,6 @@ class DocumentViewerComponent extends React.Component {
       lastClientY: null,
     };
 
-    console.log('TCL: constructor -> props.isViewMode', props.isViewMode);
     this.state = {
       add: !props.isViewMode,
       scale: 1,
