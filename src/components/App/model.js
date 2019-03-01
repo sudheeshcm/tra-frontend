@@ -1,15 +1,15 @@
-
-import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/colors'
+import request from '@Services/ApiService';
 
 export const initialState = {
-  stepDetails: {
-    step: 1,
-    completed: false,
-   },
-  // storyDetails: {
-  //   entity: 'RERA',
-  //   primaryColor: red
-  // },
+    stepDetails: {
+        step: 1,
+        completed: false
+      },
+      otHash: '',
+      mpdNocHash: '',
+      buyerId: '',
+      sellerId: '',
+      propId: ''
 };
 export default {
   state: initialState,
@@ -17,21 +17,21 @@ export default {
     updateStep: (state, { step, completed = false }) => ({
       ...state,
       stepDetails: {
-        ...state.stepDetails,
-        step: step || state.step,
+        step: step || state.stepDetails.step,
         completed,
       },
     }),
-    // updateStory: (state, { entity, primaryColor }) => ({
-    //   ...state,
-    //   storyDetails: {
-    //     ...state.storyDetails,
-    //     entity,
-    //     primaryColor,
-    //   },
-    // }),
+    setOtHash: (state, otHash) => ({
+      ...state,
+      otHash,
+    }),
     resetApp: () => ({
       ...initialState,
     }),
+    setVariableInStore: (state, payload) => ({
+      ...state,
+      ...payload.variables,
+    }),
   },
+  effects: {},
 };

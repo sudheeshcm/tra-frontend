@@ -11,6 +11,7 @@ const mapDispatchToProps = dispatch => ({
   fetchDocument: dispatch.document.fetchDocument,
   setFile: dispatch.document.setFile,
   clearFile: dispatch.document.clearFile,
+  clearAllDocuments: dispatch.document.clearAll,
 });
 
 const DocumentViewer = connect(

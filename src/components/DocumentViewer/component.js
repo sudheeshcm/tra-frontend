@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { bool } from 'prop-types';
 import SVG from 'react-inlinesvg';
 import Dropzone from 'react-dropzone';
 import FileSaver from 'file-saver';
@@ -14,11 +14,14 @@ class DocumentViewerComponent extends React.Component {
     setFile: PropTypes.func.isRequired,
     clearFile: PropTypes.func.isRequired,
     fetchDocument: PropTypes.func.isRequired,
+    isViewMode: bool,
   };
 
   static defaultProps = {
     file: null,
     documentHash: '',
+    isVerificationMode: false,
+    isViewMode: false,
   };
 
   constructor(props) {
@@ -31,7 +34,7 @@ class DocumentViewerComponent extends React.Component {
     };
 
     this.state = {
-      add: true,
+      add: !props.isViewMode,
       scale: 1,
       supDocTitle: '',
       activeDocId: props.currentDocument ? props.currentDocument.id : null,
@@ -43,28 +46,12 @@ class DocumentViewerComponent extends React.Component {
     this.fetchedDocFile = false;
   }
 
-  componentWillMount() {
-    // this.props.fetchDocument(asdasdasd);
-  }
-
   componentWillReceiveProps(nextProps) {
     const thisDoc = this.props.currentDocument;
     const nextDoc = nextProps.currentDocument;
 
-    if (
-      nextDoc &&
-      nextDoc.id &&
-      (!this.fetchedDocFile || (thisDoc && thisDoc.id) !== nextDoc.id)
-    ) {
-      this.fetchedDocFile = true;
-      this.props.fetchDocumentFile({
-        documentId: nextDoc.id,
-        onDownloadProgress: this.onDownloadProgress,
-      });
-    }
-
     this.setState({
-      add: true, // update to show the document
+      add: !nextProps.isViewMode && !nextProps.currentDocument,
       currentFile: nextProps.file,
     });
   }
@@ -93,7 +80,7 @@ class DocumentViewerComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.clearFile();
+    this.props.clearAllDocuments();
   }
 
   onCanvasMouseMove = event => {
@@ -148,9 +135,12 @@ class DocumentViewerComponent extends React.Component {
 
     if (fileSize <= 200) {
       console.log('file: ', file);
-      const documentHash = await hashDocument(file);
-      this.props.setFile({ file, documentHash });
+      this.props.setFile({ file });
 
+      if (this.props.isVerificationMode) {
+        const documentHash = await hashDocument(file);
+        this.props.setFile({ file, documentHash });
+      }
     } else {
       error = 'PDF size should be less than 200MB';
     }
@@ -242,10 +232,10 @@ class DocumentViewerComponent extends React.Component {
           className="document-preview__canvas__scroller"
           {...(this.state.canvasOverflow
             ? {
-              onMouseMove: this.onCanvasMouseMove,
-              onMouseDown: this.onCanvasMouseDown,
-              onMouseUp: this.onCanvasMouseUp,
-            }
+                onMouseMove: this.onCanvasMouseMove,
+                onMouseDown: this.onCanvasMouseDown,
+                onMouseUp: this.onCanvasMouseUp,
+              }
             : {})}
         >
           <PDF
@@ -294,7 +284,7 @@ class DocumentViewerComponent extends React.Component {
               <a
                 className={`document-navigation__main-doc__doc ${
                   activeDocId === doc.id ? 'is-active' : ''
-                  }`}
+                }`}
                 onClick={() =>
                   this.props.fetchDocumentFile(doc.id, this.onDownloadProgress)
                 }
@@ -333,7 +323,7 @@ class DocumentViewerComponent extends React.Component {
                       <a
                         className={`document-navigation__supporting-doc ${
                           activeDocId === supDoc.id ? 'is-active' : ''
-                          }`}
+                        }`}
                         onMouseEnter={() =>
                           this.setState({ supDocTitle: supDoc.title })
                         }
@@ -425,14 +415,16 @@ class DocumentViewerComponent extends React.Component {
 
             {!add && !currentFile && (
               <div className="document-preview__view__progress">
-                <div className="document-preview__view__progress__wrapper">
+                {/* <div className="document-preview__view__progress__wrapper">
                   <div
                     className="document-preview__view__progress__bar"
                     style={{ transform: `translateX(${downloadProgress}%)` }}
                   />
-                </div>
+                </div> */}
                 <div className="document-preview__view__progress__text">
-                  {downloadProgress ? `${downloadProgress}%` : 'Loading...'}
+                  {downloadProgress
+                    ? `${downloadProgress}%`
+                    : 'Loading Document...'}
                 </div>
               </div>
             )}
@@ -465,7 +457,7 @@ class DocumentViewerComponent extends React.Component {
             <div
               className={`document-navigation ${
                 docNavActive ? 'is-active' : ''
-                }`}
+              }`}
             >
               {this.renderSupportingDocs()}
             </div>

@@ -7,14 +7,9 @@ import Paper from '@material-ui/core/Paper';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
-import { dispatch} from '@rematch/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { dispatch } from '@rematch/core';
 import { push } from 'connected-react-router';
-
-
-import dataScenarios from '../../data.js';
-
-
 
 const styles = theme => ({
   main: {
@@ -51,7 +46,6 @@ const styles = theme => ({
 class ThankYou extends React.Component {
   constructor(props) {
     super(props);
-    
   }
 
   handleFormSubmit = event => {
@@ -59,34 +53,40 @@ class ThankYou extends React.Component {
     event.preventDefault();
     var step = this.props.stepDetails.step;
     ++step;
-    this.props.updateStep({step, completed: true});
+    this.props.updateStep({ step });
+    this.props.logout();
     dispatch(push('/login'));
   };
 
   render() {
-    const { classes } = this.props;
-    const Theme = createMuiTheme({ palette: { primary: dataScenarios[this.props.stepDetails.step].primaryColor} });
+    const { classes, stepDetails } = this.props;
+
+    let nextStep;
+
+    if (stepDetails.step < 15) {
+      nextStep = (
+        <form className={classes.form} onSubmit={this.handleFormSubmit}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            NEXT STEP
+          </Button>
+        </form>
+      );
+    }
 
     return (
       <main className={classes.main}>
         <CssBaseline />
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h5">
-            THANK YOU! 
+            THANK YOU!
           </Typography>
-          <form className={classes.form} onSubmit={this.handleFormSubmit}>
-            <MuiThemeProvider theme={Theme}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  NEXT STEP
-                </Button>
-            </MuiThemeProvider>
-          </form>
+          {nextStep}
         </Paper>
       </main>
     );

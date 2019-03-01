@@ -8,20 +8,20 @@ import { Link } from 'react-router-dom';
 
 export default (
   <div>
-    <Link to="/">
+    <Link to="/login">
       <ListItem button>
         <ListItemIcon>
           <OverviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Overview" />
+        <ListItemText primary="Login" />
       </ListItem>
     </Link>
-    <Link to="/networks">
+    <Link to="/thank-you">
       <ListItem button>
         <ListItemIcon>
-          <NetworkIcon />
+          <OverviewIcon />
         </ListItemIcon>
-        <ListItemText primary="Networks" />
+        <ListItemText primary="Thank You Screen" />
       </ListItem>
     </Link>
     <Link to="/rera/buyer-form">
@@ -29,7 +29,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="RERA Buyer Form" />
+        <ListItemText primary="S1: RERA Buyer Form" />
       </ListItem>
     </Link>
 
@@ -38,7 +38,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="RERA Seller Form" />
+        <ListItemText primary="S2: RERA Seller Form" />
       </ListItem>
     </Link>
     <Link to="/rera/admin-form">
@@ -47,7 +47,16 @@ export default (
           <NetworkIcon />
         </ListItemIcon>
 
-        <ListItemText primary="RERA Admin Form" />
+        <ListItemText primary="S3: RERA Admin Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/mpd/buyer-verification-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S4: MPD Buyer Verification Form" />
       </ListItem>
     </Link>
 
@@ -56,15 +65,7 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="MPD Admin Form" />
-      </ListItem>
-    </Link>
-    <Link to="/mpd/buyer-verification-form">
-      <ListItem button>
-        <ListItemIcon>
-          <NetworkIcon />
-        </ListItemIcon>
-        <ListItemText primary="MPD Buyer Verification Form" />
+        <ListItemText primary="S5: MPD Admin Form" />
       </ListItem>
     </Link>
 
@@ -73,7 +74,88 @@ export default (
         <ListItemIcon>
           <NetworkIcon />
         </ListItemIcon>
-        <ListItemText primary="FEWA Buyer NOC form" />
+        <ListItemText primary="S6: FEWA Buyer NOC Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/fewa/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S7: FEWA Admin NOC Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/moj/seller-noc-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S8: MOJ Seller NOC form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/moj/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S9: MOJ Admin NOC form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/abd/buyer-request-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S10: ABD Buyer Request Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/abd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S11: ABD Admin Mortgage form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/enbd/admin-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S12: ENBD Admin Mortgage form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/rera/buyer-td-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S13: RERA Buyer TD Request Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/rera/admin-td-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S14: RERA Admin TD Form" />
+      </ListItem>
+    </Link>
+
+    <Link to="/fewa/buyer-form">
+      <ListItem button>
+        <ListItemIcon>
+          <NetworkIcon />
+        </ListItemIcon>
+        <ListItemText primary="S15: FEWA Buyer TD upload Form" />
       </ListItem>
     </Link>
   </div>

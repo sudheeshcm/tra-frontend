@@ -20,7 +20,7 @@ export default {
     }),
     setFile: (state, payload) => {
       const updatedFiles = [...state.files];
-      updatedFiles.splice(state.activeIndex, 0, payload.file);
+      updatedFiles.splice(payload.index, 0, payload.file);
 
       return {
         ...state,
@@ -33,11 +33,14 @@ export default {
     }),
     fetchSuccess: (state, payload) => {
       const updatedDocs = [...state.documents];
-      updatedDocs.splice(state.activeIndex, 0, payload.document);
+      updatedDocs.splice(payload.index, 0, payload.document);
+      const updatedFiles = [...state.files];
+      updatedFiles.splice(payload.index, 0, payload.document);
 
       return {
         ...state,
         documents: updatedDocs,
+        files: updatedFiles,
       };
     },
     clearFile: state => {
@@ -49,26 +52,29 @@ export default {
         files: updatedFiles,
       };
     },
+    resetAll: () => ({
+      ...initialState,
+    }),
   },
   effects: {
     async fetchDocuments(payload, state) {
       try {
-        // const { currentUser } = state;
-        // const response = await request({
-        //   method: 'POST',
-        //   url: `document/${payload.documentId}`,
-        //   isExternal: true,
-        //   responseType: 'blob',
-        //   // headers: { 'x-auth-token': currentUser.token },
-        // });
-        // console.log('response: ', response);
-        setTimeout(() => {
-          dispatch.document.fetchSuccess();
-        }, 2000);
+        const { documentHashes } = payload;
+
+        documentHashes.forEach(async (hash, index) => {
+          const response = await request({
+            method: 'GET',
+            url: `doc/${hash}`,
+            isExternal: true,
+            responseType: 'blob',
+          });
+          console.log('response: ', response);
+          dispatch.multiDocuments.fetchSuccess({ document: response, index });
+        });
       } catch (error) {
         console.log('error: ', error);
         dispatch.notification.show({
-          content: 'Failed to fetch the document. Please try again later.',
+          content: 'Failed to fetch the documents. Please try again later.',
           type: 'error',
         });
       }

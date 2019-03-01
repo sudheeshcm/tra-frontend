@@ -46,52 +46,42 @@ const verifyModel = {
   },
   effects: {
     async verifyDocument(data) {
-      //Integrate API once available
+      const formData = {
+        'ot-hash': data,
+      };
       try {
         dispatch.verify.verifyDocumentLoading();
         dispatch.verify.verifyDocumentStarted();
-        setTimeout(() => {
+
+        const response = await request({
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          data: formData,
+          url: '/ajman/request_mpd_noc',
+        });
+
+        if (response.requested) {
           dispatch.verify.verifyDocumentSuccess();
           dispatch.notification.show({
             content: 'Document Verified',
             type: 'success',
           });
-        }, 3000);
-
-        // dispatch.verify.verifyDocumentSuccess();
+        } else {
+          dispatch.verify.verifyDocumentFailed();
+          dispatch.notification.show({
+            content: response.error,
+            type: 'error',
+          });
+        }
       } catch (error) {
-
-        setTimeout(() => {
-            dispatch.verify.verifyDocumentFailed();
-            dispatch.notification.show({
-                content: 'Verification Failed',
-                type: 'error',
-              });
-          }, 3000);
-       
-       
-        console.log(data, 'error');
+        console.log(error, 'error');
+        dispatch.verify.verifyDocumentFailed();
+        dispatch.notification.show({
+          content: 'Verification Failed',
+          type: 'error',
+        });
       }
     },
-    // async logout(...args) {
-    //   try {
-    //     const response = await request({
-    //       method: 'GET',
-    //       url: '/auth/users/logout',
-    //       params: {
-    //         access_token: args[1].user.details.accessToken,
-    //       },
-    //     });
-
-    //     if (response.type === 'SUCCESS') {
-    //       localStorage.removeItem('curretUser');
-    //       dispatch.user.clearUserDetails();
-    //       dispatch(push('/pages/login-page'));
-    //     }
-    //   } catch (error) {
-    //     console.log(error, 'error');
-    //   }
-    // },
   },
 };
 

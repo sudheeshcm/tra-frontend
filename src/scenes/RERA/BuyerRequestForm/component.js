@@ -9,7 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -27,6 +27,7 @@ const styles = () => ({
     margin: '24px auto',
     marginTop: '32px',
     padding: '30px',
+    textAlign: 'center',
   },
   advancedButton: {
     marginRight: '8px',
@@ -49,17 +50,50 @@ class BuyerRequestForm extends Component {
     this.setState({ [field]: e.target.value });
   };
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
     const { sellerId, propId, buyerId } = this.state;
-    console.log('sellerId, propId, buyerId: ', sellerId, propId, buyerId);
-    /* const { response } = await request({
-          method: 'POST',
-          url: `/rera/buyer-request`,
-        }); */
 
-    this.props.updateStep({ step: 1, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      from: sellerId,
+      to: buyerId,
+      'property-id': propId,
+    };
+
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/ajman/request_ot',
+      });
+
+      this.props.setVariableInStore({
+        variables: {
+          buyerId,
+          sellerId,
+          propId,
+        },
+      });
+
+      this.props.setOtHash(response['ot-hash']);
+      this.props.showNotification({
+        content: 'Generated a Ownership Transfer Document successfully',
+        type: 'success',
+      });
+      this.props.downloadDocument({
+        documentHash: response['ot-hash'],
+        title: 'Ownership Document',
+      });
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
+    } catch (error) {
+      console.log(error, 'error');
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
   };
 
   render() {
@@ -67,7 +101,7 @@ class BuyerRequestForm extends Component {
 
     return (
       <div className="buyer-request-form">
-        <Typography variant="title" className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           RERA - Buyer Request
         </Typography>
         <Card className={classes.infoCard}>
