@@ -48,7 +48,7 @@ class AdminApprovalForm extends Component {
         method: 'POST',
         data: formData,
         headers: { 'content-type': 'application/json' },
-        url: ' /ajman/sign_ot_by_rera_admin',
+        url: '/ajman/sign_ot_by_rera_admin',
       });
 
       if (response.signed) {
@@ -114,7 +114,11 @@ class AdminApprovalForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.submitData}
+            >
               Approve
             </Button>
           </div>
