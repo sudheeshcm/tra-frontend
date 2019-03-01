@@ -6,7 +6,7 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -39,10 +39,31 @@ class SellerVerificationForm extends Component {
     });
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/ajman/sign_ot_by_seller',
+      });
+      this.props.showNotification({
+        content: 'Successfully signed the document',
+        type: 'success',
+      });
+      this.props.updateStep({ step: 2, completed: true });
+      this.props.push('/thank-you');
+    } catch (err) {
+      console.log('SellerVerificationForm Error: ', err);
+      this.props.showNotification({
+        content: 'Failed to sign the document',
+        type: 'error',
+      });
+    }
   };
 
   render() {

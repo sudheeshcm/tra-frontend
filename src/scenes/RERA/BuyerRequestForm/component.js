@@ -53,12 +53,11 @@ class BuyerRequestForm extends Component {
   submitData = async e => {
     e.preventDefault();
     const { sellerId, propId, buyerId } = this.state;
-    console.log('sellerId, propId, buyerId: ', sellerId, propId, buyerId);
 
     const formData = {
-      'from': sellerId,
-      'to': buyerId ,
-      'property-id': propId
+      from: sellerId,
+      to: buyerId,
+      'property-id': propId,
     };
 
     try {
@@ -66,18 +65,35 @@ class BuyerRequestForm extends Component {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         data: formData,
-        url: 'http://7fe767ba.ngrok.io/ajman/request_ot',
-
+        url: '/ajman/request_ot',
       });
-      console.log(response)
-      this.props.setOtHash(response);
 
+      this.props.setVariableInStore({
+        variables: {
+          buyerId,
+          sellerId,
+          propId,
+        },
+      });
+
+      this.props.setOtHash(response['ot-hash']);
+      this.props.showNotification({
+        content: 'Generated a Ownership Transfer Document successfully',
+        type: 'success',
+      });
+      this.props.downloadDocument({
+        documentHash: response['ot-hash'],
+        title: 'Ownership Document',
+      });
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
     } catch (error) {
       console.log(error, 'error');
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
     }
-    
-    this.props.updateStep({ completed: true });
-    this.props.push('/thank-you');
   };
 
   render() {
