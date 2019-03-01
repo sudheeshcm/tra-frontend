@@ -52,18 +52,27 @@ const verifyModel = {
       try {
         dispatch.verify.verifyDocumentLoading();
         dispatch.verify.verifyDocumentStarted();
-        await request({
+
+        const response = await request({
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           data: formData,
-          url: 'http://7fe767ba.ngrok.io/ajman/request_mpd_noc',
+          url: '/ajman/request_mpd_noc',
         });
 
-        dispatch.verify.verifyDocumentSuccess();
-        dispatch.notification.show({
-          content: 'Document Verified',
-          type: 'success',
-        });
+        if (response.requested) {
+          dispatch.verify.verifyDocumentSuccess();
+          dispatch.notification.show({
+            content: 'Document Verified',
+            type: 'success',
+          });
+        } else {
+          dispatch.verify.verifyDocumentFailed();
+          dispatch.notification.show({
+            content: response.error,
+            type: 'error',
+          });
+        }
       } catch (error) {
         console.log(error, 'error');
         dispatch.verify.verifyDocumentFailed();
