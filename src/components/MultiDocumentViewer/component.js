@@ -4,7 +4,7 @@ import SVG from 'react-inlinesvg';
 import Dropzone from 'react-dropzone';
 import FileSaver from 'file-saver';
 import PDF from 'react-pdf-js';
-
+import hashDocument from '@Utils/hashDocument';
 import Control from './components/Control';
 
 class MultiDocumentViewerComponent extends React.Component {
@@ -132,7 +132,8 @@ class MultiDocumentViewerComponent extends React.Component {
     let error = '';
 
     if (fileSize <= 200) {
-      this.props.setFile({ file, index: this.props.activeIndex });
+      const documentHash = await hashDocument(file);
+      this.props.setFile({ file, index: this.props.activeIndex, documentHash });
     } else {
       error = 'PDF size should be less than 200MB';
     }
@@ -207,6 +208,7 @@ class MultiDocumentViewerComponent extends React.Component {
 
   renderPDF = () => {
     const { currentFile, add } = this.state;
+		console.log('TCL: renderPDF -> currentFile', currentFile)
     const { currentDocument } = this.props;
 
     let filePath = '';
