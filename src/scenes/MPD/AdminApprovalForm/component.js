@@ -65,7 +65,7 @@ class AdminApprovalForm extends Component {
           });
           this.props.downloadDocument({
             documentHash: response['mpd-noc-hash'],
-            title: 'Ownership Document',
+            title: 'MPD No Objection Certificate',
           });
           this.props.updateStep({ step: 5, completed: true });
           this.props.push('/thank-you');

@@ -55,7 +55,7 @@ class SellerVerificationForm extends Component {
           content: 'Successfully signed the document',
           type: 'success',
         });
-        this.props.updateStep({ step: 2, completed: true });
+        this.props.updateStep({ completed: true });
         this.props.push('/thank-you');
       } else {
         throw response;

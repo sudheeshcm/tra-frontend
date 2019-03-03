@@ -56,7 +56,7 @@ class AdminApprovalForm extends Component {
           content: 'Successfully signed the document',
           type: 'success',
         });
-        this.props.updateStep({ step: 3, completed: true });
+        this.props.updateStep({ completed: true });
         this.props.push('/thank-you');
       } else {
         throw response;
