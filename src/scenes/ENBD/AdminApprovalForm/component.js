@@ -33,11 +33,40 @@ const styles = () => ({
 });
 
 class AdminApprovalForm extends Component {
-  submitData = e => {
-    e.preventDefault();
-    //API Call
-    this.props.updateStep({ completed: true });
-    this.props.push('/thank-you');
+
+  componentDidMount() {
+    this.props.fetchDocument({
+      abdMortgageHash: this.props.abdMortgageHash,
+    });
+  }
+
+  submitData = async () => {
+    const formData = {
+      'mortgage-hash': this.props.abdMortgageHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        data: formData,
+        url: '/ajman/sign_ot_by_seller',
+      });
+
+      if (response.signed) {
+        this.props.showNotification({
+          content: 'Mortgage has been approved',
+          type: 'success',
+        });
+        this.props.updateStep({ completed: true });
+        this.props.push('/thank-you');
+      } else {
+        throw response;
+      }
+    } catch (err) {
+      this.props.showNotification({
+        content: err.error || 'Failed to approve mortgage',
+        type: 'error',
+      });
+    }
   };
 
   render() {
@@ -46,7 +75,7 @@ class AdminApprovalForm extends Component {
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer />
+          <DocumentViewer isViewMode/>
         </div>
 
         <div className="seller-verification-form__contents">
@@ -54,7 +83,7 @@ class AdminApprovalForm extends Component {
             ENBD - Admin Verification
           </Typography>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onSubmit={this.submitData}>
               APPROVE 
             </Button>
           </div>
