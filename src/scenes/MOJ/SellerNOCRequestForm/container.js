@@ -13,6 +13,7 @@ const mapDispatchToProps = dispatch => ({
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
   requestNOC: dispatch.sellerMoJ.requestNOC,
+  setVariableInStore: dispatch.app.setVariableInStore,
 });
 
 export default connect(
