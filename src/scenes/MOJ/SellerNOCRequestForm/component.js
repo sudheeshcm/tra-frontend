@@ -48,10 +48,12 @@ class SellerNOCRequestForm extends Component {
     this.props.resetRequiredFiles();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const { files } = this.props;
+    await this.props.requestNOC(files);
+    await this.props.updateStep({ step: 9, completed: true });
+    await this.props.push('/thank-you');
   };
 
   render() {
@@ -69,7 +71,7 @@ class SellerNOCRequestForm extends Component {
           </Typography>
 
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Submit
             </Button>
           </div>
