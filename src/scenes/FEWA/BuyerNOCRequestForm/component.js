@@ -51,8 +51,8 @@ class BuyerNOCRequestForm extends Component {
   submitData = async e => {
     e.preventDefault();
     const formData = {
-      'ot-hash': this.props.otHash,
-      'mpd-noc-hash': this.props.mpdNocHash
+      'ot-hash': this.props.files[0].documentHash,
+      'mpd-noc-hash': this.props.files[1].documentHash
     };
     try {
           const response = await request({
@@ -64,7 +64,7 @@ class BuyerNOCRequestForm extends Component {
 
           if (response.requested) {
             this.props.showNotification({
-              content: 'Sent  Ownership Transfer Document and MPD No Objection Certificate successfully',
+              content: 'Successfully requested FEWA NOC',
               type: 'success',
             });
 
@@ -83,9 +83,8 @@ class BuyerNOCRequestForm extends Component {
                   type: 'error',
               });
          }
-
    
-  };
+    };
 
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;

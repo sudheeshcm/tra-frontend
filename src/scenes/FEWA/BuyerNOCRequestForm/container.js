@@ -6,6 +6,7 @@ import BuyerNOCRequestForm from './component';
 const mapStateToProps = state => ({
   otHash: state.app.otHash,
   mpdNocHash: state.app.mpdNocHash,
+  files: state.multiDocuments.files
 });
 
 const mapDispatchToProps = dispatch => ({
