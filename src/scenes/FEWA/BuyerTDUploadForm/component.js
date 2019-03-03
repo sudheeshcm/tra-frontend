@@ -49,7 +49,7 @@ class BuyerTDUploadForm extends Component {
 
       if (response.requested) {
         this.props.showNotification({
-          content: 'Document Verified',
+          content: 'Signed Successfully',
           type: 'success',
         });
       } else {
@@ -63,7 +63,7 @@ class BuyerTDUploadForm extends Component {
       this.props.push('/thank-you');
     } catch (error) {
       this.props.showNotification({
-        content: 'Verification Failed',
+        content: 'Signing Failed',
         type: 'error',
       });
     }
@@ -94,7 +94,7 @@ class BuyerTDUploadForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Request
             </Button>
           </div>
