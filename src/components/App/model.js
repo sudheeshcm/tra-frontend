@@ -7,6 +7,7 @@ export const initialState = {
       },
       otHash: '',
       mpdNocHash: '',
+      mojNocHash: '',
       tdHash: '',
       buyerId: '',
       sellerId: '',
