@@ -5,6 +5,7 @@ import verify from '@Scenes/MPD/BuyerVerificationForm/model';
 import app from '@Components/App/model';
 import document from '@Components/DocumentViewer/model';
 import multiDocuments from '@Components/MultiDocumentViewer/model';
+import sellerMoJ from '@Scenes/MOJ/SellerNOCRequestForm/model';
 
 export default {
   app,
@@ -14,4 +15,5 @@ export default {
   dialog,
   user,
   verify,
+  sellerMoJ,
 };
