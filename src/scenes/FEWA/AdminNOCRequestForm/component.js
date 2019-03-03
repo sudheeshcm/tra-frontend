@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -50,12 +50,40 @@ class AdminApprovalForm extends Component {
   componentWillUnmount() {
     this.props.resetRequiredFiles();
   }
-
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
-  };
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+    try {
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/uae/approve_fewa_noc',
+          });
+          
+            this.props.showNotification({
+              content: 'Successfully approved FEWA NOC',
+              type: 'success',
+            });
+
+            this.props.downloadDocument({
+              documentHash: response['fewa-noc-hash'],
+              title: 'FEWA No Objection Certificate',
+            });
+
+            this.props.updateStep({ completed: true });
+            this.props.push('/thank-you');
+
+        }catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
+     };
+
 
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;
@@ -71,11 +99,11 @@ class AdminApprovalForm extends Component {
             FEWA NOC - Admin Verification
           </Typography>
 
-          <div className={classes.formActions}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Approve
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     );

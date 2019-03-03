@@ -18,6 +18,8 @@ const mapDispatchToProps = dispatch => ({
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
   fetchDocuments: dispatch.multiDocuments.fetchDocuments,
+  downloadDocument: dispatch.document.download,
+  showNotification: dispatch.notification.show,
 });
 
 export default connect(
