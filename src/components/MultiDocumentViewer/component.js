@@ -48,7 +48,7 @@ class MultiDocumentViewerComponent extends React.Component {
     const nextDoc = nextProps.currentDocument;
 
     this.setState({
-      add: !nextProps.currentDocument,
+      add: !nextProps.isViewMode && !nextProps.currentDocument,
       currentFile: nextProps.file,
       currentDocKey: Date.now(),
     });
@@ -208,7 +208,6 @@ class MultiDocumentViewerComponent extends React.Component {
 
   renderPDF = () => {
     const { currentFile, add } = this.state;
-		console.log('TCL: renderPDF -> currentFile', currentFile)
     const { currentDocument } = this.props;
 
     let filePath = '';
@@ -393,12 +392,12 @@ class MultiDocumentViewerComponent extends React.Component {
 
             {!add && !currentFile && (
               <div className="document-preview__view__progress">
-                <div className="document-preview__view__progress__wrapper">
+                {/* <div className="document-preview__view__progress__wrapper">
                   <div
                     className="document-preview__view__progress__bar"
                     style={{ transform: `translateX(${downloadProgress}%)` }}
                   />
-                </div>
+                </div> */}
                 <div className="document-preview__view__progress__text">
                   {downloadProgress ? `${downloadProgress}%` : 'Loading...'}
                 </div>

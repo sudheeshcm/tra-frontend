@@ -22,9 +22,9 @@ export default {
         });
 
         if (response.requested) {
-          this.props.setVariableInStore({
+          dispatch.app.setVariableInStore({
             variables: {
-              mojNocHash,
+              tdHash: data[1].documentHash,
             },
           });
           dispatch.notification.show({

@@ -3,8 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
-
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -42,16 +41,53 @@ class AdminApprovalForm extends Component {
         required: true,
       },
     ]);
+
+    this.props.fetchDocuments({
+      documentHashes: [this.props.otHash, this.props.tdHash],
+    });
   }
 
   componentWillUnmount() {
     this.props.resetRequiredFiles();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/uae/approve_moj_noc',
+      });
+
+      this.props.showNotification({
+        content: 'Successfully approved Seller\'s Title Deed',
+        type: 'success',
+      });
+
+      this.props.setVariableInStore({
+        mojNocHash: response['moj-noc-hash'],
+      });
+
+      this.props.downloadDocument({
+        documentHash: response['moj-noc-hash'],
+        title: 'MOJ No Objection Certificate',
+      });
+
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
+
+    } catch (error) {
+      console.log(error)
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
   };
 
   render() {
@@ -60,7 +96,7 @@ class AdminApprovalForm extends Component {
     return (
       <div className="buyer-fewa-noc-form">
         <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+          <MultiDocumentViewer isViewMode />
         </div>
 
         <div className="buyer-fewa-noc-form__contents">
@@ -69,7 +105,7 @@ class AdminApprovalForm extends Component {
           </Typography>
 
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Approve
             </Button>
           </div>
