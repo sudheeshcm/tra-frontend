@@ -10,15 +10,13 @@ export default {
   state: { ...initialState },
   effects: {
     async requestNOC(data) {
-    
-      const formData = {
-        'ot-hash': data[0].documentHash,
-        'td-hash': data[1].documentHash,
-      };
+      const formData = new FormData();
+      formData.append('ot', data[0]);
+      formData.append('td', data[1]);
       try {
         const response = await request({
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          headers: { 'content-type': 'application/PDF' },
           data: formData,
           url: '/uae/request_moj_noc',
         });
@@ -26,7 +24,7 @@ export default {
         if (response.requested) {
           this.props.setVariableInStore({
             variables: {
-              mojNocHash
+              mojNocHash,
             },
           });
           dispatch.notification.show({
@@ -47,7 +45,6 @@ export default {
           type: 'error',
         });
       }
-      
     },
   },
 };

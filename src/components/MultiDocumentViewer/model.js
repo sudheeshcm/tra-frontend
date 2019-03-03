@@ -19,11 +19,10 @@ export default {
       requiredFiles: [],
     }),
     setFile: (state, payload) => {
-      
-      const updatedFiles = [...state.files];
-      payload.file = { ...payload.file, documentHash: payload.documentHash };
-      updatedFiles.splice(payload.index, 0, payload.file);
 
+      const updatedFiles = [...state.files];
+      payload.file.documentHash =  payload.documentHash;
+      updatedFiles.splice(payload.index, 0, payload.file);
       return {
         ...state,
         files: updatedFiles,
