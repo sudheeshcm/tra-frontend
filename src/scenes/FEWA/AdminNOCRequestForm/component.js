@@ -62,19 +62,26 @@ class AdminApprovalForm extends Component {
             data: formData,
             url: '/uae/approve_fewa_noc',
           });
-          
-            this.props.showNotification({
-              content: 'Successfully approved FEWA NOC',
-              type: 'success',
-            });
-
-            this.props.downloadDocument({
-              documentHash: response['fewa-noc-hash'],
-              title: 'FEWA No Objection Certificate',
-            });
-
-            this.props.updateStep({ completed: true });
-            this.props.push('/thank-you');
+          if (response["fewa-noc-hash"]) {
+              let fewaNocHash = response["fewa-noc-hash"];
+              this.props.setVariableInStore({
+                  variables: {
+                    fewaNocHash
+                  },
+                });
+              this.props.showNotification({
+                content: 'Successfully approved FEWA NOC',
+                type: 'success',
+              });
+            
+              this.props.downloadDocument({
+                documentHash: response['fewa-noc-hash'],
+                title: 'FEWA No Objection Certificate',
+              });
+            
+              this.props.updateStep({ completed: true });
+              this.props.push('/thank-you');
+          }
 
         }catch (error) {
               this.props.showNotification({

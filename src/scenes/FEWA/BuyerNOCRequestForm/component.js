@@ -52,7 +52,7 @@ class BuyerNOCRequestForm extends Component {
     e.preventDefault();
     const formData = {
       'ot-hash': this.props.files[0].documentHash,
-      'mpd-noc-hash': this.props.files[1].documentHash
+      'mpd-noc-hash': this.props.files[1].documentHash,
     };
     try {
           const response = await request({

@@ -56,11 +56,48 @@ class AdminApprovalForm extends Component {
     this.props.resetRequiredFiles();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-        //API Call
-    this.props.updateStep({ completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+      'mpd-noc-hash': this.props.mpdNocHash,
+      'fewa-noc-hash': this.props.fewaNocHash,
+      'moj-noc-hash': this.props.mojNocHash
+    };
+    try {
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/uae/approve_fewa_noc',
+          });
+          if (response["abd-mortgage-hash"]) {
+              let abdMortgageHash = response["abd-mortgage-hash"];
+              this.props.setVariableInStore({
+                  variables: {
+                    abdMortgageHash
+                  },
+                });
+              this.props.showNotification({
+                content: 'Successfully approved Mortgage',
+                type: 'success',
+              });
+            
+              this.props.downloadDocument({
+                documentHash: response['abd-mortgage-hash'],
+                title: 'ABD Mortgage Approval',
+              });
+            
+              this.props.updateStep({ completed: true });
+              this.props.push('/thank-you');
+          }
+
+        }catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
   };
 
   render() {
@@ -77,11 +114,11 @@ class AdminApprovalForm extends Component {
             ABD Mortgage - Admin Verification
           </Typography>
 
-          <div className={classes.formActions}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Approve
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     );
