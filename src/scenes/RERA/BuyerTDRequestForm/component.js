@@ -5,8 +5,7 @@ import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -79,9 +78,49 @@ class BuyerTDRequestForm extends Component {
     this.setState({ [field]: e.target.value });
   };
 
-  submitData = e => {
+  submitData = async e => {
+
+     const { files } = this.props;
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
+    const formData = {
+      'ot-hash': files[0].documentHash,
+      'mpd-noc-hash': files[1].documentHash,
+      'td-hash': files[2].documentHash,
+      'fewa-noc-hash': files[3].documentHash,
+      'moj-noc-hash': files[4].documentHash,
+      'mortgage-hash': files[5].documentHash,
+    };
+
+
+    //TODO: Change Scenario 13 API endpoint once documented
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/JSON' },
+        data: formData,
+        url: '/uae/request_moj_noc',
+      });
+
+      if (response.requested) {
+        this.props.showNotification({
+          content: 'Request for new Title Deed Submitted',
+          type: 'success',
+        });
+      } else {
+        this.props.showNotification({
+          content: response.error,
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      console.log(error, 'error');
+
+      this.props.showNotification({
+        content: 'Request for new Title Deed Failed',
+        type: 'error',
+      });
+    }
+    this.props.updateStep({completed: true });
     this.props.push('/thank-you');
   };
 
@@ -98,26 +137,26 @@ class BuyerTDRequestForm extends Component {
           <Typography variant="h6" className={classes.title}>
             RERA New TD Request
           </Typography>
-              <div>
-                <FormControl>
-                  <TextField
-                    label="Buyer ID"
-                    margin="dense"
-                    value={this.state.buyerId}
-                    onChange={this.onValueChange('buyerId')}
-                    disabled
-                    required
-                  />
-                </FormControl>
-              </div>
+          <div>
+            <FormControl>
+              <TextField
+                label="Buyer ID"
+                margin="dense"
+                value={this.state.buyerId}
+                onChange={this.onValueChange('buyerId')}
+                disabled
+                required
+              />
+            </FormControl>
+          </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Confirm
             </Button>
           </div>
         </div>
-        </div>
-     
+      </div>
+
     );
   }
 }

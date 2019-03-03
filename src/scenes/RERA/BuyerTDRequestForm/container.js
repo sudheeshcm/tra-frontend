@@ -5,6 +5,7 @@ import BuyerTDRequestForm from './component';
 
 const mapStateToProps = state => ({
   buyerId: 123456 || state.currentUser.id,
+  files: state.multiDocuments.files,
 });
 
 
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
   updateStep: dispatch.app.updateStep,
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
+  showNotification: dispatch.notification.show,
 });
 
 export default connect(
