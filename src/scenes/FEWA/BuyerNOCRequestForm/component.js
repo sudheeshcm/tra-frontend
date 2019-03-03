@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -48,10 +48,43 @@ class BuyerNOCRequestForm extends Component {
     this.props.resetRequiredFiles();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+      'mpd-noc-hash': this.props.mpdNocHash
+    };
+    try {
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/uae/request_fewa_noc',
+          });
+
+          if (response.requested) {
+            this.props.showNotification({
+              content: 'Sent  Ownership Transfer Document and MPD No Objection Certificate successfully',
+              type: 'success',
+            });
+
+            this.props.updateStep({ completed: true });
+            this.props.push('/thank-you');
+          } 
+
+          else {
+            console.log('response.requested is false')
+          }
+          
+
+        } catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
+
+   
   };
 
   render() {
@@ -68,11 +101,11 @@ class BuyerNOCRequestForm extends Component {
             FEWA NOC Form Request
           </Typography>
 
-          <div className={classes.formActions}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     );

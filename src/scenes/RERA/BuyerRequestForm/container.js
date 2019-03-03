@@ -11,7 +11,9 @@ const mapDispatchToProps = dispatch => ({
   push: args => dispatch(push(args)),
   updateStep: dispatch.app.updateStep,
   setOtHash: dispatch.app.setOtHash,
-  getPDF: dispatch.app.getPDF
+  showNotification: dispatch.notification.show,
+  downloadDocument: dispatch.document.download,
+  setVariableInStore: dispatch.app.setVariableInStore,
 });
 
 export default connect(

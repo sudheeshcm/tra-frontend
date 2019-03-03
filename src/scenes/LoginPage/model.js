@@ -6,7 +6,7 @@ import dataScenarios from '../../data.js';
 
 const initialState = {
   details: {},
-  currentUser: {} || null,
+  currentUser: null,
   loading: false,
   stepColor: null,
 };
@@ -35,7 +35,7 @@ const userModel = {
       };
     },
 
-    clearUserDetails(state) {
+    logout(state) {
       return {
         ...state,
         details: {},

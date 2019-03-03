@@ -51,7 +51,7 @@ class DocumentViewerComponent extends React.Component {
     const nextDoc = nextProps.currentDocument;
 
     this.setState({
-      add: !nextProps.currentDocument,
+      add: !nextProps.isViewMode && !nextProps.currentDocument,
       currentFile: nextProps.file,
     });
   }
@@ -80,7 +80,7 @@ class DocumentViewerComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.clearFile();
+    this.props.clearAllDocuments();
   }
 
   onCanvasMouseMove = event => {

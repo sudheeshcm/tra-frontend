@@ -1,17 +1,15 @@
-
-import { red, deepPurple, green, lime, orange, amber  } from '@material-ui/core/colors'
-import request from "@Services/ApiService";
+import request from '@Services/ApiService';
 
 export const initialState = {
-  stepDetails: {
-    step: 1,
-    completed: false,
-   },
-   otHash: null,
-  // storyDetails: {
-  //   entity: 'RERA',
-  //   primaryColor: red
-  // },
+    stepDetails: {
+        step: 1,
+        completed: false
+      },
+      otHash: '',
+      mpdNocHash: '',
+      buyerId: '',
+      sellerId: '',
+      propId: ''
 };
 export default {
   state: initialState,
@@ -25,29 +23,15 @@ export default {
     }),
     setOtHash: (state, otHash) => ({
       ...state,
-      otHash
+      otHash,
     }),
     resetApp: () => ({
       ...initialState,
     }),
+    setVariableInStore: (state, payload) => ({
+      ...state,
+      ...payload.variables,
+    }),
   },
-  effects: {
-    async getPDF(hash) {
-      try {
-        await request({
-          method: "GET",
-          url: `http://7fe767ba.ngrok.io/doc/${hash}`,
-        });   
-      } catch (error) {
-        console.log(error, 'error');
-      }
-    },
-  },
-}
-
-
-
-
-
-
-
+  effects: {},
+};

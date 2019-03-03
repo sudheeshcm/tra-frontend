@@ -6,7 +6,7 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -33,20 +33,49 @@ const styles = () => ({
 });
 
 class AdminApprovalForm extends Component {
-  submitData = e => {
-    e.preventDefault();
-    //API Call
-    this.props.updateStep({ step: 3, completed: true });
-    this.props.push('/thank-you');
+  componentDidMount() {
+    this.props.fetchDocument({
+      documentHash: this.props.otHash,
+    });
+  }
+
+  submitData = async () => {
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        data: formData,
+        headers: { 'content-type': 'application/json' },
+        url: '/ajman/sign_ot_by_rera_admin',
+      });
+
+      if (response.signed) {
+        this.props.showNotification({
+          content: 'Successfully signed the document',
+          type: 'success',
+        });
+        this.props.updateStep({ completed: true });
+        this.props.push('/thank-you');
+      } else {
+        throw response;
+      }
+    } catch (err) {
+      this.props.showNotification({
+        content: err.error || 'Failed to sign the document',
+        type: 'error',
+      });
+    }
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId , otHash } = this.props;
+    const { classes, sellerId, propId, buyerId, otHash } = this.props;
 
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer />
+          <DocumentViewer isViewMode />
         </div>
 
         <div className="seller-verification-form__contents">
@@ -84,7 +113,11 @@ class AdminApprovalForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.submitData}
+            >
               Approve
             </Button>
           </div>

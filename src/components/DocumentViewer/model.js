@@ -1,4 +1,6 @@
 import { dispatch } from '@rematch/core';
+import FileSaver from 'file-saver';
+
 import request from '@Services/ApiService';
 
 export const initialState = {
@@ -22,6 +24,11 @@ export default {
       ...state,
       file: null,
     }),
+    clearAll: state => ({
+      ...state,
+      file: null,
+      currentDocument: null,
+    }),
   },
   effects: {
     async fetchDocument(payload) {
@@ -32,6 +39,21 @@ export default {
           responseType: 'blob',
         });
         dispatch.document.fetchSuccess({ document: response });
+      } catch (error) {
+        dispatch.notification.show({
+          content: 'Failed to fetch the document. Please try again later.',
+          type: 'error',
+        });
+      }
+    },
+    async download(payload) {
+      try {
+        const response = await request({
+          method: 'GET',
+          url: `/doc/${payload.documentHash}`,
+          responseType: 'blob',
+        });
+        FileSaver.saveAs(response, `${payload.title}.pdf`);
       } catch (error) {
         console.log('error: ', error);
         dispatch.notification.show({
