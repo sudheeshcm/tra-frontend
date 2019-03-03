@@ -125,7 +125,7 @@ class BuyerTDRequestForm extends Component {
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, buyerId } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -142,7 +142,7 @@ class BuyerTDRequestForm extends Component {
               <TextField
                 label="Buyer ID"
                 margin="dense"
-                value={this.state.buyerId}
+                value={buyerId}
                 onChange={this.onValueChange('buyerId')}
                 disabled
                 required
