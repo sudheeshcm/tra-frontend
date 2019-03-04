@@ -5,8 +5,7 @@ import Button from '@material-ui/core/Button';
 import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -33,15 +32,45 @@ const styles = () => ({
 });
 
 class BuyerTDUploadForm extends Component {
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    //API Call
-    this.props.updateStep({ step: 15, completed: true });
-    this.props.push('/thank-you');
+
+    //Change API endpoint for scenario 15
+    const formData = {
+      'new-td-hash': this.props.newTDHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/ajman/request_mpd_noc',
+      });
+
+      if (response.requested) {
+        this.props.showNotification({
+          content: 'Signed Successfully',
+          type: 'success',
+        });
+      } else {
+        dispatch.verify.verifyDocumentFailed();
+        this.props.showNotification({
+          content: response.error,
+          type: 'error',
+        });
+      }
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
+    } catch (error) {
+      this.props.showNotification({
+        content: 'Signing Failed',
+        type: 'error',
+      });
+    }
   };
 
   render() {
-    const { classes,  buyerId } = this.props;
+    const { classes, buyerId } = this.props;
 
     return (
       <div className="seller-verification-form">
@@ -53,7 +82,7 @@ class BuyerTDUploadForm extends Component {
           <Typography variant="h6" className={classes.title}>
             FEWA - TD Visual
           </Typography>
-         
+
           <div>
             <FormControl>
               <TextField
@@ -65,7 +94,7 @@ class BuyerTDUploadForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Request
             </Button>
           </div>

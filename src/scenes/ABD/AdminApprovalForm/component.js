@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 
-// import request from '@Services/ApiService';
+ import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -50,6 +50,9 @@ class AdminApprovalForm extends Component {
         required: true,
       },
     ]);
+    this.props.fetchDocuments({
+      documentHashes: [this.props.otHash, this.props.mpdNocHash, this.props.fewaNocHash, this.props.mojNocHash],
+    });
   }
 
   componentWillUnmount() {
@@ -68,8 +71,8 @@ class AdminApprovalForm extends Component {
             data: formData,
             url: '/cb/approve_mortgage',
           });
-          if (response['abd-mortgage-hash']) {
-              let abdMortgageHash = response['abd-mortgage-hash'];
+          if (response['mortgage-hash']) {
+              let abdMortgageHash = response['mortgage-hash'];
               this.props.setVariableInStore({
                   variables: {
                     abdMortgageHash
@@ -81,7 +84,7 @@ class AdminApprovalForm extends Component {
               });
             
               this.props.downloadDocument({
-                documentHash: response['abd-mortgage-hash'],
+                documentHash: response['mortgage-hash'],
                 title: 'ABD Mortgage Approval',
               });
             
@@ -103,7 +106,7 @@ class AdminApprovalForm extends Component {
     return (
       <div className="buyer-fewa-noc-form">
         <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+          <MultiDocumentViewer isViewMode />
         </div>
 
         <div className="buyer-fewa-noc-form__contents">

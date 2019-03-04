@@ -1,19 +1,18 @@
-import request from '@Services/ApiService';
-
 export const initialState = {
-    stepDetails: {
-        step: 1,
-        completed: false
-      },
-      otHash: '',
-      mpdNocHash: '',
-      mojNocHash: '',
-      tdHash: '',
-      fewaNocHash: '',
-      buyerId: '',
-      abdMortgageHash: '',
-      sellerId: '',
-      propId: ''
+  stepDetails: {
+    step: 1,
+    completed: false,
+  },
+  otHash: '',
+  mpdNocHash: '',
+  mojNocHash: '',
+  abdMortgageHash: '',
+  tdHash: '',
+  newTDHash: '',
+  buyerId: '',
+  sellerId: '',
+  propId: '',
+  fewaNocHash: '',
 };
 export default {
   state: initialState,

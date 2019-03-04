@@ -134,7 +134,6 @@ class DocumentViewerComponent extends React.Component {
     let error = '';
 
     if (fileSize <= 200) {
-      console.log('file: ', file);
       this.props.setFile({ file });
 
       if (this.props.isVerificationMode) {

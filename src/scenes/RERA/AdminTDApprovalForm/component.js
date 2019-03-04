@@ -3,10 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -33,7 +30,6 @@ const styles = () => ({
 });
 
 class AdminTDApprovalForm extends Component {
-
   componentDidMount() {
     this.props.setRequiredFiles([
       {
@@ -61,6 +57,17 @@ class AdminTDApprovalForm extends Component {
         required: true,
       },
     ]);
+
+    this.props.fetchDocuments({
+      documentHashes: [
+        this.props.otHash,
+        this.props.mpdNocHash,
+        this.props.tdHash,
+        this.props.fewaNocHash,
+        this.props.mojNocHash,
+        this.props.adbMortgageHash,
+      ],
+    });
   }
 
   componentWillUnmount() {
@@ -71,19 +78,53 @@ class AdminTDApprovalForm extends Component {
     this.setState({ [field]: e.target.value });
   };
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+
+    //Change API endpoint for Scenario 14
+    try {
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/uae/approve_moj_noc',
+      });
+
+      this.props.showNotification({
+        content: 'New Title Deed granted',
+        type: 'success',
+      });
+
+      this.props.setVariableInStore({
+        newTDHash: response['new-td-hash'],
+      });
+
+      this.props.downloadDocument({
+        documentHash: response['new-td-hash'],
+        title: 'New Title Deed',
+      });
+
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
+    } catch (error) {
+      console.log(error);
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
         <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+          <MultiDocumentViewer isViewMode />
         </div>
 
         <div className="buyer-fewa-noc-form__contents">

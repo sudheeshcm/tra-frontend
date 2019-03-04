@@ -50,6 +50,7 @@ class AdminApprovalForm extends Component {
   componentWillUnmount() {
     this.props.resetRequiredFiles();
   }
+
   submitData = async e => {
     e.preventDefault();
     const formData = {
@@ -83,14 +84,13 @@ class AdminApprovalForm extends Component {
               this.props.push('/thank-you');
           }
 
-        }catch (error) {
-              this.props.showNotification({
-                  content: 'Failed to submit data. Please try again later',
-                  type: 'error',
-              });
-         }
-     };
-
+    } catch (error) {
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
+  };
 
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;

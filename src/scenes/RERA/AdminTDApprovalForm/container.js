@@ -3,9 +3,7 @@ import { push } from 'connected-react-router';
 
 import AdminTDApprovalForm from './component';
 
-const mapStateToProps = state => ({
-  buyerId: 123456 || state.currentUser.id,
-});
+const mapStateToProps = state => ({});
 
 
 const mapDispatchToProps = dispatch => ({
@@ -13,6 +11,10 @@ const mapDispatchToProps = dispatch => ({
   updateStep: dispatch.app.updateStep,
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
+  fetchDocuments: dispatch.multiDocuments.fetchDocuments,
+  downloadDocument: dispatch.document.download,
+  showNotification: dispatch.notification.show,
+  setVariableInStore: dispatch.app.setVariableInStore,
 });
 
 export default connect(

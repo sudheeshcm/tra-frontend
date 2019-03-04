@@ -70,7 +70,9 @@ class AdminApprovalForm extends Component {
       });
 
       this.props.setVariableInStore({
+        variables: {
         mojNocHash: response['moj-noc-hash'],
+        }
       });
 
       this.props.downloadDocument({

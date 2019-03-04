@@ -9,7 +9,6 @@ function mapState(state) {
 }
 
 function mapDispatch(dispatch) {
-  // console.log(dispatch.user);
   return {
     updateStep: dispatch.app.updateStep,
     logout: dispatch.user.logout,

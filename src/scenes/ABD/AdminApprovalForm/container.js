@@ -4,8 +4,10 @@ import { push } from 'connected-react-router';
 import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
-  otHash:
-    state.app.otHash || 'ad2577cc339d5edea419fd1cc0f4d13ca93136afce88bd648c43098fbdedb5be',
+  otHash: state.app.otHash ,
+  mpdNocHash: state.app.mpdNocHash ,
+  fewaNocHash: state.app.fewaNocHash ,
+  mojNocHash: state.app.mojNocHash ,
 });
 
 const mapDispatchToProps = dispatch => ({
