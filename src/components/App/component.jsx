@@ -29,7 +29,7 @@ import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
 import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
-
+import { getState } from '@rematch/core'
 import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
 import AdminTDApprovalForm from '@Root/scenes/RERA/AdminTDApprovalForm';
 import ListItems from './components/ListItems';
@@ -68,10 +68,21 @@ const styles = theme => ({
 });
 
 class App extends React.Component {
+
+
   componentDidMount() {
+
+    
+    if (localStorage.state) {
+      this.props.setAppState(JSON.parse(localStorage.state));
+    }
     if (this.props.location.pathname === '/') {
       this.props.push('/login');
     }
+  }
+
+  componentDidUpdate() {
+    localStorage.state = JSON.stringify(getState().app);
   }
 
   render() {
@@ -87,7 +98,7 @@ class App extends React.Component {
       <MuiThemeProvider theme={Theme}>
         <div className={classes.root}>
           <Header classes={classes.appBar} />
-          <Drawer
+          {/* <Drawer
             variant="permanent"
             classes={{
               paper: classes.drawerPaper,
@@ -95,7 +106,7 @@ class App extends React.Component {
           >
             <div className={classes.toolbar} />
             <List>{ListItems}</List>
-          </Drawer>
+          </Drawer> */}
           <main className={classes.content}>
             <Route exact path="/login" component={LoginPage} />
             <PrivateRoute path="/thank-you" component={ThankYou} />

@@ -14,6 +14,7 @@ function mapState(state) {
 function mapDispatch(dispatch) {
   return {
     push: args => dispatch(push(args)),
+    setAppState: dispatch.app.setAppState,
   };
 }
 

@@ -14,6 +14,7 @@ export const initialState = {
   propId: '',
   fewaNocHash: '',
 };
+
 export default {
   state: initialState,
   reducers: {
@@ -30,6 +31,11 @@ export default {
     }),
     resetApp: () => ({
       ...initialState,
+    }),
+    setAppState: (state, payload) => ({
+      ...state,
+      ...payload,
+      stepDetails: { ...payload.stepDetails },
     }),
     setVariableInStore: (state, payload) => ({
       ...state,
