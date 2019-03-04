@@ -72,10 +72,14 @@ class App extends React.Component {
 
   componentDidMount() {
 
-    
     if (localStorage.state) {
       this.props.setAppState(JSON.parse(localStorage.state));
     }
+
+    if (localStorage.curretUser) {
+    this.props.loginUser(JSON.parse(localStorage.curretUser));
+    }
+
     if (this.props.location.pathname === '/') {
       this.props.push('/login');
     }
