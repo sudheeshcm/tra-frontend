@@ -31,6 +31,9 @@ export default {
             content: 'Request for NOC Submitted',
             type: 'success',
           });
+
+           dispatch.app.updateStep({completed: true });
+           dispatch(push('/thank-you'));
         } else {
           dispatch.notification.show({
             content: response.error,
