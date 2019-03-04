@@ -72,10 +72,10 @@ class AdminApprovalForm extends Component {
             url: '/cb/approve_mortgage',
           });
           if (response['mortgage-hash']) {
-              let abdMortgageHash = response['mortgage-hash'];
+              let mortgageHash = response['mortgage-hash'];
               this.props.setVariableInStore({
                   variables: {
-                    abdMortgageHash
+                    mortgageHash
                   },
                 });
               this.props.showNotification({
@@ -85,7 +85,7 @@ class AdminApprovalForm extends Component {
             
               this.props.downloadDocument({
                 documentHash: response['mortgage-hash'],
-                title: 'ABD Mortgage Approval',
+                title: 'Mortgage Approval',
               });
             
               this.props.updateStep({ completed: true });

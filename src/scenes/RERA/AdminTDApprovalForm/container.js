@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   tdHash: state.app.tdHash,
   fewaNocHash: state.app.fewaNocHash,
   mojNocHash: state.app.mojNocHash,
-  abdMortgageHash: state.app.abdMortgageHash,
+  mortgageHash: state.app.mortgageHash,
 });
 
 const mapDispatchToProps = dispatch => ({

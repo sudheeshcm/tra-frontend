@@ -65,7 +65,7 @@ class AdminTDApprovalForm extends Component {
         this.props.tdHash,
         this.props.fewaNocHash,
         this.props.mojNocHash,
-        this.props.abdMortgageHash,
+        this.props.mortgageHash,
       ],
     });
   }

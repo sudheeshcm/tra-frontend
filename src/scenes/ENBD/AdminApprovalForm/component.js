@@ -37,7 +37,7 @@ class AdminApprovalForm extends Component {
   componentDidMount() {
     console.log(this.props)
     this.props.fetchDocument({
-      documentHash: this.props.abdMortgageHash,
+      documentHash: this.props.mortgageHash,
     });
   }
 

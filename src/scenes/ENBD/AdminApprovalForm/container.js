@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
-  abdMortgageHash : state.app.abdMortgageHash,
+  mortgageHash : state.app.mortgageHash,
   otHash: state.app.otHash
 });
 

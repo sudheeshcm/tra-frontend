@@ -36,37 +36,43 @@ class BuyerTDUploadForm extends Component {
     e.preventDefault();
 
     //Change API endpoint for scenario 15
-    const formData = {
-      'new-td-hash': this.props.newTDHash,
-    };
-    try {
-      const response = await request({
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        data: formData,
-        url: '/ajman/request_mpd_noc',
-      });
+    // const formData = {
+    //   'new-td-hash': this.props.newTDHash,
+    // };
+    // try {
+    //   const response = await request({
+    //     method: 'POST',
+    //     headers: { 'content-type': 'application/json' },
+    //     data: formData,
+    //     url: '/ajman/request_mpd_noc',
+    //   });
 
-      if (response.requested) {
-        this.props.showNotification({
-          content: 'Signed Successfully',
-          type: 'success',
-        });
-      } else {
-        dispatch.verify.verifyDocumentFailed();
-        this.props.showNotification({
-          content: response.error,
-          type: 'error',
-        });
-      }
-      this.props.updateStep({ completed: true });
-      this.props.push('/thank-you');
-    } catch (error) {
-      this.props.showNotification({
-        content: 'Signing Failed',
-        type: 'error',
-      });
-    }
+    //   if (response.requested) {
+
+    //   } else {
+    //     dispatch.verify.verifyDocumentFailed();
+    //     this.props.showNotification({
+    //       content: response.error,
+    //       type: 'error',
+    //     });
+    //   }
+    //   this.props.updateStep({ completed: true });
+    //   this.props.push('/thank-you');
+    // } catch (error) {
+    //   this.props.showNotification({
+    //     content: 'Signing Failed',
+    //     type: 'error',
+    //   });
+    // }
+
+    this.props.showNotification({
+      content: 'Signed Successfully. Thank you!',
+      type: 'success',
+    });
+
+    localStorage.clear();
+    this.props.updateStep({step:1, completed: true });
+    this.props.push('/login');
   };
 
   render() {
@@ -95,7 +101,7 @@ class BuyerTDUploadForm extends Component {
           </div>
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
-              Request
+              Request for Electricity and Water Services
             </Button>
           </div>
         </div>
