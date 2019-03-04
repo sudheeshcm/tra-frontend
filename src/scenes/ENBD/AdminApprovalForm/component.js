@@ -49,7 +49,7 @@ class AdminApprovalForm extends Component {
       const response = await request({
         method: 'POST',
         data: formData,
-        url: '/cb/approve_mortgage',
+        url: '/cb/confirm_transfer',
       });
 
       if (response.confirmed) {
@@ -71,23 +71,23 @@ class AdminApprovalForm extends Component {
   };
 
   render() {
-    const { classes,  otHash } = this.props;
+    const { classes, otHash } = this.props;
 
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer isViewMode/>
+          <DocumentViewer isViewMode />
         </div>
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
             ENBD - Admin Verification
           </Typography>
-          <form className={classes.formActions} onSubmit={this.submitData}>
-            <Button variant="contained" color="primary" type="submit" >
-              APPROVE 
+          <div className={classes.formActions} >
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData} >
+              APPROVE
             </Button>
-          </form>
+          </div>
         </div>
       </div>
     );

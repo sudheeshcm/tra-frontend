@@ -65,7 +65,7 @@ class AdminTDApprovalForm extends Component {
         this.props.tdHash,
         this.props.fewaNocHash,
         this.props.mojNocHash,
-        this.props.adbMortgageHash,
+        this.props.abdMortgageHash,
       ],
     });
   }
@@ -90,7 +90,7 @@ class AdminTDApprovalForm extends Component {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         data: formData,
-        url: '/uae/approve_moj_noc',
+        url: '/ajman/approve_td',
       });
 
       this.props.showNotification({
@@ -132,7 +132,7 @@ class AdminTDApprovalForm extends Component {
             RERA Admin TD Approval
           </Typography>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Approve
             </Button>
           </div>

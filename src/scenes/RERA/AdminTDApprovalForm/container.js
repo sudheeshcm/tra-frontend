@@ -3,8 +3,14 @@ import { push } from 'connected-react-router';
 
 import AdminTDApprovalForm from './component';
 
-const mapStateToProps = state => ({});
-
+const mapStateToProps = state => ({
+  otHash: state.app.otHash,
+  mpdNocHash: state.app.mpdNocHash,
+  tdHash: state.app.tdHash,
+  fewaNocHash: state.app.fewaNocHash,
+  mojNocHash: state.app.mojNocHash,
+  abdMortgageHash: state.app.abdMortgageHash,
+});
 
 const mapDispatchToProps = dispatch => ({
   push: args => dispatch(push(args)),

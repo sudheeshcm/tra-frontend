@@ -94,7 +94,7 @@ class BuyerTDRequestForm extends Component {
         method: 'POST',
         headers: { 'content-type': 'application/JSON' },
         data: formData,
-        url: '/uae/request_moj_noc',
+        url: '/ajman/request_td',
       });
 
       if (response.requested) {
