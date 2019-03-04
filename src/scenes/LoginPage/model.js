@@ -48,30 +48,15 @@ const userModel = {
       try {
         localStorage.setItem('curretUser', JSON.stringify(data));
         dispatch.user.loginUserSuccess(data);
-        dispatch(push(dataScenarios[state.app.stepDetails.step].link));
+        if (state.app.stepDetails.completed) {
+          dispatch(push('thank-you'));
+        } else {
+          dispatch(push(dataScenarios[state.app.stepDetails.step].link));
+        }
       } catch (error) {
         console.log(error, 'error');
       }
     },
-    // async logout(...args) {
-    //   try {
-    //     const response = await request({
-    //       method: 'GET',
-    //       url: '/auth/users/logout',
-    //       params: {
-    //         access_token: args[1].user.details.accessToken,
-    //       },
-    //     });
-
-    //     if (response.type === 'SUCCESS') {
-    //       localStorage.removeItem('curretUser');
-    //       dispatch.user.clearUserDetails();
-    //       dispatch(push('/pages/login-page'));
-    //     }
-    //   } catch (error) {
-    //     console.log(error, 'error');
-    //   }
-    // },
   },
 };
 

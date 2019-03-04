@@ -29,7 +29,7 @@ import ReraAdminApprovalForm from '@Root/scenes/RERA/AdminApprovalForm';
 import MPDAdminApprovalForm from '@Root/scenes/MPD/AdminApprovalForm';
 import MPDBuyerVerificationForm from '@Root/scenes/MPD/BuyerVerificationForm';
 import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
-import { getState } from '@rematch/core'
+import { getState } from '@rematch/core';
 import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
 import AdminTDApprovalForm from '@Root/scenes/RERA/AdminTDApprovalForm';
 import ListItems from './components/ListItems';
@@ -68,16 +68,13 @@ const styles = theme => ({
 });
 
 class App extends React.Component {
-
-
   componentDidMount() {
-
     if (localStorage.state) {
       this.props.setAppState(JSON.parse(localStorage.state));
     }
 
     if (localStorage.curretUser) {
-    this.props.loginUser(JSON.parse(localStorage.curretUser));
+      this.props.loginUser(JSON.parse(localStorage.curretUser));
     }
 
     if (this.props.location.pathname === '/') {
