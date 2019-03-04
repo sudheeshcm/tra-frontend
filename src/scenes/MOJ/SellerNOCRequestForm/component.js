@@ -52,8 +52,7 @@ class SellerNOCRequestForm extends Component {
     e.preventDefault();
     const { files } = this.props;
     await this.props.requestNOC(files);
-    await this.props.updateStep({completed: true });
-    await this.props.push('/thank-you');
+    
   };
 
   render() {

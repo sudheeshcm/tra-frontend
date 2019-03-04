@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import dataScenarios from '../../data.js';
+import { getState } from '@rematch/core';
 
 class Header extends React.Component {
   static propTypes = {
@@ -33,6 +35,11 @@ class Header extends React.Component {
             >
               TRA - UAE PASS
             </Typography>
+            <img
+              className="header__entity"
+              src={dataScenarios[getState().app.stepDetails.step].src}
+              alt="entity"
+            />
           </Link>
         </Toolbar>
       </AppBar>
