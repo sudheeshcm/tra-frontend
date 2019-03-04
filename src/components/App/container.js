@@ -15,6 +15,7 @@ function mapDispatch(dispatch) {
   return {
     push: args => dispatch(push(args)),
     setAppState: dispatch.app.setAppState,
+    loginUser: dispatch.user.login,
   };
 }
 
