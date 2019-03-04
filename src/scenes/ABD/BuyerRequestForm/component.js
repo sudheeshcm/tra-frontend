@@ -6,7 +6,7 @@ import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -37,8 +37,10 @@ class BuyerRequestForm extends Component {
     super(props);
     this.state = {
       amount: '',
+      propId: '',
       sellerId: '',
       sellerIBAN: '',
+      buyerIBAN: '',
       buyerId: props.buyerId,
     };
   }
@@ -74,10 +76,50 @@ class BuyerRequestForm extends Component {
     this.setState({ [field]: e.target.value });
   };
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({ step: 2, completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.files[0].documentHash,
+      'mpd-noc-hash': this.props.files[1].documentHash,
+      'fewa-noc-hash': this.props.files[2].documentHash,
+      'moj-noc-hash': this.props.files[3].documentHash,
+      'amount': this.state.amount,
+      'property-id': this.state.propId,
+      'buyer-id': this.state.buyerId,
+      'seller-id': this.state.sellerId,
+      'seller-iban': this.state.sellerIBAN,
+      'buyer-iban': this.state.sellerId
+
+    };
+    try {
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/cb/request_mortgage',
+          });
+
+          if (response.requested) {
+            this.props.showNotification({
+              content: 'Successfully requested  Mortgage',
+              type: 'success',
+            });
+
+            this.props.updateStep({ completed: true });
+            this.props.push('/thank-you');
+          } 
+
+          else {
+            console.log('response.requested is false')
+          }
+          
+
+        } catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
   };
 
   render() {
@@ -94,25 +136,47 @@ class BuyerRequestForm extends Component {
             ABD Form Request
           </Typography>
 
-          <div>
+              <div>
                 <FormControl>
                   <TextField
                     label="Amount"
                     margin="dense"
-                    value={this.state.sellerId}
+                    value={this.state.amount}
                     onChange={this.onValueChange('amount')}
                     required
                   />
                 </FormControl>
               </div>
-
-          <div>
+              <div>
+                <FormControl>
+                  <TextField
+                    label="Property Id"
+                    margin="dense"
+                    value={this.state.propId}
+                    onChange={this.onValueChange('propId')}
+                    required
+                  />
+                </FormControl>
+              </div>
+              <div>
                 <FormControl>
                   <TextField
                     label="Seller ID"
                     margin="dense"
                     value={this.state.sellerId}
                     onChange={this.onValueChange('sellerId')}
+                    required
+                  />
+                </FormControl>
+              </div>
+              <div>
+                <FormControl>
+                  <TextField
+                    label="Buyer ID"
+                    margin="dense"
+                    value={this.state.buyerId}
+                    onChange={this.onValueChange('buyerId')}
+                    disabled
                     required
                   />
                 </FormControl>
@@ -131,20 +195,19 @@ class BuyerRequestForm extends Component {
               <div>
                 <FormControl>
                   <TextField
-                    label="Buyer ID"
+                    label="Buyer IBAN"
                     margin="dense"
-                    value={this.state.buyerId}
-                    onChange={this.onValueChange('buyerId')}
-                    disabled
+                    value={this.state.buyerIBAN}
+                    onChange={this.onValueChange('buyerIBAN')}
                     required
                   />
                 </FormControl>
               </div>
-          <div className={classes.formActions}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Confirm
             </Button>
-          </div>
+          </form>
         </div>
         </div>
      

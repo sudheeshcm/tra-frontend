@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 
-// import request from '@Services/ApiService';
+ import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -50,17 +50,54 @@ class AdminApprovalForm extends Component {
         required: true,
       },
     ]);
+    this.props.fetchDocuments({
+      documentHashes: [this.props.otHash, this.props.mpdNocHash, this.props.fewaNocHash, this.props.mojNocHash],
+    });
   }
 
   componentWillUnmount() {
     this.props.resetRequiredFiles();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-        //API Call
-    this.props.updateStep({ completed: true });
-    this.props.push('/thank-you');
+    const formData = {
+      'ot-hash': this.props.otHash,
+    };
+    try {
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/cb/approve_mortgage',
+          });
+          if (response['mortgage-hash']) {
+              let abdMortgageHash = response['mortgage-hash'];
+              this.props.setVariableInStore({
+                  variables: {
+                    abdMortgageHash
+                  },
+                });
+              this.props.showNotification({
+                content: 'Successfully approved Mortgage',
+                type: 'success',
+              });
+            
+              this.props.downloadDocument({
+                documentHash: response['mortgage-hash'],
+                title: 'ABD Mortgage Approval',
+              });
+            
+              this.props.updateStep({ completed: true });
+              this.props.push('/thank-you');
+          }
+
+        }catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
   };
 
   render() {
@@ -69,7 +106,7 @@ class AdminApprovalForm extends Component {
     return (
       <div className="buyer-fewa-noc-form">
         <div className="buyer-fewa-noc-form__doc-viewer">
-          <MultiDocumentViewer />
+          <MultiDocumentViewer isViewMode />
         </div>
 
         <div className="buyer-fewa-noc-form__contents">
@@ -77,11 +114,11 @@ class AdminApprovalForm extends Component {
             ABD Mortgage - Admin Verification
           </Typography>
 
-          <div className={classes.formActions}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Approve
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     );

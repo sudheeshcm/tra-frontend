@@ -12,6 +12,7 @@ export const initialState = {
   buyerId: '',
   sellerId: '',
   propId: '',
+  fewaNocHash: '',
 };
 export default {
   state: initialState,
