@@ -50,40 +50,39 @@ class AdminApprovalForm extends Component {
   componentWillUnmount() {
     this.props.resetRequiredFiles();
   }
+
   submitData = async e => {
     e.preventDefault();
     const formData = {
       'ot-hash': this.props.otHash,
     };
     try {
-          const response = await request({
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            data: formData,
-            url: '/uae/approve_fewa_noc',
-          });
-          
-            this.props.showNotification({
-              content: 'Successfully approved FEWA NOC',
-              type: 'success',
-            });
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/uae/approve_fewa_noc',
+      });
 
-            this.props.downloadDocument({
-              documentHash: response['fewa-noc-hash'],
-              title: 'FEWA No Objection Certificate',
-            });
+      this.props.showNotification({
+        content: 'Successfully approved FEWA NOC',
+        type: 'success',
+      });
 
-            this.props.updateStep({ completed: true });
-            this.props.push('/thank-you');
+      this.props.downloadDocument({
+        documentHash: response['fewa-noc-hash'],
+        title: 'FEWA No Objection Certificate',
+      });
 
-        }catch (error) {
-              this.props.showNotification({
-                  content: 'Failed to submit data. Please try again later',
-                  type: 'error',
-              });
-         }
-     };
-
+      this.props.updateStep({ completed: true });
+      this.props.push('/thank-you');
+    } catch (error) {
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
+  };
 
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;

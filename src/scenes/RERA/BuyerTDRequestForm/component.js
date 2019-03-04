@@ -39,8 +39,6 @@ class BuyerTDRequestForm extends Component {
     };
   }
 
-
-
   componentDidMount() {
     this.props.setRequiredFiles([
       {
@@ -79,8 +77,7 @@ class BuyerTDRequestForm extends Component {
   };
 
   submitData = async e => {
-
-     const { files } = this.props;
+    const { files } = this.props;
     e.preventDefault();
     const formData = {
       'ot-hash': files[0].documentHash,
@@ -90,7 +87,6 @@ class BuyerTDRequestForm extends Component {
       'moj-noc-hash': files[4].documentHash,
       'mortgage-hash': files[5].documentHash,
     };
-
 
     //TODO: Change Scenario 13 API endpoint once documented
     try {
@@ -120,7 +116,7 @@ class BuyerTDRequestForm extends Component {
         type: 'error',
       });
     }
-    this.props.updateStep({completed: true });
+    this.props.updateStep({ completed: true });
     this.props.push('/thank-you');
   };
 
@@ -150,13 +146,17 @@ class BuyerTDRequestForm extends Component {
             </FormControl>
           </div>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={this.submitData}
+            >
               Confirm
             </Button>
           </div>
         </div>
       </div>
-
     );
   }
 }

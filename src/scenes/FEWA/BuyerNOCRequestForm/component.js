@@ -52,39 +52,33 @@ class BuyerNOCRequestForm extends Component {
     e.preventDefault();
     const formData = {
       'ot-hash': this.props.files[0].documentHash,
-      'mpd-noc-hash': this.props.files[1].documentHash
+      'mpd-noc-hash': this.props.files[1].documentHash,
     };
     try {
-          const response = await request({
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            data: formData,
-            url: '/uae/request_fewa_noc',
-          });
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/uae/request_fewa_noc',
+      });
 
-          if (response.requested) {
-            this.props.showNotification({
-              content: 'Successfully requested FEWA NOC',
-              type: 'success',
-            });
+      if (response.requested) {
+        this.props.showNotification({
+          content: 'Successfully requested FEWA NOC',
+          type: 'success',
+        });
 
-            this.props.updateStep({ completed: true });
-            this.props.push('/thank-you');
-          } 
-
-          else {
-            console.log('response.requested is false')
-          }
-          
-
-        } catch (error) {
-              this.props.showNotification({
-                  content: 'Failed to submit data. Please try again later',
-                  type: 'error',
-              });
-         }
-   
-    };
+        this.props.updateStep({ completed: true });
+        this.props.push('/thank-you');
+      } else {
+      }
+    } catch (error) {
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
+  };
 
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;

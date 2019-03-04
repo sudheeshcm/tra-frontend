@@ -33,61 +33,60 @@ const styles = () => ({
 });
 
 class AdminApprovalForm extends Component {
-
-    componentDidMount() {
-        this.props.fetchDocument({
-            documentHash: this.props.otHash,
-        });
-    }
+  componentDidMount() {
+    this.props.fetchDocument({
+      documentHash: this.props.otHash,
+    });
+  }
 
   submitData = async () => {
     const formData = {
-        'ot-hash': this.props.otHash,
-      };
-      try {
-        const response = await request({
-          method: 'POST',
-          data: formData,
-          headers: { 'content-type': 'application/json' },
-          url: '/ajman/approve_mpd_noc',
+      'ot-hash': this.props.otHash,
+    };
+    try {
+      const response = await request({
+        method: 'POST',
+        data: formData,
+        headers: { 'content-type': 'application/json' },
+        url: '/ajman/approve_mpd_noc',
+      });
+
+      if (response['mpd-noc-hash']) {
+        let mpdNocHash = response['mpd-noc-hash'];
+        this.props.setVariableInStore({
+          variables: {
+            mpdNocHash,
+          },
         });
-        
-        if (response["mpd-noc-hash"]) {
-          let mpdNocHash = response["mpd-noc-hash"];
-          this.props.setVariableInStore({
-              variables: {
-                  mpdNocHash
-              },
-            });
-          this.props.showNotification({
-            content: 'Successfully approved MPD NOC',
-            type: 'success',
-          });
-          this.props.downloadDocument({
-            documentHash: response['mpd-noc-hash'],
-            title: 'MPD No Objection Certificate',
-          });
-          this.props.updateStep({ step: 5, completed: true });
-          this.props.push('/thank-you');
-        } else {
-          throw response;
-        }
-      } catch (err) {
-        console.log('S5 : Admin MPD VerificationForm Error: ', err);
         this.props.showNotification({
-          content: err.error || 'Failed to sign the document',
-          type: 'error',
+          content: 'Successfully approved MPD NOC',
+          type: 'success',
         });
+        this.props.downloadDocument({
+          documentHash: response['mpd-noc-hash'],
+          title: 'MPD No Objection Certificate',
+        });
+        this.props.updateStep({ step: 5, completed: true });
+        this.props.push('/thank-you');
+      } else {
+        throw response;
       }
+    } catch (err) {
+      console.log('S5 : Admin MPD VerificationForm Error: ', err);
+      this.props.showNotification({
+        content: err.error || 'Failed to sign the document',
+        type: 'error',
+      });
+    }
   };
 
   render() {
-    const { classes,  otHash } = this.props;
+    const { classes, otHash } = this.props;
 
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer isViewMode/>
+          <DocumentViewer isViewMode />
         </div>
 
         <div className="seller-verification-form__contents">
@@ -95,7 +94,11 @@ class AdminApprovalForm extends Component {
             MPD - Admin Verification
           </Typography>
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" onClick={this.submitData}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.submitData}
+            >
               confirm
             </Button>
           </div>

@@ -30,7 +30,6 @@ const styles = () => ({
 });
 
 class AdminTDApprovalForm extends Component {
-
   componentDidMount() {
     this.props.setRequiredFiles([
       {
@@ -60,7 +59,14 @@ class AdminTDApprovalForm extends Component {
     ]);
 
     this.props.fetchDocuments({
-      documentHashes: [this.props.otHash, this.props.mpdNocHash, this.props.tdHash, this.props.fewaNocHash, this.props.mojNocHash, this.props.adbMortgageHash],
+      documentHashes: [
+        this.props.otHash,
+        this.props.mpdNocHash,
+        this.props.tdHash,
+        this.props.fewaNocHash,
+        this.props.mojNocHash,
+        this.props.adbMortgageHash,
+      ],
     });
   }
 
@@ -93,7 +99,7 @@ class AdminTDApprovalForm extends Component {
       });
 
       this.props.setVariableInStore({
-        'newTDHash': response['new-td-hash'],
+        newTDHash: response['new-td-hash'],
       });
 
       this.props.downloadDocument({
@@ -103,9 +109,8 @@ class AdminTDApprovalForm extends Component {
 
       this.props.updateStep({ completed: true });
       this.props.push('/thank-you');
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',

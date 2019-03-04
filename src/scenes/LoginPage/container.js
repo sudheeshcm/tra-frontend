@@ -5,12 +5,10 @@ import LoginPage from './component.js';
 function mapState(state) {
   return {
     stepDetails: state.app.stepDetails,
-   
   };
 }
 
 function mapDispatch(dispatch) {
-  // console.log(dispatch.user);
   return {
     login: dispatch.user.login,
   };
