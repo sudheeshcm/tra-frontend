@@ -6,6 +6,7 @@ import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import request from '@Services/ApiService';
+import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
 
 const styles = () => ({
   title: {
@@ -151,6 +152,7 @@ class BuyerTDRequestForm extends Component {
               color="primary"
               type="submit"
               onClick={this.submitData}
+              disabled={multipleDocumentsFilled(this.props.files, 6)}
             >
               Confirm
             </Button>

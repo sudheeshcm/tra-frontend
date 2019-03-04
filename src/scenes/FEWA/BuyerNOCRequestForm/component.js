@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
-
+import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
 import request from '@Services/ApiService';
 
 const styles = () => ({
@@ -80,6 +80,9 @@ class BuyerNOCRequestForm extends Component {
     }
   };
 
+  disableButton = filesArray =>
+    filesArray.length >= 2 && !filesArray.slice(0, 2).some(isNull);
+
   render() {
     const { classes, sellerId, propId, buyerId } = this.props;
 
@@ -95,7 +98,12 @@ class BuyerNOCRequestForm extends Component {
           </Typography>
 
           <form className={classes.formActions} onSubmit={this.submitData}>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={multipleDocumentsFilled(this.props.files, 2)}
+            >
               Submit
             </Button>
           </form>

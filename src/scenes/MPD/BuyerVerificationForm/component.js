@@ -40,7 +40,7 @@ class BuyerVerificationForm extends Component {
   };
 
   state = {
-    verified: null,
+    verified: false,
     loading: false,
   };
 
@@ -73,7 +73,11 @@ class BuyerVerificationForm extends Component {
   getLabel = () => {
     if (this.state.started && this.state.verified) {
       return 'VERIFIED';
-    } else if (this.state.started && !this.state.verified) {
+    }
+    if (this.state.loading) {
+      return 'Verifying...';
+    }
+    if (this.state.started && !this.state.verified) {
       return 'UNVERIFIED';
     }
     return 'Verify Document';
@@ -112,7 +116,7 @@ class BuyerVerificationForm extends Component {
     return (
       <div className="seller-verification-form">
         <div className="seller-verification-form__doc-viewer">
-          <DocumentViewer isVerificationMode/>
+          <DocumentViewer isVerificationMode />
         </div>
 
         <div className="seller-verification-form__contents">
@@ -121,26 +125,39 @@ class BuyerVerificationForm extends Component {
           </Typography>
 
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit" onClick={this.verifyDocument}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={this.verifyDocument}
+              disabled={!this.props.file || this.state.started}
+            >
               {this.getLabel()}
             </Button>
-
           </div>
           <div className="buyer-verification-form-container">
-          {this.state.loading ? (
-            <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
-          ) : (
-            <div className="">{verificationComponent}</div>
+            {this.state.loading ? (
+              <div className="lds-ring">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+            ) : (
+              <div className="">{verificationComponent}</div>
             )}
           </div>
 
           <form className={classes.form} onSubmit={this.submitData}>
-            <Button variant="contained" color="primary" type="submit" >
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={!this.state.verified}
+            >
               Submit
             </Button>
-
           </form>
-
         </div>
       </div>
     );
