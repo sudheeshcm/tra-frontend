@@ -6,7 +6,7 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-// import request from '@Services/ApiService';
+import request from '@Services/ApiService';
 
 const styles = () => ({
   title: {
@@ -35,23 +35,24 @@ const styles = () => ({
 class AdminApprovalForm extends Component {
 
   componentDidMount() {
+    console.log(this.props)
     this.props.fetchDocument({
-      abdMortgageHash: this.props.abdMortgageHash,
+      documentHash: this.props.abdMortgageHash,
     });
   }
 
   submitData = async () => {
     const formData = {
-      'mortgage-hash': this.props.abdMortgageHash,
+      'ot-hash': this.props.otHash,
     };
     try {
       const response = await request({
         method: 'POST',
         data: formData,
-        url: '/ajman/sign_ot_by_seller',
+        url: '/cb/approve_mortgage',
       });
 
-      if (response.signed) {
+      if (response.confirmed) {
         this.props.showNotification({
           content: 'Mortgage has been approved',
           type: 'success',
@@ -82,11 +83,11 @@ class AdminApprovalForm extends Component {
           <Typography variant="h6" className={classes.title}>
             ENBD - Admin Verification
           </Typography>
-          <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit" onSubmit={this.submitData}>
+          <form className={classes.formActions} onSubmit={this.submitData}>
+            <Button variant="contained" color="primary" type="submit" >
               APPROVE 
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     );
