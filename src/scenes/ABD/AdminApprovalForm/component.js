@@ -60,19 +60,16 @@ class AdminApprovalForm extends Component {
     e.preventDefault();
     const formData = {
       'ot-hash': this.props.otHash,
-      'mpd-noc-hash': this.props.mpdNocHash,
-      'fewa-noc-hash': this.props.fewaNocHash,
-      'moj-noc-hash': this.props.mojNocHash
     };
     try {
           const response = await request({
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             data: formData,
-            url: '/uae/approve_fewa_noc',
+            url: '/cb/approve_mortgage',
           });
-          if (response["abd-mortgage-hash"]) {
-              let abdMortgageHash = response["abd-mortgage-hash"];
+          if (response['abd-mortgage-hash']) {
+              let abdMortgageHash = response['abd-mortgage-hash'];
               this.props.setVariableInStore({
                   variables: {
                     abdMortgageHash

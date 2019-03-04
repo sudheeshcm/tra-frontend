@@ -4,9 +4,8 @@ import { push } from 'connected-react-router';
 import BuyerRequestForm from './component';
 
 const mapStateToProps = state => ({
-  buyerId: state.currentUser.id || 123456,
+  buyerId: state.user.currentUser.id || 123456,
   files: state.multiDocuments.files,
-
 });
 
 const mapDispatchToProps = dispatch => ({

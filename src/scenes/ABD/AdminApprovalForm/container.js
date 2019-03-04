@@ -5,17 +5,7 @@ import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
   otHash:
-    state.app.otHash ||
-    'ad2577cc339d5edea419fd1cc0f4d13ca93136afce88bd648c43098fbdedb5be',
-  mpdNocHash:
-    state.app.mpdNocHash ||
-    'cd7d6b1880826abcb287b651bc36884255accd7e8a028e218e6b2dcfe7c0b928',
-    fewaNocHash:
-    state.app.fewaNocHash ||
-    '',
-    mojNocHash:
-    state.app.mojNocHash ||
-    '',
+    state.app.otHash || 'ad2577cc339d5edea419fd1cc0f4d13ca93136afce88bd648c43098fbdedb5be',
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -26,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   fetchDocuments: dispatch.multiDocuments.fetchDocuments,
   downloadDocument: dispatch.document.download,
   showNotification: dispatch.notification.show,
+  setVariableInStore: dispatch.app.setVariableInStore,
 });
 
 export default connect(

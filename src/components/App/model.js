@@ -9,7 +9,9 @@ export const initialState = {
       mpdNocHash: '',
       mojNocHash: '',
       tdHash: '',
+      fewaNocHash: '',
       buyerId: '',
+      abdMortgageHash: '',
       sellerId: '',
       propId: ''
 };

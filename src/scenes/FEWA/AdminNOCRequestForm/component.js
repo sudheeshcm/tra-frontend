@@ -62,8 +62,8 @@ class AdminApprovalForm extends Component {
             data: formData,
             url: '/uae/approve_fewa_noc',
           });
-          if (response["fewa-noc-hash"]) {
-              let fewaNocHash = response["fewa-noc-hash"];
+          if (response['fewa-noc-hash']) {
+              let fewaNocHash = response['fewa-noc-hash'];
               this.props.setVariableInStore({
                   variables: {
                     fewaNocHash
