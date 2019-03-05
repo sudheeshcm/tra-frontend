@@ -65,19 +65,19 @@ export default {
   10: {
     primaryColor: orange,
     link: '/abd/buyer-request-form',
-    src: '/static/img/consensys.png',
+    src: '/static/img/ABD.jpg',
     entity: 'ABD',
   },
   11: {
     primaryColor: orange,
     link: '/abd/admin-form',
-    src: '/static/img/consensys.png',
+    src: '/static/img/ABD.jpg',
     entity: 'ABD',
   },
   12: {
     primaryColor: amber,
     link: '/enbd/admin-form',
-    src: '/static/img/consensys.png',
+    src: '/static/img/ENBD.jpg',
     entity: 'ENBD',
   },
   13: {
