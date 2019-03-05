@@ -91,7 +91,9 @@ class App extends React.Component {
     const Theme = createMuiTheme({
       ...defaultTheme,
       palette: {
-        primary: dataScenarios[this.props.stepDetails.step].primaryColor,
+        primary: {
+          main: dataScenarios[this.props.stepDetails.step].primaryColor,
+        },
       },
     });
 
