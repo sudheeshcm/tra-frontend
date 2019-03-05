@@ -1,6 +1,7 @@
 .link.header__wrapper {
   color: #fff;
-
+  display: flex;
+  align-items: center;
   &:hover {
     color: hsla(0, 0%, 100%, 0.6);
 
@@ -24,12 +25,13 @@ h6.header__title {
 }
 
 .header__entity {
-  height: 25px;
+  height: 40px;
   width: 120px;
   max-width: 100%;
   max-height: 100%;
   display: inline-block;
-  margin-left: 8px;
+  right: 20px;
   background-color: azure;
+  position: absolute;
 
 }
