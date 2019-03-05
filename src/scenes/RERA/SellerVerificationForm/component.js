@@ -81,36 +81,7 @@ class SellerVerificationForm extends Component {
           <Typography variant="h6" className={classes.title}>
             RERA - Seller Verification
           </Typography>
-          <div>
-            <FormControl>
-              <TextField
-                label="Seller ID"
-                margin="dense"
-                value={sellerId}
-                disabled
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Property ID"
-                margin="dense"
-                value={propId}
-                disabled
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Buyer ID"
-                margin="dense"
-                value={buyerId}
-                disabled
-              />
-            </FormControl>
-          </div>
+
           <div className={classes.formActions}>
             <Button
               variant="contained"
