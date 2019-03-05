@@ -138,10 +138,7 @@ class BuyerVerificationForm extends Component {
           <div className="buyer-verification-form-container">
             {this.state.loading ? (
               <div className="lds-ring">
-                <div />
-                <div />
-                <div />
-                <div />
+              <img class="image" src="https://lh3.googleusercontent.com/FV8KU1IaypqxQKKOxhEjmQZqblY8Pb0Lf8kpAZ-bYyqldzmjjD5Eyxj-BmFvWjf1JBQ" alt="" width="120" height="120"/>
               </div>
             ) : (
               <div className="">{verificationComponent}</div>
