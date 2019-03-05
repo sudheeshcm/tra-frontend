@@ -18,12 +18,12 @@ class Header extends React.Component {
       <AppBar position="absolute" className={classes}>
         <Toolbar>
           <Link
-            className="link header__wrapper"
+            className={`link header__wrapper ${dataScenarios[getState().app.stepDetails.step].entity}`}
             to="/"
             data-test-id="header__home"
           >
             <img
-              className="header__logo"
+              className={`header__logo ${dataScenarios[getState().app.stepDetails.step].entity}`}
               src="/static/img/consensys.png"
               alt="logo"
             />
@@ -36,7 +36,7 @@ class Header extends React.Component {
               TRA - UAE PASS
             </Typography>
             <img
-              className="header__entity"
+              className={`header__entity ${dataScenarios[getState().app.stepDetails.step].entity}`}
               src={dataScenarios[getState().app.stepDetails.step].src}
               alt="entity"
             />
