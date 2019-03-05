@@ -58,31 +58,12 @@ class BuyerVerificationForm extends Component {
     this.props.clearCurrentDocument();
   }
 
-  verifyDocument = e => {
-    e.preventDefault();
-    const { documentHash } = this.props;
-    this.props.verifyDocument(documentHash);
-  };
-
   submitData = e => {
     e.preventDefault();
     this.props.updateStep({ step: 4, completed: true });
     this.props.push('/thank-you');
   };
-
-  getLabel = () => {
-    if (this.state.started && this.state.verified) {
-      return 'VERIFIED';
-    }
-    if (this.state.loading) {
-      return 'Verifying...';
-    }
-    if (this.state.started && !this.state.verified) {
-      return 'UNVERIFIED';
-    }
-    return 'Verify Document';
-  };
-
+  
   render() {
     const { classes } = this.props;
     let verificationComponent;
@@ -124,17 +105,6 @@ class BuyerVerificationForm extends Component {
             MPD - Buyer Verification
           </Typography>
 
-          <div className={classes.formActions}>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              onClick={this.verifyDocument}
-              disabled={!this.props.file || this.state.started}
-            >
-              {this.getLabel()}
-            </Button>
-          </div>
           <div className="buyer-verification-form-container">
             {this.state.loading ? (
               <div className="lds-ring">
