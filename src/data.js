@@ -14,7 +14,9 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'RERA',
     actor: 'Buyer',
-    nextMsg: 'RERA - Seller Ownership Transfer Approval'
+    nextMsg: 'RERA - Seller Ownership Transfer Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   2: {
     primaryColor: '#bca070',
@@ -22,7 +24,9 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'RERA',
     actor: 'Seller',
-    nextMsg: 'RERA - Admin Ownership Transfer Approval'
+    nextMsg: 'RERA - Admin Ownership Transfer Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   3: {
     primaryColor: '#bca070',
@@ -30,7 +34,9 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'RERA',
     actor: 'RERA Admin',
-    nextMsg: 'MPD - Buyer No Objection Certificate Request'
+    nextMsg: 'MPD - Buyer No Objection Certificate Request',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   4: {
     primaryColor: '#3B8AB3',
@@ -38,7 +44,9 @@ export default {
     src: '/static/img/MPD.png',
     entity: 'MPD',
     actor: 'Buyer',
-    nextMsg: 'MPD - Admin No Objection Certificate Approval'
+    nextMsg: 'MPD - Admin No Objection Certificate Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   5: {
     primaryColor: '#3B8AB3',
@@ -46,7 +54,9 @@ export default {
     src: '/static/img/MPD.png',
     entity: 'MPD',
     actor: 'MPD Admin',
-    nextMsg: 'FEWA - Buyer No Objection Certificate Request'
+    nextMsg: 'FEWA - Buyer No Objection Certificate Request',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   6: {
     primaryColor: '#ececec',
@@ -54,7 +64,9 @@ export default {
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
     actor: 'Buyer',
-    nextMsg: 'FEWA - Admin No Objection Certificate Approval'
+    nextMsg: 'FEWA - Admin No Objection Certificate Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   7: {
     primaryColor: '#ececec',
@@ -62,7 +74,9 @@ export default {
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
     actor: 'FEWA Admin',
-    nextMsg: 'MOJ - Seller No Objection Certificate Request'
+    nextMsg: 'MOJ - Seller No Objection Certificate Request',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   8: {
     primaryColor: '#b08a27',
@@ -70,7 +84,9 @@ export default {
     src: '/static/img/MOJ.png',
     entity: 'MOJ',
     actor: 'Seller',
-    nextMsg: 'MOJ - Admin No Objection Certificate Approval'
+    nextMsg: 'MOJ - Admin No Objection Certificate Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   9: {
     primaryColor: '#b08a27',
@@ -78,7 +94,9 @@ export default {
     src: '/static/img/MOJ.png',
     entity: 'MOJ',
     actor: 'MOJ Admin',
-    nextMsg: 'ABD - Buyer Mortgage Request'
+    nextMsg: 'ABD - Buyer Mortgage Request',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   10: {
     primaryColor: '#bd2138',
@@ -86,7 +104,9 @@ export default {
     src: '/static/img/ABD.png',
     entity: 'ABD',
     actor: 'Buyer',
-    nextMsg: 'ABD - Admin Mortgage Approval'
+    nextMsg: 'ABD - Admin Mortgage Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   11: {
     primaryColor: '#bd2138',
@@ -94,7 +114,9 @@ export default {
     src: '/static/img/ABD.png',
     entity: 'ABD',
     actor: 'ABD Admin',
-    nextMsg: 'ENBD - Admin Mortgage Approval'
+    nextMsg: 'ENBD - Admin Mortgage Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   12: {
     primaryColor: '#18297c',
@@ -102,7 +124,9 @@ export default {
     src: '/static/img/ENBD.png',
     entity: 'ENBD',
     actor: 'ENBD Admin',
-    nextMsg: 'RERA - Buyer Title Deed Request'
+    nextMsg: 'RERA - Buyer Title Deed Request',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   13: {
     primaryColor: '#bca070',
@@ -110,7 +134,9 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'RERA',
     actor: 'Buyer',
-    nextMsg: 'RERA - Admin Title Deed Approval'
+    nextMsg: 'RERA - Admin Title Deed Approval',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   14: {
     primaryColor: '#bca070',
@@ -118,6 +144,8 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'RERA',
     actor: 'RERA Admin',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
   15: {
     primaryColor: '#ececec',
@@ -125,5 +153,7 @@ export default {
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
     actor: 'FEWA Admin',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
   },
 };

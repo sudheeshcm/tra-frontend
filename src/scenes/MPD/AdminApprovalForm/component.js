@@ -66,7 +66,7 @@ class AdminApprovalForm extends Component {
           documentHash: response['mpd-noc-hash'],
           title: 'MPD No Objection Certificate',
         });
-        this.props.updateStep({ step: 5, completed: true });
+        this.props.updateStep({completed: true });
         this.props.push('/thank-you');
       } else {
         throw response;

@@ -6,16 +6,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import Icon from '@material-ui/core/Icon';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import dataScenarios from '../../data.js';
-
+import FingerprintIcon from '@material-ui/icons/Fingerprint';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 // import dataScenarios from '../../data.js';
-
-
 
 const styles = theme => ({
   main: {
@@ -46,6 +47,21 @@ const styles = theme => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 6,
+  },
+  passwordField: {
+    paddingRight: 93,
+  },
+  IDField: {
+    flexFlow: 'row',
+  },
+  iconButton: {
+    padding: 10,
+  },
+  logo: {
+    display: 'flex',
+    flexFlow: 'wrap',
+    padding: '0px 0px 0px 10px',
+    cursor: 'pointer',
   },
 });
 
@@ -80,6 +96,13 @@ class LoginPage extends React.Component {
     this.props.login(loginPayload);
   };
 
+  fillData = () => {
+    this.setState({
+      id: dataScenarios[this.props.stepDetails.step].actorID,
+      password: dataScenarios[this.props.stepDetails.step].actorPassword,
+    });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -94,17 +117,43 @@ class LoginPage extends React.Component {
             {`${dataScenarios[this.props.stepDetails.step].actor} Sign in`}
           </Typography>
           <form className={classes.form} onSubmit={this.handleFormSubmit}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="id">Id</InputLabel>
+            <FormControl
+              className={classes.IDField}
+              margin="normal"
+              required
+              fullWidth
+            >
+              <InputLabel htmlFor="id">UserID</InputLabel>
               <Input
                 id="id"
                 name="id"
                 autoComplete="id"
                 autoFocus
+                className={classes.input}
                 onChange={this.handleChange}
+                value={this.state.id}
               />
+              <div className={classes.logo}>
+                <img
+                  id="logo"
+                  src="/../../static/icons/uae_pass.png"
+                  width="50"
+                  height="50"
+                  alt="UAE Pass Logo"
+                  onClick={this.fillData}
+                  onMouseOver=""
+                />
+
+                <label htmlFor="logo">UAE PASS</label>
+              </div>
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
+
+            <FormControl
+              className={classes.passwordField}
+              margin="normal"
+              required
+              fullWidth
+            >
               <InputLabel htmlFor="password">Password</InputLabel>
               <Input
                 name="password"
@@ -112,17 +161,18 @@ class LoginPage extends React.Component {
                 id="password"
                 autoComplete="current-password"
                 onChange={this.handleChange}
+                value={this.state.password}
               />
             </FormControl>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Sign in
-                </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign in
+            </Button>
           </form>
         </Paper>
       </main>
