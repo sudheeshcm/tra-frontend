@@ -70,9 +70,9 @@ class BuyerTDUploadForm extends Component {
       type: 'success',
     });
 
-    localStorage.clear();
-    this.props.updateStep({step:1, completed: true });
-    this.props.push('/login');
+    
+    this.props.updateStep({ completed: true });
+    this.props.push('/thank-you');
   };
 
   render() {

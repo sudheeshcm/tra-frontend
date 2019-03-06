@@ -141,7 +141,6 @@ class LoginPage extends React.Component {
                   height="50"
                   alt="UAE Pass Logo"
                   onClick={this.fillData}
-                  onMouseOver=""
                 />
 
                 <label htmlFor="logo">UAE PASS</label>

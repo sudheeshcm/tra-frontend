@@ -32,6 +32,7 @@ import BuyerTDUploadForm from '@Root/scenes/FEWA/BuyerTDUploadForm';
 import { getState } from '@rematch/core';
 import BuyerTDRequestForm from '@Root/scenes/RERA/BuyerTDRequestForm';
 import AdminTDApprovalForm from '@Root/scenes/RERA/AdminTDApprovalForm';
+import AdminTDApproval from '@Root/scenes/FEWA/AdminTDApproval';
 import ListItems from './components/ListItems';
 import dataScenarios from '../../data.js';
 
@@ -183,6 +184,11 @@ class App extends React.Component {
               component={BuyerTDUploadForm}
             />
             {/* S15 */}
+            <PrivateRoute
+              path="/fewa/admin-td-form"
+              component={AdminTDApproval}
+            />
+            {/* S16 */}
           </main>
           <Dialog />
           <Notification />

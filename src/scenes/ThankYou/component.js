@@ -73,7 +73,7 @@ class ThankYou extends React.Component {
 
     let nextStep;
 
-    if (stepDetails.step < 15) {
+    if (stepDetails.step < 16) {
       nextStep = (
         <form className={classes.form} onSubmit={this.handleFormSubmit}>
           <Button

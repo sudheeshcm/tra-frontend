@@ -156,4 +156,13 @@ export default {
     actorID: '785021039213',
     actorPassword: 'randomPassword',
   },
+  16: {
+    primaryColor: '#ececec',
+    link: '/fewa/admin-td-form',
+    src: '/static/img/FEWA.png',
+    entity: 'FEWA',
+    actor: 'FEWA Admin',
+    actorID: '785021039213',
+    actorPassword: 'randomPassword',
+  },
 };
