@@ -4,7 +4,8 @@ import { push } from 'connected-react-router';
 import BuyerRequestForm from './component';
 
 const mapStateToProps = state => ({
-  buyerId: state.user.currentUser.id || '987654321',
+  buyerId: state.user.currentUser.id,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   showNotification: dispatch.notification.show,
   downloadDocument: dispatch.document.download,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

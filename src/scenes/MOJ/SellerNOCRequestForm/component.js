@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
+import Loader from '@Components/Loader';
 // import request from '@Services/ApiService';
 
 const styles = () => ({
@@ -50,13 +51,15 @@ class SellerNOCRequestForm extends Component {
 
   submitData = async e => {
     e.preventDefault();
+    this.props.toggleLoading(true);
     const { files } = this.props;
     await this.props.requestNOC(files);
+    this.props.toggleLoading(false);
     
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -68,7 +71,7 @@ class SellerNOCRequestForm extends Component {
           <Typography variant="h6" className={classes.title}>
             MOJ - Seller No Objection Certificate Request
           </Typography>
-
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button
               variant="contained"

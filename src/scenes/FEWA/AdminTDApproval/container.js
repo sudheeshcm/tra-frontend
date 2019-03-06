@@ -5,6 +5,7 @@ import AdminTDApproval from './component';
 
 const mapStateToProps = state => ({
   newTDHash: state.app.newTDHash,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   showNotification: dispatch.notification.show,
   downloadDocument: dispatch.document.download,
   resetApp : dispatch.app.resetApp,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

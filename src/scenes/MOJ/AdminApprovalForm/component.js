@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import request from '@Services/ApiService';
+import Loader from '@Components/Loader';
 
 const styles = () => ({
   title: {
@@ -57,6 +58,7 @@ class AdminApprovalForm extends Component {
       'ot-hash': this.props.otHash,
     };
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -64,10 +66,7 @@ class AdminApprovalForm extends Component {
         url: '/uae/approve_moj_noc',
       });
 
-      this.props.showNotification({
-        content: 'Successfully approved Seller\'s Title Deed',
-        type: 'success',
-      });
+      
 
       this.props.setVariableInStore({
         variables: {
@@ -80,11 +79,18 @@ class AdminApprovalForm extends Component {
         title: 'MOJ No Objection Certificate',
       });
 
+      this.props.toggleLoading(false);
+      this.props.showNotification({
+        content: 'Successfully approved Seller\'s Title Deed',
+        type: 'success',
+      });
+
       this.props.updateStep({ completed: true });
       this.props.push('/thank-you');
 
     } catch (error) {
       console.log(error)
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',
@@ -93,7 +99,7 @@ class AdminApprovalForm extends Component {
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading, } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -105,7 +111,7 @@ class AdminApprovalForm extends Component {
           <Typography variant="h6" className={classes.title}>
             MOJ - Admin No Objection Certificate Approval
           </Typography>
-
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Approve

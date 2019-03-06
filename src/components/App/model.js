@@ -16,6 +16,7 @@ export const initialState = {
   amount: '',
   sellerIBAN: '',
   buyerIBAN: '',
+  loading: false,
 };
 
 export default {
@@ -43,6 +44,10 @@ export default {
     setVariableInStore: (state, payload) => ({
       ...state,
       ...payload.variables,
+    }),
+    toggleLoading: (state, loading) => ({
+      ...state,
+      loading,
     }),
   },
   effects: {},

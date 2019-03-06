@@ -5,6 +5,7 @@ import SellerNOCRequestForm from './component';
 
 const mapStateToProps = state => ({
   files: state.multiDocuments.files,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
   requestNOC: dispatch.sellerMoJ.requestNOC,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

@@ -6,6 +6,7 @@ import BuyerRequestForm from './component';
 const mapStateToProps = state => ({
   buyerId: state.user.currentUser.id || 123456,
   files: state.multiDocuments.files,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
   showNotification: dispatch.notification.show,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 
 });
 

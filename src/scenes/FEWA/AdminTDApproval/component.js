@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DocumentViewer from '@Components/DocumentViewer';
 import request from '@Services/ApiService';
+import Loader from '@Components/Loader';
 
 const styles = () => ({
   title: {
@@ -68,7 +69,8 @@ class AdminTDApproval extends Component {
     //   });
 
     // }
-
+    this.props.toggleLoading(true);
+    this.props.toggleLoading(false);
     this.props.showNotification({
       content: 'Successfully provisioned utilities',
       type: 'success',
@@ -81,7 +83,7 @@ class AdminTDApproval extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -93,7 +95,7 @@ class AdminTDApproval extends Component {
           <Typography variant="h6" className={classes.title}>
             FEWA - Utilities Approval
           </Typography>
-
+          {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Provision Utilities

@@ -3,8 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DocumentViewer from '@Components/DocumentViewer';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
 
@@ -46,6 +45,7 @@ class AdminApprovalForm extends Component {
       'ot-hash': this.props.otHash,
     };
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         data: formData,
@@ -53,6 +53,7 @@ class AdminApprovalForm extends Component {
       });
 
       if (response.confirmed) {
+        this.props.toggleLoading(false);
         this.props.showNotification({
           content: 'Mortgage has been approved',
           type: 'success',
@@ -63,6 +64,7 @@ class AdminApprovalForm extends Component {
         throw response;
       }
     } catch (err) {
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: err.error || 'Failed to approve mortgage',
         type: 'error',
@@ -71,7 +73,7 @@ class AdminApprovalForm extends Component {
   };
 
   render() {
-    const { classes, otHash } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="seller-verification-form">
@@ -83,6 +85,7 @@ class AdminApprovalForm extends Component {
           <Typography variant="h6" className={classes.title}>
             ENBD - Admin Mortgage Approval
           </Typography>
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions} >
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData} >
               APPROVE

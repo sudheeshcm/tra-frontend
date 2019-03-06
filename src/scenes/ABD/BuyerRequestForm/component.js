@@ -6,7 +6,7 @@ import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
-
+import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 
 const styles = () => ({
@@ -93,6 +93,7 @@ class BuyerRequestForm extends Component {
 
     };
     try {
+      this.props.toggleLoading(true);
           const response = await request({
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -112,6 +113,7 @@ class BuyerRequestForm extends Component {
           });
 
           if (response.requested) {
+            this.props.toggleLoading(false);
             this.props.showNotification({
               content: 'Successfully requested  Mortgage',
               type: 'success',
@@ -122,11 +124,16 @@ class BuyerRequestForm extends Component {
           } 
 
           else {
-            console.log('response.requested is false')
+            this.props.toggleLoading(false);
+            this.props.showNotification({
+              content: 'Failed to submit data. Please try again later',
+              type: 'error',
+          });
           }
           
 
         } catch (error) {
+          this.props.toggleLoading(true);
               this.props.showNotification({
                   content: 'Failed to submit data. Please try again later',
                   type: 'error',
@@ -135,7 +142,7 @@ class BuyerRequestForm extends Component {
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -215,6 +222,7 @@ class BuyerRequestForm extends Component {
               />
             </FormControl>
           </div>
+          {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
             <Button
               variant="contained"

@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
 import request from '@Services/ApiService';
+import Loader from '@Components/Loader';
 
 const styles = () => ({
   title: {
@@ -55,6 +56,7 @@ class BuyerNOCRequestForm extends Component {
       'mpd-noc-hash': this.props.files[1].documentHash,
     };
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -63,6 +65,7 @@ class BuyerNOCRequestForm extends Component {
       });
 
       if (response.requested) {
+        this.props.toggleLoading(false);
         this.props.showNotification({
           content: 'Successfully requested FEWA NOC',
           type: 'success',
@@ -73,6 +76,7 @@ class BuyerNOCRequestForm extends Component {
       } else {
       }
     } catch (error) {
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',
@@ -84,7 +88,7 @@ class BuyerNOCRequestForm extends Component {
     filesArray.length >= 2 && !filesArray.slice(0, 2).some(isNull);
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -96,7 +100,7 @@ class BuyerNOCRequestForm extends Component {
           <Typography variant="h6" className={classes.title}>
             FEWA - Buyer No Objection Certificate Request
           </Typography>
-
+          {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
             <Button
               variant="contained"

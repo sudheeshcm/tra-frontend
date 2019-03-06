@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import request from '@Services/ApiService';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
+import Loader from '@Components/Loader';
 
 const styles = () => ({
   title: {
@@ -89,8 +90,9 @@ class BuyerTDRequestForm extends Component {
       'mortgage-hash': files[5].documentHash,
     };
 
-    //TODO: Change Scenario 13 API endpoint once documented
+    
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         headers: { 'content-type': 'application/JSON' },
@@ -99,11 +101,13 @@ class BuyerTDRequestForm extends Component {
       });
 
       if (response.requested) {
+        this.props.toggleLoading(false);
         this.props.showNotification({
           content: 'Request for new Title Deed Submitted',
           type: 'success',
         });
       } else {
+        this.props.toggleLoading(false);
         this.props.showNotification({
           content: response.error,
           type: 'error',
@@ -111,7 +115,7 @@ class BuyerTDRequestForm extends Component {
       }
     } catch (error) {
       console.log(error, 'error');
-
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Request for new Title Deed Failed',
         type: 'error',
@@ -122,7 +126,7 @@ class BuyerTDRequestForm extends Component {
   };
 
   render() {
-    const { classes, buyerId } = this.props;
+    const { classes, buyerId, loading, } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -146,6 +150,8 @@ class BuyerTDRequestForm extends Component {
               />
             </FormControl>
           </div>
+
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button
               variant="contained"

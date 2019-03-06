@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   otHash: state.app.otHash,
   mpdNocHash: state.app.mpdNocHash,
   files: state.multiDocuments.files,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   showNotification: dispatch.notification.show,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

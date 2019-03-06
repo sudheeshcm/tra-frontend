@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
-
+import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 
 const styles = () => ({
@@ -57,6 +57,7 @@ class AdminApprovalForm extends Component {
       'ot-hash': this.props.otHash,
     };
     try {
+      this.props.toggleLoading(true);
           const response = await request({
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -70,6 +71,7 @@ class AdminApprovalForm extends Component {
                     fewaNocHash
                   },
                 });
+                this.props.toggleLoading(false);
               this.props.showNotification({
                 content: 'Successfully approved FEWA NOC',
                 type: 'success',
@@ -85,6 +87,7 @@ class AdminApprovalForm extends Component {
           }
 
     } catch (error) {
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',
@@ -93,7 +96,7 @@ class AdminApprovalForm extends Component {
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -105,7 +108,7 @@ class AdminApprovalForm extends Component {
           <Typography variant="h6" className={classes.title}>
             FEWA - Admin No Objection Certificate Approval
           </Typography>
-
+          {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
             <Button variant="contained" color="primary" type="submit">
               Approve
