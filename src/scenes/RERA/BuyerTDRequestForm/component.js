@@ -132,7 +132,7 @@ class BuyerTDRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA New TD Request
+            RERA - Buyer Title Deed Request
           </Typography>
           <div>
             <FormControl>

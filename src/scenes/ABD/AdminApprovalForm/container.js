@@ -8,6 +8,12 @@ const mapStateToProps = state => ({
   mpdNocHash: state.app.mpdNocHash ,
   fewaNocHash: state.app.fewaNocHash ,
   mojNocHash: state.app.mojNocHash ,
+  amount: state.app.amount ,
+  sellerId: state.app.sellerId ,
+  propId: state.app.propId ,
+  buyerId: state.app.buyerId ,
+  sellerIBAN: state.app.sellerIBAN ,
+  buyerIBAN: state.app.buyerIBAN ,
 });
 
 const mapDispatchToProps = dispatch => ({

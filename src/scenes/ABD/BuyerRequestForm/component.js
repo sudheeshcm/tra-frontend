@@ -77,6 +77,8 @@ class BuyerRequestForm extends Component {
 
   submitData = async e => {
     e.preventDefault();
+    const { sellerId, propId, buyerId, amount, sellerIBAN, buyerIBAN } = this.state;
+
     const formData = {
       'ot-hash': this.props.files[0].documentHash,
       'mpd-noc-hash': this.props.files[1].documentHash,
@@ -87,33 +89,49 @@ class BuyerRequestForm extends Component {
       'buyer-id': this.state.buyerId,
       'seller-id': this.state.sellerId,
       'seller-iban': this.state.sellerIBAN,
-      'buyer-iban': this.state.sellerId,
+      'buyer-iban': this.state.buyerIBAN
+
     };
     try {
-      const response = await request({
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        data: formData,
-        url: '/cb/request_mortgage',
-      });
+          const response = await request({
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            data: formData,
+            url: '/cb/request_mortgage',
+          });
 
-      if (response.requested) {
-        this.props.showNotification({
-          content: 'Successfully requested  Mortgage',
-          type: 'success',
-        });
+          this.props.setVariableInStore({
+            variables: {
+              buyerId,
+              sellerId,
+              propId,
+              amount,
+              sellerIBAN,
+              buyerIBAN
+            },
+          });
 
-        this.props.updateStep({ completed: true });
-        this.props.push('/thank-you');
-      } else {
-        console.log('response.requested is false');
-      }
-    } catch (error) {
-      this.props.showNotification({
-        content: 'Failed to submit data. Please try again later',
-        type: 'error',
-      });
-    }
+          if (response.requested) {
+            this.props.showNotification({
+              content: 'Successfully requested  Mortgage',
+              type: 'success',
+            });
+
+            this.props.updateStep({ completed: true });
+            this.props.push('/thank-you');
+          } 
+
+          else {
+            console.log('response.requested is false')
+          }
+          
+
+        } catch (error) {
+              this.props.showNotification({
+                  content: 'Failed to submit data. Please try again later',
+                  type: 'error',
+              });
+         }
   };
 
   render() {
@@ -127,7 +145,7 @@ class BuyerRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ABD Form Request
+            ABD - Buyer Mortgage Request
           </Typography>
 
           <div>

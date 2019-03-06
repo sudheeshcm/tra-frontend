@@ -111,7 +111,6 @@ class Notification extends Component {
         }}
         className={classNames(classes.snackbar, 'notification__wrapper')}
         open={open}
-        autoHideDuration={5000}
         onClose={hide}
       >
         <CustomSnackbarContentWrapper

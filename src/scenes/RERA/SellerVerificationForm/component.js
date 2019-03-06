@@ -79,7 +79,9 @@ class SellerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Seller Verification
+            RERA - Seller Ownership Transfer Approval
+            <br/>
+            دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع المالك على نموذج نقل الملكية  
           </Typography>
 
           <div className={classes.formActions}>

@@ -10,6 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import dataScenarios from '../../data.js';
+
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 // import dataScenarios from '../../data.js';
 
@@ -89,7 +91,7 @@ class LoginPage extends React.Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {`${dataScenarios[this.props.stepDetails.step].actor} Sign in`}
           </Typography>
           <form className={classes.form} onSubmit={this.handleFormSubmit}>
             <FormControl margin="normal" required fullWidth>

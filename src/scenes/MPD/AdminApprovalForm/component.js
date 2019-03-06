@@ -91,7 +91,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            MPD - Admin Verification
+          MPD - Admin No Objection Certificate Approval
           </Typography>
           <div className={classes.formActions}>
             <Button

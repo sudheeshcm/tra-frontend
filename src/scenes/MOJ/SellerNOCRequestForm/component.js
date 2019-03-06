@@ -66,7 +66,7 @@ class SellerNOCRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            MOJ NOC Form Request
+            MOJ - Seller No Objection Certificate Request
           </Typography>
 
           <div className={classes.formActions}>

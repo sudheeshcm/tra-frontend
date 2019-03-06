@@ -81,7 +81,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ENBD - Admin Verification
+            ENBD - Admin Mortgage Approval
           </Typography>
           <div className={classes.formActions} >
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData} >

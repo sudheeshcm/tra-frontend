@@ -10,6 +10,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { dispatch } from '@rematch/core';
 import { push } from 'connected-react-router';
+import { getState } from '@rematch/core';
+
+import dataScenarios from '../../data.js';
+
 
 const styles = theme => ({
   main: {
@@ -41,6 +45,12 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 6,
   },
+  nextMsg: {
+    fontSize: 15,
+    fontWeight: '100',
+    textAlign: 'center',
+
+  }
 });
 
 class ThankYou extends React.Component {
@@ -88,6 +98,7 @@ class ThankYou extends React.Component {
           </Typography>
           {nextStep}
         </Paper>
+        <p className={classes.nextMsg}>{`${dataScenarios[getState().app.stepDetails.step].nextMsg}`}</p>
       </main>
     );
   }
