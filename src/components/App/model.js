@@ -1,6 +1,6 @@
 export const initialState = {
   stepDetails: {
-    step: 1,
+    step: 3,
     completed: false,
   },
   otHash: '',
@@ -13,6 +13,9 @@ export const initialState = {
   sellerId: '',
   propId: '',
   fewaNocHash: '',
+  amount: '',
+  sellerIBAN: '',
+  buyerIBAN: '',
 };
 
 export default {

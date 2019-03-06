@@ -102,7 +102,9 @@ class BuyerRequestForm extends Component {
     return (
       <div className="buyer-request-form">
         <Typography variant="h6" className={classes.title}>
-          RERA - Buyer Request
+          RERA - Buyer Ownership Transfer Request
+          <br/>
+          دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - طلب نقل الملكية  
         </Typography>
         <Card className={classes.infoCard}>
           <CardContent>

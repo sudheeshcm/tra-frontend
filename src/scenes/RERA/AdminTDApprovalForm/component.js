@@ -129,7 +129,7 @@ class AdminTDApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA Admin TD Approval
+            RERA - Admin Title Deed Approval
           </Typography>
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>

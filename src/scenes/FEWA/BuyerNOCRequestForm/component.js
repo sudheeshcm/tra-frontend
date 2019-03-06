@@ -94,7 +94,7 @@ class BuyerNOCRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            FEWA NOC Form Request
+            FEWA - Buyer No Objection Certificate Request
           </Typography>
 
           <form className={classes.formActions} onSubmit={this.submitData}>

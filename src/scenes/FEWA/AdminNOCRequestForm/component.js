@@ -103,7 +103,7 @@ class AdminApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            FEWA NOC - Admin Verification
+            FEWA - Admin No Objection Certificate Approval
           </Typography>
 
           <form className={classes.formActions} onSubmit={this.submitData}>

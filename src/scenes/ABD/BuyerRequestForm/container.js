@@ -14,6 +14,7 @@ const mapDispatchToProps = dispatch => ({
   setRequiredFiles: dispatch.multiDocuments.setRequiredFiles,
   resetRequiredFiles: dispatch.multiDocuments.resetRequiredFiles,
   showNotification: dispatch.notification.show,
+  setVariableInStore: dispatch.app.setVariableInStore,
 
 });
 

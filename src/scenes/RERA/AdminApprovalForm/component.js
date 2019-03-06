@@ -80,38 +80,10 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Admin Verification
+            RERA - Admin Ownership Transfer Approval
+            <br/>
+            دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع مفوض الدائرة على نموذج نقل الملكية  
           </Typography>
-          <div>
-            <FormControl>
-              <TextField
-                label="Seller ID"
-                margin="dense"
-                value={sellerId}
-                disabled
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Property ID"
-                margin="dense"
-                value={propId}
-                disabled
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Buyer ID"
-                margin="dense"
-                value={buyerId}
-                disabled
-              />
-            </FormControl>
-          </div>
           <div className={classes.formActions}>
             <Button
               variant="contained"
