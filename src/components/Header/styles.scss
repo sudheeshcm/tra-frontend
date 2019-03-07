@@ -38,35 +38,45 @@ h6.header__title {
   max-width: 100%;
   max-height: 100%;
   display: inline-block;
-  right: 20px;
   position: absolute;
 
   &.RERA {
     height: 80px;
     width: 250px;
+    right: 20px;
+
   }
 
   &.MPD {
     height: 60px;
-    width: 180px;
+    width: 180px;  right: 20px;
+
   }
 
   &.FEWA {
     height: 60px;
     width: 190px;
+    right: 20px;
+
   }
 
   &.MOJ {
     width: auto;
+    right: 0;
+
   }
 
   &.ABD {
     height: 50px;
     width: 150px;
+    right: 20px;
+
   }
 
   &.ENBD {
     height: 50px;
     width: 150px;
+    right: 20px;
+
   }
 }
