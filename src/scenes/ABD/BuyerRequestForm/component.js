@@ -9,11 +9,7 @@ import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
 import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 
-<<<<<<< Updated upstream
 const styles = () => ({
-=======
-const styles = theme => ({
->>>>>>> Stashed changes
   title: {
     marginTop: '24px',
     fontWeight: '500',
