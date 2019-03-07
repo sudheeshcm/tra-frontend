@@ -8,11 +8,13 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import { getState } from '@rematch/core';
+import dataScenarios from '../../../data.js';
 import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
 
-const styles = () => ({
+const styles = (theme) => ({
   title: {
     fontWeight: '500',
     fontSize: '20px',
@@ -35,6 +37,29 @@ const styles = () => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
+  scenarioMsgs : {
+    width: 'auto',
+    display: 'block', // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 650,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+
+  }
+},
+  scenarioMsg: {
+    fontSize: 17,
+    fontWeight: '200',
+  //   textAlign: 'center',
+    fontFamily: "museo-sans",
+    lineHeight: '1.5',
+    fontWeight: '300',
+    backgroundPosition: "0px 50%",
+
+   },
+   
 });
 
 class BuyerRequestForm extends Component {
@@ -158,6 +183,13 @@ class BuyerRequestForm extends Component {
           </CardContent>
           <CardActions />
         </Card>
+        <center>
+        <ul className={classes.scenarioMsgs} >
+            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+              <li className={classes.scenarioMsg}>{msg}</li>
+            ))}
+        </ul>
+        </center>
       </div>
     );
   }

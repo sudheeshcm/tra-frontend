@@ -6,10 +6,13 @@ import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
+import { getState } from '@rematch/core';
+import dataScenarios from '../../../data.js';
+
 import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 
-const styles = () => ({
+const styles = (theme) => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -31,17 +34,18 @@ const styles = () => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
+
   scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-    //   textAlign: 'center',
-    fontFamily: 'museo-sans',
+  //   textAlign: 'center',
+    fontFamily: "museo-sans",
     lineHeight: 1.5,
     fontWeight: 300,
-  },
+   },
 });
 
 class BuyerRequestForm extends Component {
@@ -246,14 +250,12 @@ class BuyerRequestForm extends Component {
             </Button>
           </form>
           <center>
-            <ul className={classes.scenarioMsgs}>
-              {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
-                (msg, index) => (
-                  <li className={classes.scenarioMsg}>{msg}</li>
-                ),
-              )}
-            </ul>
-          </center>
+        <ul className={classes.scenarioMsgs} >
+            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+              <li className={classes.scenarioMsg}>{msg}</li>
+            ))}
+        </ul>
+        </center>      
         </div>
       </div>
     );
