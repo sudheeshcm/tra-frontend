@@ -11,8 +11,11 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { dispatch } from '@rematch/core';
 import { push } from 'connected-react-router';
 import { getState } from '@rematch/core';
+import ArrowForward from '@material-ui/icons/ArrowForward';
+
 
 import dataScenarios from '../../data.js';
+import { isAbsolute } from 'upath';
 
 
 const styles = theme => ({
@@ -43,14 +46,36 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   submit: {
-    marginTop: theme.spacing.unit * 6,
+      position: 'absolute',
+      bottom: '60px',
+      right: '80px',
   },
-  nextMsg: {
-    fontSize: 15,
-    fontWeight: '100',
-    textAlign: 'center',
+   nextMsg: {
+    fontSize: 17,
+    fontWeight: '200',
+  //   textAlign: 'center',
+    fontFamily: "museo-sans",
+    lineHeight: 1.5,
+    fontWeight: 300,
+  
+   },
+   icon: {
+    width: 90,
+    height: 60,
+    cursor:'pointer',
 
-  }
+   },
+   Msgs: {
+    marginTop: theme.spacing.unit * 3,
+   },
+   footer: {
+    bottom: '70px',
+    fontWeight: '500',
+    fontSize: '20px',
+    position: 'absolute',
+    left: '45%',
+  },
+  
 });
 
 class ThankYou extends React.Component {
@@ -75,17 +100,16 @@ class ThankYou extends React.Component {
 
     if (stepDetails.step < 15) {
       nextStep = (
-        <form className={classes.form} onSubmit={this.handleFormSubmit}>
-          <Button
-            type="submit"
+          <p
+            onClick={this.handleFormSubmit}
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            NEXT STEP
-          </Button>
-        </form>
+            <ArrowForward className={classes.icon}/>
+          </p>
+
       );
     }
 
@@ -96,9 +120,16 @@ class ThankYou extends React.Component {
           <Typography component="h1" variant="h5">
             THANK YOU!
           </Typography>
-          {nextStep}
+          <center>
+          <ul className={classes.Msgs} >
+            { dataScenarios[getState().app.stepDetails.step].nextMsg.map((msg, index) => (
+              <li className={classes.nextMsg}>{msg}</li>
+            ))}
+        </ul>
+        </center>
         </Paper>
-        <p className={classes.nextMsg}>{`${dataScenarios[getState().app.stepDetails.step].nextMsg}`}</p>
+        <p className={classes.footer}>TRA - DLT PoC</p>
+        <div>{nextStep}</div>
       </main>
     );
   }

@@ -5,8 +5,11 @@ import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import multipleDocumentsFilled from '@Utils/validators/multipleDocumentsFilled';
 import request from '@Services/ApiService';
+import { getState } from '@rematch/core';
+import dataScenarios from '../../../data.js';
 
-const styles = () => ({
+
+const styles = (theme) => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -28,6 +31,17 @@ const styles = () => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
+  scenarioMsgs : {
+    marginTop: theme.spacing.unit * 4,
+  },
+  scenarioMsg: {
+    fontSize: 17,
+    fontWeight: '200',
+  //   textAlign: 'center',
+    fontFamily: "museo-sans",
+    lineHeight: 1.5,
+    fontWeight: 300,
+   },
 });
 
 class BuyerNOCRequestForm extends Component {
@@ -107,6 +121,13 @@ class BuyerNOCRequestForm extends Component {
               Submit
             </Button>
           </form>
+          <center>
+        <ul className={classes.scenarioMsgs} >
+            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+              <li className={classes.scenarioMsg}>{msg}</li>
+            ))}
+        </ul>
+        </center>
         </div>
       </div>
     );

@@ -10,6 +10,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { getState } from '@rematch/core';
+
 import dataScenarios from '../../data.js';
 
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
@@ -47,6 +49,24 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 6,
   },
+  footer: {
+    position: 'absolute',
+    bottom: '70px',
+    fontWeight: '500',
+    fontSize: '20px',
+    left: '47%'
+  },
+  loginMsgs : {
+    marginTop: theme.spacing.unit * 4,
+  },
+  loginMsg: {
+    fontSize: 17,
+    fontWeight: '200',
+  //   textAlign: 'center',
+    fontFamily: "museo-sans",
+    lineHeight: 1.5,
+    fontWeight: 300,
+   },
 });
 
 class LoginPage extends React.Component {
@@ -125,6 +145,14 @@ class LoginPage extends React.Component {
                 </Button>
           </form>
         </Paper>
+        <center>
+        <ul className={classes.loginMsgs} >
+            { dataScenarios[getState().app.stepDetails.step].loginMsg.map((msg, index) => (
+              <li className={classes.loginMsg}>{msg}</li>
+            ))}
+        </ul>
+        </center>
+        <p className={classes.footer}>TRA - DLT PoC</p>
       </main>
     );
   }
