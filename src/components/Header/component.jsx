@@ -22,18 +22,13 @@ class Header extends React.Component {
             to="/"
             data-test-id="header__home"
           >
-            <img
-              className={`header__logo ${dataScenarios[getState().app.stepDetails.step].entity}`}
-              src="/static/img/consensys.png"
-              alt="logo"
-            />
             <Typography
               variant="h6"
               color="inherit"
               noWrap
               className="header__title"
             >
-              TRA - UAE PASS
+              TRA - DTP PoC
             </Typography>
             <img
               className={`header__entity ${dataScenarios[getState().app.stepDetails.step].entity}`}
