@@ -71,7 +71,7 @@ class BuyerVerificationForm extends Component {
 
   submitData = e => {
     e.preventDefault();
-    this.props.updateStep({ step: 4, completed: true });
+    this.props.updateStep({completed: true });
     this.props.push('/thank-you');
   };
   

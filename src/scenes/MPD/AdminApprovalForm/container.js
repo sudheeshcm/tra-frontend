@@ -4,8 +4,8 @@ import { push } from 'connected-react-router';
 import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
-
-    otHash: state.app.otHash,
+  otHash: state.app.otHash,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   showNotification: dispatch.notification.show,
   downloadDocument: dispatch.document.download,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

@@ -4,12 +4,9 @@ import { push } from 'connected-react-router';
 import AdminApprovalForm from './component';
 
 const mapStateToProps = state => ({
-  otHash:
-    state.app.otHash ||
-    'ad2577cc339d5edea419fd1cc0f4d13ca93136afce88bd648c43098fbdedb5be',
-  mpdNocHash:
-    state.app.mpdNocHash ||
-    'cd7d6b1880826abcb287b651bc36884255accd7e8a028e218e6b2dcfe7c0b928',
+  otHash: state.app.otHash,
+  mpdNocHash: state.app.mpdNocHash,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,7 +17,8 @@ const mapDispatchToProps = dispatch => ({
   fetchDocuments: dispatch.multiDocuments.fetchDocuments,
   downloadDocument: dispatch.document.download,
   showNotification: dispatch.notification.show,
-  setVariableInStore: dispatch.app.setVariableInStore
+  setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

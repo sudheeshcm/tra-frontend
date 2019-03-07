@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
@@ -79,18 +80,20 @@ class BuyerTDUploadForm extends Component {
     //   });
     // }
 
+    this.props.toggleLoading(true);
+    this.props.toggleLoading(false);
     this.props.showNotification({
       content: 'Signed Successfully. Thank you!',
       type: 'success',
     });
 
-    localStorage.clear();
-    this.props.updateStep({step:1, completed: true });
-    this.props.push('/login');
+    
+    this.props.updateStep({ completed: true });
+    this.props.push('/thank-you');
   };
 
   render() {
-    const { classes, buyerId } = this.props;
+    const { classes, buyerId , loading} = this.props;
 
     return (
       <div className="seller-verification-form">
@@ -113,6 +116,7 @@ class BuyerTDUploadForm extends Component {
               />
             </FormControl>
           </div>
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Request for Electricity and Water Services

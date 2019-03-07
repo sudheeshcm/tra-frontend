@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   documentHash: state.document.documentHash,
   file: state.document.file,
   newTDHash: state.app.newTDHash,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
   updateStep: dispatch.app.updateStep,
   clearCurrentDocument: dispatch.document.clearFile,
   showNotification: dispatch.notification.show,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

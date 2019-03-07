@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   buyerId: state.app.buyerId ,
   sellerIBAN: state.app.sellerIBAN ,
   buyerIBAN: state.app.buyerIBAN ,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => ({
   downloadDocument: dispatch.document.download,
   showNotification: dispatch.notification.show,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

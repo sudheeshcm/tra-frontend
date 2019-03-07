@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,6 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
+import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
 
@@ -86,6 +87,7 @@ class BuyerRequestForm extends Component {
     };
 
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -102,6 +104,7 @@ class BuyerRequestForm extends Component {
       });
 
       this.props.setOtHash(response['ot-hash']);
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Generated a Ownership Transfer Document successfully',
         type: 'success',
@@ -114,6 +117,7 @@ class BuyerRequestForm extends Component {
       this.props.push('/thank-you');
     } catch (error) {
       console.log(error, 'error');
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',
@@ -122,7 +126,7 @@ class BuyerRequestForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes,loading } = this.props;
 
     return (
       <div className="buyer-request-form">
@@ -169,6 +173,7 @@ class BuyerRequestForm extends Component {
                   />
                 </FormControl>
               </div>
+              {loading ? <Loader /> : <div />}
               <div className={classes.formActions}>
                 <Button variant="contained" color="primary" type="submit">
                   Submit Details

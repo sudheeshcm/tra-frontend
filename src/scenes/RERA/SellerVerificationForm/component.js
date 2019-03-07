@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
+import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
 
@@ -56,6 +57,7 @@ class SellerVerificationForm extends Component {
     const formData = {
       'ot-hash': this.props.otHash,
     };
+    this.props.toggleLoading(true);
     try {
       const response = await request({
         method: 'POST',
@@ -64,6 +66,7 @@ class SellerVerificationForm extends Component {
       });
 
       if (response.signed) {
+        this.props.toggleLoading(false);
         this.props.showNotification({
           content: 'Successfully signed the document',
           type: 'success',
@@ -74,6 +77,7 @@ class SellerVerificationForm extends Component {
         throw response;
       }
     } catch (err) {
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: err.error || 'Failed to sign the document',
         type: 'error',
@@ -82,7 +86,7 @@ class SellerVerificationForm extends Component {
   };
 
   render() {
-    const { classes, sellerId, propId, buyerId } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="seller-verification-form">
@@ -93,9 +97,12 @@ class SellerVerificationForm extends Component {
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
             RERA - Seller Ownership Transfer Approval
-            <br/>
-            دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع المالك على نموذج نقل الملكية  
+            <br />
+            دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع المالك على نموذج
+            نقل الملكية
           </Typography>
+
+          {loading ? <Loader /> : <div />}
 
           <div className={classes.formActions}>
             <Button

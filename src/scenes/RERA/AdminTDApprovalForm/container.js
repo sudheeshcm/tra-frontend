@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   fewaNocHash: state.app.fewaNocHash,
   mojNocHash: state.app.mojNocHash,
   mortgageHash: state.app.mortgageHash,
+  loading: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   downloadDocument: dispatch.document.download,
   showNotification: dispatch.notification.show,
   setVariableInStore: dispatch.app.setVariableInStore,
+  toggleLoading: dispatch.app.toggleLoading,
 });
 
 export default connect(

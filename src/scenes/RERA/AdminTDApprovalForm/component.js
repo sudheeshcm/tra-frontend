@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
+import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
@@ -99,6 +100,7 @@ class AdminTDApprovalForm extends Component {
 
     //Change API endpoint for Scenario 14
     try {
+      this.props.toggleLoading(true);
       const response = await request({
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -106,10 +108,7 @@ class AdminTDApprovalForm extends Component {
         url: '/ajman/approve_td',
       });
 
-      this.props.showNotification({
-        content: 'New Title Deed granted',
-        type: 'success',
-      });
+      
 
       this.props.setVariableInStore({
         newTDHash: response['new-td-hash'],
@@ -120,10 +119,17 @@ class AdminTDApprovalForm extends Component {
         title: 'New Title Deed',
       });
 
+      this.props.toggleLoading(false);
+      this.props.showNotification({
+        content: 'New Title Deed granted',
+        type: 'success',
+      });
+
       this.props.updateStep({ completed: true });
       this.props.push('/thank-you');
     } catch (error) {
       console.log(error);
+      this.props.toggleLoading(false);
       this.props.showNotification({
         content: 'Failed to submit data. Please try again later',
         type: 'error',
@@ -132,7 +138,7 @@ class AdminTDApprovalForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-fewa-noc-form">
@@ -144,6 +150,7 @@ class AdminTDApprovalForm extends Component {
           <Typography variant="h6" className={classes.title}>
             RERA - Admin Title Deed Approval
           </Typography>
+          {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
               Approve
