@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import BuyerRequestForm from './component';
 
 const mapStateToProps = state => ({
-  buyerId: state.user.currentUser.id || 123456,
+  buyerId: state.user.currentUser.id,
   files: state.multiDocuments.files,
   loading: state.app.loading,
 });

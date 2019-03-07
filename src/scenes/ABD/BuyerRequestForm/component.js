@@ -34,7 +34,8 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
@@ -91,7 +92,14 @@ class BuyerRequestForm extends Component {
 
   submitData = async e => {
     e.preventDefault();
-    const { sellerId, propId, buyerId, amount, sellerIBAN, buyerIBAN } = this.state;
+    const {
+      sellerId,
+      propId,
+      buyerId,
+      amount,
+      sellerIBAN,
+      buyerIBAN,
+    } = this.state;
 
     const formData = {
       'ot-hash': this.props.files[0].documentHash,
@@ -103,56 +111,51 @@ class BuyerRequestForm extends Component {
       'buyer-id': this.state.buyerId,
       'seller-id': this.state.sellerId,
       'seller-iban': this.state.sellerIBAN,
-      'buyer-iban': this.state.buyerIBAN
-
+      'buyer-iban': this.state.buyerIBAN,
     };
     try {
       this.props.toggleLoading(true);
-          const response = await request({
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            data: formData,
-            url: '/cb/request_mortgage',
-          });
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/cb/request_mortgage',
+      });
 
-          this.props.setVariableInStore({
-            variables: {
-              buyerId,
-              sellerId,
-              propId,
-              amount,
-              sellerIBAN,
-              buyerIBAN
-            },
-          });
+      this.props.setVariableInStore({
+        variables: {
+          buyerId,
+          sellerId,
+          propId,
+          amount,
+          sellerIBAN,
+          buyerIBAN,
+        },
+      });
 
-          if (response.requested) {
-            this.props.toggleLoading(false);
-            this.props.showNotification({
-              content: 'Successfully requested  Mortgage',
-              type: 'success',
-            });
+      if (response.requested) {
+        this.props.toggleLoading(false);
+        this.props.showNotification({
+          content: 'Successfully requested  Mortgage',
+          type: 'success',
+        });
 
-            this.props.updateStep({ completed: true });
-            this.props.push('/thank-you');
-          } 
-
-          else {
-            this.props.toggleLoading(false);
-            this.props.showNotification({
-              content: 'Failed to submit data. Please try again later',
-              type: 'error',
-          });
-          }
-          
-
-        } catch (error) {
-          this.props.toggleLoading(true);
-              this.props.showNotification({
-                  content: 'Failed to submit data. Please try again later',
-                  type: 'error',
-              });
-         }
+        this.props.updateStep({ completed: true });
+        this.props.push('/thank-you');
+      } else {
+        this.props.toggleLoading(false);
+        this.props.showNotification({
+          content: 'Failed to submit data. Please try again later',
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      this.props.toggleLoading(true);
+      this.props.showNotification({
+        content: 'Failed to submit data. Please try again later',
+        type: 'error',
+      });
+    }
   };
 
   render() {
@@ -168,76 +171,75 @@ class BuyerRequestForm extends Component {
           <Typography variant="h6" className={classes.title}>
             ABD - Buyer Mortgage Request
           </Typography>
-
-          <div>
-            <FormControl>
-              <TextField
-                label="Amount"
-                margin="dense"
-                value={this.state.amount}
-                onChange={this.onValueChange('amount')}
-                required
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Property Id"
-                margin="dense"
-                value={this.state.propId}
-                onChange={this.onValueChange('propId')}
-                required
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Seller ID"
-                margin="dense"
-                value={this.state.sellerId}
-                onChange={this.onValueChange('sellerId')}
-                required
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Buyer ID"
-                margin="dense"
-                value={this.state.buyerId}
-                onChange={this.onValueChange('buyerId')}
-                disabled
-                required
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Seller IBAN"
-                margin="dense"
-                value={this.state.sellerIBAN}
-                onChange={this.onValueChange('sellerIBAN')}
-                required
-              />
-            </FormControl>
-          </div>
-          <div>
-            <FormControl>
-              <TextField
-                label="Buyer IBAN"
-                margin="dense"
-                value={this.state.buyerIBAN}
-                onChange={this.onValueChange('buyerIBAN')}
-                required
-              />
-            </FormControl>
-          </div>
-          {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Amount"
+                  margin="dense"
+                  value={this.state.amount}
+                  onChange={this.onValueChange('amount')}
+                  required
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Property Id"
+                  margin="dense"
+                  value={this.state.propId}
+                  onChange={this.onValueChange('propId')}
+                  required
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Seller ID"
+                  margin="dense"
+                  value={this.state.sellerId}
+                  onChange={this.onValueChange('sellerId')}
+                  required
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Buyer ID"
+                  margin="dense"
+                  value={this.state.buyerId}
+                  onChange={this.onValueChange('buyerId')}
+                  disabled
+                  required
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Seller IBAN"
+                  margin="dense"
+                  value={this.state.sellerIBAN}
+                  onChange={this.onValueChange('sellerIBAN')}
+                  required
+                />
+              </FormControl>
+            </div>
+            <div>
+              <FormControl>
+                <TextField
+                  label="Buyer IBAN"
+                  margin="dense"
+                  value={this.state.buyerIBAN}
+                  onChange={this.onValueChange('buyerIBAN')}
+                  required
+                />
+              </FormControl>
+            </div>
+            {loading ? <Loader /> : <div />}
             <Button
               variant="contained"
               color="primary"
@@ -253,7 +255,7 @@ class BuyerRequestForm extends Component {
               <li className={classes.scenarioMsg}>{msg}</li>
             ))}
         </ul>
-        </center>
+        </center>      
         </div>
       </div>
     );
