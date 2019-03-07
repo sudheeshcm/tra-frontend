@@ -244,7 +244,7 @@ class BuyerRequestForm extends Component {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={multipleDocumentsFilled(this.props.files, 4)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               Confirm
             </Button>

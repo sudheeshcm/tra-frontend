@@ -133,6 +133,7 @@ class MultiDocumentViewerComponent extends React.Component {
 
     if (fileSize <= 200) {
       const documentHash = await hashDocument(file);
+      this.props.verifyFile({ file, index: this.props.activeIndex });
       this.props.setFile({ file, index: this.props.activeIndex, documentHash });
     } else {
       error = 'PDF size should be less than 200MB';
@@ -317,11 +318,19 @@ class MultiDocumentViewerComponent extends React.Component {
                         onMouseLeave={() => this.setState({ reqDocTitle: '' })}
                         onClick={() => this.props.setActiveIndex({ index })}
                       >
-                        <img
-                          src="/static/img/pdf.png"
+                       {( this.props.verificationStatuses[index]) ? (
+                          
+                          <img
+                          src="/static/img/verifiedPDF.png"
                           className="document-navigation__img"
                           alt="alternate doc"
                         />
+                       ):
+                       <img
+                       src="/static/img/pdf.png"
+                       className="document-navigation__img"
+                       alt="alternate doc"
+                     />}
                       </a>
                     </li>
                   ))}

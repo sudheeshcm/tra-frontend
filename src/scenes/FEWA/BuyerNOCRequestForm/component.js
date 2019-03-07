@@ -120,7 +120,7 @@ class BuyerNOCRequestForm extends Component {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={multipleDocumentsFilled(this.props.files, 2)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               Submit
             </Button>

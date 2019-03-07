@@ -172,7 +172,7 @@ class BuyerTDRequestForm extends Component {
               color="primary"
               type="submit"
               onClick={this.submitData}
-              disabled={multipleDocumentsFilled(this.props.files, 6)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               Confirm
             </Button>
