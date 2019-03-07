@@ -48,11 +48,11 @@ class AdminApprovalForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
-        title: 'OT',
+        title: 'Ownership Transfer',
         required: true,
       },
       {
-        title: 'MPD NOC',
+        title: 'Municipality and Planning Department NOC',
         required: true,
       },
     ]);
@@ -93,7 +93,7 @@ class AdminApprovalForm extends Component {
             
               this.props.downloadDocument({
                 documentHash: response['fewa-noc-hash'],
-                title: 'FEWA No Objection Certificate',
+                title: 'Federal Electricity & Water Authority No Objection Certificate',
               });
             
               this.props.updateStep({ completed: true });

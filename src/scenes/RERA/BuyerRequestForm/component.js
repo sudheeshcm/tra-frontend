@@ -106,7 +106,7 @@ class BuyerRequestForm extends Component {
       this.props.setOtHash(response['ot-hash']);
       this.props.toggleLoading(false);
       this.props.showNotification({
-        content: 'Generated a Ownership Transfer Document successfully',
+        content: 'Ownership Transfer Document generated successfully',
         type: 'success',
       });
       this.props.downloadDocument({

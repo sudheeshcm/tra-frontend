@@ -75,12 +75,12 @@ class AdminApprovalForm extends Component {
         });
         this.props.toggleLoading(false);
         this.props.showNotification({
-          content: 'Successfully approved MPD NOC',
+          content: 'Successfully approved Municipality and Planning Department NOC',
           type: 'success',
         });
         this.props.downloadDocument({
           documentHash: response['mpd-noc-hash'],
-          title: 'MPD No Objection Certificate',
+          title: 'Municipality and Planning Department No Objection Certificate',
         });
         this.props.updateStep({completed: true });
         this.props.push('/thank-you');

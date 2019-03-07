@@ -19,7 +19,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: [<b>By Confirming this, the Seller has approved of  the Ownership Transfer.</b>," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   2: {
@@ -31,7 +31,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784198526973565',
     actorPassword: 'randomPassword',
   },
   3: {
@@ -43,7 +43,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784197626973565',
     actorPassword: 'randomPassword',
   },
   4: {
@@ -55,7 +55,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   5: {
@@ -67,7 +67,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["By Confirming this, the Ajman MPD to successfully verify the request of  the Ownership Transfer and will issue a Ajman MPD NoC certificate.", "The transaction of verification would be stored in the Ajman Local Blockchain.", "This transaction would also be notified to the Federal DLT Infrastructure for easing in further processing of the request.", <b>The confirmation of verification will be send to buyer and seller (offline) through SMS and emails.</b>],
-    actorID: '785021039213',
+    actorID: '784197311267456',
     actorPassword: 'randomPassword',
   },
   6: {
@@ -79,7 +79,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   7: {
@@ -91,7 +91,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   8: {
@@ -103,7 +103,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784198526973565',
     actorPassword: 'randomPassword',
   },
   9: {
@@ -115,7 +115,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784197499786531',
     actorPassword: 'randomPassword',
   },
   10: {
@@ -127,7 +127,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   11: {
@@ -139,7 +139,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784198176541227',
     actorPassword: 'randomPassword',
   },
   12: {
@@ -151,7 +151,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199236734452',
     actorPassword: 'randomPassword',
   },
   13: {
@@ -163,7 +163,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   14: {
@@ -175,7 +175,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784197626973565',
     actorPassword: 'randomPassword',
   },
   15: {
@@ -187,7 +187,7 @@ export default {
     nextMsg: [" Your Ownership Transfer request has been submitted to Ajman Local Blockchain Infrastructure."," A copy of the OT is stored in the Buyer’s and Seller’s Citizen Vault.", " The Seller has been informed of your request."],
     loginMsg: ["By Confirming this, the Seller has approved of  the Ownership Transfer."," The confirmation has been sent to Ajman RERA for its verification."],
     scenarioMsg:["The buyer provides the details of the property and the seller.", "On submission the Seller would be informed through an SMS and email to access the link.", "On Submission your OT form will be registered to the Ajman Local Blockchain Infrastructure."],
-    actorID: '785021039213',
+    actorID: '784199346973961',
     actorPassword: 'randomPassword',
   },
   16: {
@@ -196,7 +196,7 @@ export default {
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
     actor: 'FEWA Admin',
-    actorID: '785021039213',
+    actorID: '784198265783427',
     actorPassword: 'randomPassword',
   },
 };

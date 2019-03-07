@@ -49,11 +49,11 @@ class BuyerNOCRequestForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
-        title: 'OT',
+        title: 'Ownership Transfer',
         required: true,
       },
       {
-        title: 'MPD NOC',
+        title: 'Municipality and Planning Department NOC',
         required: true,
       },
     ]);

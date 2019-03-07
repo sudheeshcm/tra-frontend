@@ -48,11 +48,11 @@ class SellerNOCRequestForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
-        title: 'OT',
+        title: 'Ownership Transfer',
         required: true,
       },
       {
-        title: 'TD',
+        title: 'Title Deed',
         required: true,
       },
     ]);

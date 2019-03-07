@@ -47,11 +47,11 @@ class AdminApprovalForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
-        title: 'OT',
+        title:'Ownership Transfer',
         required: true,
       },
       {
-        title: 'TD',
+        title: 'Title Deed',
         required: true,
       },
     ]);
@@ -89,7 +89,7 @@ class AdminApprovalForm extends Component {
 
       this.props.downloadDocument({
         documentHash: response['moj-noc-hash'],
-        title: 'MOJ No Objection Certificate',
+        title: 'Ministry Of Justice No Objection Certificate',
       });
 
       this.props.toggleLoading(false);

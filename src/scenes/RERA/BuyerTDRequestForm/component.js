@@ -58,23 +58,23 @@ class BuyerTDRequestForm extends Component {
   componentDidMount() {
     this.props.setRequiredFiles([
       {
-        title: 'OT',
+        title: 'Ownership Transfer',
         required: true,
       },
       {
-        title: 'MPD NOC',
+        title: 'Municipality and Planning Department NOC',
         required: true,
       },
       {
-        title: 'TD',
+        title: 'Title Deed',
         required: true,
       },
       {
-        title: 'FEWA NOC',
+        title: 'Federal Electricity & Water Authority NOC',
         required: true,
       },
       {
-        title: 'MOJ NOC',
+        title: 'Ministry Of Justice NOC',
         required: true,
       },
       {
