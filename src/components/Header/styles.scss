@@ -19,17 +19,18 @@
 h6.header__title {
   display: inline-block;
   line-height: 26px;
+  font-family: initial;
 }
 
 .header__logo {
-  height: 25px;
-  width: 25px;
-  filter: brightness(0) invert(1);
+  height: 60px;
+  width: auto;
+ 
   display: inline-block;
   margin-right: 8px;
 
-  &.FEWA {
-    filter: none;
+  &.FEWA { 
+    filter: brightness(70%) invert(1);
   }
 }
 

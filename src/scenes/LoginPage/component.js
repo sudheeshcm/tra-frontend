@@ -201,7 +201,6 @@ class LoginPage extends React.Component {
             ))}
         </ul>
         </center>
-        <p className={classes.footer}>TRA - DLT PoC</p>
       </main>
     );
   }

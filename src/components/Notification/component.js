@@ -107,7 +107,7 @@ class Notification extends Component {
       <Snackbar
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right',
+          horizontal: 'center',
         }}
         className={classNames(classes.snackbar, 'notification__wrapper')}
         open={open}

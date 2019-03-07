@@ -128,7 +128,6 @@ class ThankYou extends React.Component {
         </ul>
         </center>
         </Paper>
-        <p className={classes.footer}>TRA - DLT PoC</p>
         <div>{nextStep}</div>
       </main>
     );
