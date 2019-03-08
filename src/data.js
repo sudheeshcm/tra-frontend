@@ -145,7 +145,7 @@ export default {
   12: {
     primaryColor: '#f8f9fa',
     link: '/enbd/admin-form',
-    src: '/static/img/CentralBank.png',
+    src: '/static/img/centralBank.png',
     entity: 'CentralBank',
     actor: 'Central Bank Admin',
     nextMsg: [" Central Bank has successfully verified the Mortgage Approval document"],

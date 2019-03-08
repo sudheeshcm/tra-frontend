@@ -1,6 +1,6 @@
 export const initialState = {
   stepDetails: {
-    step: 8,
+    step: 1,
     completed: false,
   },
   otHash: '',
