@@ -35,6 +35,13 @@ const userModel = {
       };
     },
 
+    resetUser(state, currentUser) {
+      return {
+        ...state,
+        currentUser,
+      };
+    },
+
     logout(state) {
       return {
         ...state,

@@ -100,7 +100,9 @@ class BuyerVerificationForm extends Component {
     } else {
       verificationComponent = (
         <div className="document-verification_label">
-          Please upload a document to be verified
+          { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+            <p className={classes.scenarioMsg}>{msg}</p>
+          ))}      
         </div>
       );
     }
@@ -136,16 +138,10 @@ class BuyerVerificationForm extends Component {
               type="submit"
               disabled={!this.state.verified}
             >
-              Submit
+              SUBMIT
             </Button>
           </form>
-          <center>
-        <ul className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
-            ))}
-        </ul>
-        </center>
+         
         </div>
       </div>
     );

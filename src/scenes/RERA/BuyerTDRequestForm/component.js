@@ -150,7 +150,7 @@ class BuyerTDRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Buyer Title Deed Request
+            ARRA - Buyer Title Deed Request
           </Typography>
           <div>
             <FormControl>
@@ -174,15 +174,15 @@ class BuyerTDRequestForm extends Component {
               onClick={this.submitData}
               disabled={multipleDocumentsFilled(this.props.files, 6)}
             >
-              Confirm
+              SUBMIT
             </Button>
           </div>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>

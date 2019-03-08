@@ -34,7 +34,7 @@ const styles = (theme) => ({
     border: '1px solid lightgrey',
   },
   scenarioMsgs : {
-    marginTop: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 3,
   },
   scenarioMsg: {
     fontSize: 17,
@@ -144,7 +144,7 @@ class AdminApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ABD - Admin Mortgage Approval
+            Ajman Bank - Admin Mortgage Approval
           </Typography>
 
           <div>
@@ -214,11 +214,11 @@ class AdminApprovalForm extends Component {
             </Button>
           </form>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>

@@ -1,6 +1,6 @@
 export const initialState = {
   stepDetails: {
-    step: 1,
+    step: 8,
     completed: false,
   },
   otHash: '',
@@ -15,7 +15,7 @@ export const initialState = {
   fewaNocHash: '',
   amount: '',
   sellerIBAN: '',
-  buyerIBAN: '',
+  buyerIBAN: 'AE070331234567890123456',
   loading: false,
 };
 

@@ -96,10 +96,7 @@ class SellerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Seller Ownership Transfer Approval
-            <br />
-            دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع المالك على نموذج
-            نقل الملكية
+            ARRA - Seller Ownership Transfer Approval
           </Typography>
 
           {loading ? <Loader /> : <div />}
@@ -110,15 +107,15 @@ class SellerVerificationForm extends Component {
               color="primary"
               onClick={this.submitData}
             >
-              Confirm
+              APPROVE
             </Button>
           </div>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>
