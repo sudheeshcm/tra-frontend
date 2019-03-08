@@ -132,8 +132,6 @@ class BuyerRequestForm extends Component {
       <div className="buyer-request-form">
         <Typography variant="h6" className={classes.title}>
           ARRA - Buyer Ownership Transfer Request
-          <br/>
-          دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - طلب نقل الملكية  
         </Typography>
         <Card className={classes.infoCard}>
           <CardContent>
