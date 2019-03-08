@@ -129,11 +129,11 @@ class AdminApprovalForm extends Component {
             </Button>
           </form>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>

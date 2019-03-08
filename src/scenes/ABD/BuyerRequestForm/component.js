@@ -56,7 +56,7 @@ class BuyerRequestForm extends Component {
       propId: '',
       sellerId: '',
       sellerIBAN: '',
-      buyerIBAN: '',
+      buyerIBAN: 'AE070331234567890123456',
       buyerId: props.buyerId,
     };
   }
@@ -111,7 +111,7 @@ class BuyerRequestForm extends Component {
       'buyer-id': this.state.buyerId,
       'seller-id': this.state.sellerId,
       'seller-iban': this.state.sellerIBAN,
-      'buyer-iban': this.state.buyerIBAN,
+      'buyer-iban': 'AE070331234567890123456',
     };
     try {
       this.props.toggleLoading(true);
@@ -129,7 +129,6 @@ class BuyerRequestForm extends Component {
           propId,
           amount,
           sellerIBAN,
-          buyerIBAN,
         },
       });
 
@@ -169,7 +168,7 @@ class BuyerRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ABD - Buyer Mortgage Request
+            Ajman Bank - Buyer Mortgage Request
           </Typography>
           <form className={classes.formActions} onSubmit={this.submitData}>
             <div>
@@ -228,17 +227,6 @@ class BuyerRequestForm extends Component {
                 />
               </FormControl>
             </div>
-            <div>
-              <FormControl>
-                <TextField
-                  label="Buyer IBAN"
-                  margin="dense"
-                  value={this.state.buyerIBAN}
-                  onChange={this.onValueChange('buyerIBAN')}
-                  required
-                />
-              </FormControl>
-            </div>
             {loading ? <Loader /> : <div />}
             <Button
               variant="contained"
@@ -246,15 +234,15 @@ class BuyerRequestForm extends Component {
               type="submit"
               disabled={multipleDocumentsFilled(this.props.files, 4)}
             >
-              Confirm
+              SUBMIT
             </Button>
           </form>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>      
         </div>
       </div>

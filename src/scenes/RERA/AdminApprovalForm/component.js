@@ -99,7 +99,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Admin Ownership Transfer Approval
+            ARRA - Admin Ownership Transfer Approval
             <br />
             دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - توقيع مفوض الدائرة على
             نموذج نقل الملكية
@@ -117,11 +117,11 @@ class AdminApprovalForm extends Component {
             </Button>
           </div>
           <center>
-        <ul className={classes.scenarioMsgs} >
+        <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>

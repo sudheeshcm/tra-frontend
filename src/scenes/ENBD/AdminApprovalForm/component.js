@@ -99,7 +99,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ENBD - Admin Mortgage Approval
+            Central Bank - Admin Mortgage Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <div className={classes.formActions} >
@@ -108,11 +108,11 @@ class AdminApprovalForm extends Component {
             </Button>
           </div>
           <center>
-        <ul className={classes.scenarioMsgs} >
+          <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>
