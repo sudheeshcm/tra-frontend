@@ -15,7 +15,7 @@ export const initialState = {
   fewaNocHash: '',
   amount: '',
   sellerIBAN: '',
-  buyerIBAN: '',
+  buyerIBAN: 'AE070331234567890123456',
   loading: false,
 };
 

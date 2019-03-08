@@ -131,9 +131,7 @@ class BuyerRequestForm extends Component {
     return (
       <div className="buyer-request-form">
         <Typography variant="h6" className={classes.title}>
-          RERA - Buyer Ownership Transfer Request
-          <br/>
-          دائرة الأراضي والتنظيم العقاري/ حكومة عجمان - طلب نقل الملكية  
+          ARRA - Buyer Ownership Transfer Request
         </Typography>
         <Card className={classes.infoCard}>
           <CardContent>
@@ -176,7 +174,7 @@ class BuyerRequestForm extends Component {
               {loading ? <Loader /> : <div />}
               <div className={classes.formActions}>
                 <Button variant="contained" color="primary" type="submit">
-                  Submit Details
+                  SUBMIT DETAILS
                 </Button>
               </div>
             </form>
@@ -184,11 +182,11 @@ class BuyerRequestForm extends Component {
           <CardActions />
         </Card>
         <center>
-        <ul className={classes.scenarioMsgs} >
+        <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
       </div>
     );

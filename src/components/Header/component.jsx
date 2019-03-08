@@ -15,6 +15,7 @@ class Header extends React.Component {
   resetStorageAndStore = () => {
     localStorage.clear();
     dispatch.app.resetApp();
+    dispatch.verify.resetVerify();
     dispatch.app.updateStep({ step: 1, completed: false });
   };
 
@@ -44,12 +45,17 @@ class Header extends React.Component {
             >
               - DTP PoC
             </Typography>
+          </Link>
+          <div className="header__links">
+              <a href="http://104.211.10.23" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> Ajman Explorer</a>
+              <a href="http://40.114.125.178/" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> UAE Explorer</a>
+              <a href="http://178.128.215.152:8081/" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> CentralBank Explorer</a>
+            </div>
             <img
               className={`header__entity ${dataScenarios[getState().app.stepDetails.step].entity}`}
               src={dataScenarios[getState().app.stepDetails.step].src}
               alt="entity"
             />
-          </Link>
         </Toolbar>
       </AppBar>
     );

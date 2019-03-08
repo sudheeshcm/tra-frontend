@@ -11,7 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { getState } from '@rematch/core';
+import { getState, setState } from '@rematch/core';
 
 import dataScenarios from '../../data.js';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
@@ -95,9 +95,11 @@ class LoginPage extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.props.fetchDiplomas(99);
-  // }
+  componentDidMount() {
+      this.props.resetUser(null);
+      localStorage.removeItem('curretUser');
+
+  }
 
   handleChange = e => {
     const { name, value } = e.target;

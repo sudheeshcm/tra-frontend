@@ -66,7 +66,7 @@ const styles = theme => ({
 
    },
    Msgs: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: '2px' ,
    },
    footer: {
     bottom: '70px',
@@ -98,7 +98,7 @@ class ThankYou extends React.Component {
 
     let nextStep;
 
-    if (stepDetails.step < 16) {
+    if (stepDetails.step < 14) {
       nextStep = (
           <p
             onClick={this.handleFormSubmit}
@@ -120,13 +120,13 @@ class ThankYou extends React.Component {
           <Typography component="h1" variant="h5">
             THANK YOU!
           </Typography>
-          <center>
-          <ul className={classes.Msgs} >
+         
+          <div className={classes.Msgs} >
             { dataScenarios[getState().app.stepDetails.step].nextMsg.map((msg, index) => (
-              <li className={classes.nextMsg}>{msg}</li>
+              <p className={classes.nextMsg}>{msg}</p>
             ))}
-        </ul>
-        </center>
+        </div>
+      
         </Paper>
         <div>{nextStep}</div>
       </main>

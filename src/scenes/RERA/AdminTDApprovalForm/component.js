@@ -40,6 +40,8 @@ const styles = (theme) => ({
     fontFamily: "museo-sans",
     lineHeight: 1.5,
     fontWeight: 300,
+    
+
    },
 });
 
@@ -148,20 +150,20 @@ class AdminTDApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            RERA - Admin Title Deed Approval
+            ARRA - Admin Title Deed Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
             <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
-              Approve
+              APPROVE
             </Button>
           </div>
           <center>
-        <ul className={classes.scenarioMsgs} >
+        <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <li className={classes.scenarioMsg}>{msg}</li>
+              <p className={classes.scenarioMsg}>{msg}</p>
             ))}
-        </ul>
+        </div>
         </center>
         </div>
       </div>
