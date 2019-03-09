@@ -60,10 +60,10 @@ const verifyModel = {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           data: formData,
-          url: '/ajman/request_mpd_noc',
+          url: '/ajman/verify',
         });
 
-        if (response.requested) {
+        if (response.valid) {
           dispatch.verify.verifyDocumentSuccess();
           dispatch.notification.show({
             content: 'Document Verified',

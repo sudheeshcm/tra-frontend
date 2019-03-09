@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   started: state.verify.started,
   verified: state.verify.verified,
   file: state.document.file,
+  loadingApp: state.app.loading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,6 +17,8 @@ const mapDispatchToProps = dispatch => ({
   verifyDocument: dispatch.verify.verifyDocument,
   clearCurrentDocument: dispatch.document.clearFile,
   updateStep: dispatch.app.updateStep,
+  toggleLoading: dispatch.app.toggleLoading,
+  showNotification: dispatch.notification.show,
 });
 
 export default connect(

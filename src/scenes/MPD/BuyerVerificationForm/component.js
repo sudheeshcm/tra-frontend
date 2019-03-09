@@ -8,9 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
-
-
-// import request from '@Services/ApiService';
+import Loader from '@Components/Loader';
+import request from '@Services/ApiService';
 
 const styles = (theme) => ({
   title: {
@@ -34,14 +33,14 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-   },
+    textAlign: 'left',
+  },
 });
 
 class BuyerVerificationForm extends Component {
@@ -69,14 +68,50 @@ class BuyerVerificationForm extends Component {
     this.props.clearCurrentDocument();
   }
 
-  submitData = e => {
+  submitData = async e => {
     e.preventDefault();
-    this.props.updateStep({completed: true });
+    const formData = {
+      'ot-hash': this.props.documentHash,
+    };
+    try {
+      this.props.toggleLoading(true);
+
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/ajman/request_mpd_noc',
+      });
+
+      if (response.requested) {
+        this.props.toggleLoading(false);
+
+       
+        this.props.showNotification({
+          content: 'MPD requested successfully',
+          type: 'success',
+        });
+      } else {
+        this.props.toggleLoading(false);
+        this.props.showNotification({
+          content: response.error,
+          type: 'error',
+        });
+      }
+    } catch (error) {
+      this.props.toggleLoading(false);
+      console.log(error, 'error');
+      this.props.showNotification({
+        content: 'MPD request failed. Please try again',
+        type: 'error',
+      });
+    }
+    this.props.updateStep({ completed: true });
     this.props.push('/thank-you');
   };
-  
+
   render() {
-    const { classes } = this.props;
+    const { classes,loadingApp } = this.props;
     let verificationComponent;
     if (this.state.started && this.state.verified) {
       verificationComponent = (
@@ -100,9 +135,9 @@ class BuyerVerificationForm extends Component {
     } else {
       verificationComponent = (
         <div className="document-verification_label">
-          { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+          {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
             <p className={classes.scenarioMsg}>{msg}</p>
-          ))}      
+          ))}
         </div>
       );
     }
@@ -115,7 +150,7 @@ class BuyerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-          Ajman MPD - Buyer No Objection Certificate Request
+            Ajman MPD - Buyer No Objection Certificate Request
           </Typography>
 
           <div className="buyer-verification-form-container">
@@ -130,7 +165,7 @@ class BuyerVerificationForm extends Component {
               <div className="">{verificationComponent}</div>
             )}
           </div>
-
+{loadingApp ? <Loader /> : <div />}
           <form className={classes.form} onSubmit={this.submitData}>
             <Button
               variant="contained"
@@ -141,7 +176,7 @@ class BuyerVerificationForm extends Component {
               SUBMIT
             </Button>
           </form>
-         
+
         </div>
       </div>
     );
