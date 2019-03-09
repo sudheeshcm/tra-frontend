@@ -52,17 +52,12 @@ h6.header__title {
 
   &.MPD {
     height: 60px;
-    width: 180px;  right: 20px;
+    width: 180px; 
+    right: 20px;
 
   }
 
-  &.FEWA {
-    width: auto;
-    right: 0;
-
-  }
-
-  &.MOJ {
+  &.FEWA, &.CentralBank, &.MOJ {
     width: auto;
     right: 0;
 
@@ -75,10 +70,6 @@ h6.header__title {
 
   }
 
-  &.CentralBank {
-    width: auto;
-    right: 0;
-  }
 }
 
 .header__links {

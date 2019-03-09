@@ -232,20 +232,23 @@ class BuyerRequestForm extends Component {
               </FormControl>
             </div>
             {loading ? <Loader /> : <div />}
+            { (multipleDocumentsFilled(this.props.files, 4) || (this.props.verificationStatuses.includes(false))) ?
+            <div>
+              { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ))}
+            </div> : <div />
+          }
+          <br/>
             <Button
               variant="contained"
               color="primary"
               type="submit"
-              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
+              disabled={(multipleDocumentsFilled(this.props.files, 4) || (this.props.verificationStatuses.includes(false)))}
             >
               SUBMIT
             </Button>
           </form>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
         </div>
       </div>
     );

@@ -87,6 +87,13 @@ class SellerNOCRequestForm extends Component {
             MOJ - Seller No Objection Certificate Request
           </Typography>
           {loading ? <Loader /> : <div />}
+          { (multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false))) ?
+            <div>
+              { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ))}
+            </div> : <div />
+          }
           <div className={classes.formActions}>
             <Button
               variant="contained"
@@ -98,11 +105,6 @@ class SellerNOCRequestForm extends Component {
               SUBMIT
             </Button>
           </div>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
         </div>
       </div>
     );
