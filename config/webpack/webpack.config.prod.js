@@ -1,12 +1,13 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpackMerge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpackConfig = require('./webpack.config.common');
 
 const buildPath = path.resolve(__dirname, '../../dist/');
 
 const prodConfig = webpackMerge(webpackConfig, {
-  mode: 'production',
+  mode: 'development',
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',
@@ -15,8 +16,9 @@ const prodConfig = webpackMerge(webpackConfig, {
   module: {},
 
   plugins: [
+    new CopyWebpackPlugin([{ from: 'static', to: 'static' }]),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'index.html',
       minify: {
         collapseWhitespace: true,
         collapseInlineTagWhitespace: true,
