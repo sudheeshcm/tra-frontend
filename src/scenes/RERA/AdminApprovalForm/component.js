@@ -39,8 +39,8 @@ const styles = (theme) => ({
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-  //   textAlign: 'center',
-    fontFamily: "museo-sans",
+   textAlign: 'left',
+    fontFamily: "inherit",
     lineHeight: 1.5,
     fontWeight: 300,
    },
@@ -113,13 +113,11 @@ class AdminApprovalForm extends Component {
               Approve
             </Button>
           </div>
-          <center>
         <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
               <p className={classes.scenarioMsg}>{msg}</p>
             ))}
         </div>
-        </center>
         </div>
       </div>
     );

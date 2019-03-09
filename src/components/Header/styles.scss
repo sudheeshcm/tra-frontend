@@ -11,9 +11,6 @@
     }
   }
 
-  &.FEWA {
-    color: #000;
-  }
   &.CentralBank {
     color: #000;
   }
@@ -22,7 +19,7 @@
 h6.header__title {
   display: inline-block;
   line-height: 26px;
-  font-family: initial;
+  font-family: inherit;
 }
 
 .header__logo {
@@ -31,10 +28,9 @@ h6.header__title {
  
   display: inline-block;
   margin-right: 8px;
+  margin-left: -30px;
 
-  &.FEWA { 
-    filter: brightness(70%) invert(1);
-  }
+
   &.CentralBank { 
     filter: brightness(70%) invert(1);
   }
@@ -61,9 +57,8 @@ h6.header__title {
   }
 
   &.FEWA {
-    height: 60px;
-    width: 190px;
-    right: 20px;
+    width: auto;
+    right: 0;
 
   }
 
@@ -102,9 +97,6 @@ h6.header__title {
   text-decoration: none;
   font-family: Roboto,Helvetica,Arial,sans-serif;
 
-  &.FEWA {
-    color: #000;
-  }
   &.CentralBank {
     color: #000;
   }

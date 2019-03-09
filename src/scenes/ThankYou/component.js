@@ -53,8 +53,8 @@ const styles = theme => ({
    nextMsg: {
     fontSize: 17,
     fontWeight: '200',
-  //   textAlign: 'center',
-    fontFamily: "museo-sans",
+   textAlign: 'left',
+    fontFamily: "inherit",
     lineHeight: 1.5,
     fontWeight: 300,
   
