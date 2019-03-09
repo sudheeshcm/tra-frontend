@@ -96,14 +96,14 @@ export default {
     async verifyFile(payload, state, endpoint) {
       const { file, index, key } = payload;
       const data = {
-        key: file.documentHash,
+        [key]: file.documentHash,
       };
 
       try {
         dispatch.app.toggleLoading(true);
         const response = await request({
           method: 'POST',
-          headers: { 'content-type': 'text/plain' },
+          headers: { 'content-type': 'application/json' },
           data,
           url: endpoint,
         });
@@ -125,7 +125,7 @@ export default {
           });
           dispatch.notification.show({
             content: 'Verification Failed',
-            type: 'success',
+            type: 'error',
           });
         }
       } catch (error) {
@@ -137,7 +137,7 @@ export default {
         });
         dispatch.notification.show({
           content: 'Verification Failed',
-          type: 'success',
+          type: 'error',
         });
         dispatch.notification.show({
           content: 'Failed to verify the file',

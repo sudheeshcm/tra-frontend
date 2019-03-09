@@ -56,7 +56,7 @@ class BuyerNOCRequestForm extends Component {
       {
         title: 'Municipality and Planning Department NOC',
         required: true,
-        key: 'mpd-hash',
+        key: 'mpd-noc-hash',
       },
     ]);
   }
