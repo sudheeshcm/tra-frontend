@@ -43,6 +43,9 @@ const verifyModel = {
         loading: false,
       };
     },
+    resetVerify: () => ({
+      ...initialState,
+    }),
   },
   effects: {
     async verifyDocument(data) {

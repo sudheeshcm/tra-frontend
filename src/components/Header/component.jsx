@@ -15,6 +15,7 @@ class Header extends React.Component {
   resetStorageAndStore = () => {
     localStorage.clear();
     dispatch.app.resetApp();
+    dispatch.verify.resetVerify();
     dispatch.app.updateStep({ step: 1, completed: false });
   };
 

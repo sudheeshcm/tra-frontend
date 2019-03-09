@@ -145,7 +145,7 @@ export default {
   12: {
     primaryColor: '#f8f9fa',
     link: '/enbd/admin-form',
-    src: '/static/img/CentralBank.png',
+    src: '/static/img/centralBank.png',
     entity: 'CentralBank',
     actor: 'Central Bank Admin',
     nextMsg: [" You as a representative of the Central bank have successfully performed the requisite KYC/ AML procedures and approve of this property transfer."],
