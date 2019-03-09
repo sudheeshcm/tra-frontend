@@ -7,7 +7,7 @@ class Footer extends React.Component {
     return (
       <div className="footer">
         <div className="footercontainer">
-          <span className="text">© All rights belongs to ConsenSys</span>
+          <span className="text">© All rights belong to ConsenSys</span>
           <span className="spacer">·</span>
           <Link className="link" to="/" data-test-id="footer__home">
             Home

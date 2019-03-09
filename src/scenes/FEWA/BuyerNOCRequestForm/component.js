@@ -115,6 +115,13 @@ class BuyerNOCRequestForm extends Component {
             FEWA - Buyer No Objection Certificate Request
           </Typography>
           {loading ? <Loader /> : <div />}
+          { (multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false))) ?
+            <div>
+              { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ))}
+            </div> : <div />
+          }
           <form className={classes.formActions} onSubmit={this.submitData}>
             <Button
               variant="contained"
@@ -125,11 +132,6 @@ class BuyerNOCRequestForm extends Component {
               SUBMIT
             </Button>
           </form>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
         </div>
       </div>
     );
