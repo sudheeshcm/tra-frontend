@@ -40,7 +40,7 @@ const styles = (theme) => ({
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-  //   textAlign: 'center',
+   textAlign: 'left',
    },
 });
 
