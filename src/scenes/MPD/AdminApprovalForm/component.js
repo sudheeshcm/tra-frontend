@@ -11,7 +11,7 @@ import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -33,17 +33,17 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-  //   textAlign: 'center',
-    fontFamily: "museo-sans",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
     fontWeight: 300,
-   },
+  },
 });
 
 class AdminApprovalForm extends Component {
@@ -75,14 +75,16 @@ class AdminApprovalForm extends Component {
         });
         this.props.toggleLoading(false);
         this.props.showNotification({
-          content: 'Successfully approved Municipality and Planning Department NOC',
+          content:
+            'Successfully approved Municipality and Planning Department NOC',
           type: 'success',
         });
         this.props.downloadDocument({
           documentHash: response['mpd-noc-hash'],
-          title: 'Municipality and Planning Department No Objection Certificate',
+          title:
+            'Municipality and Planning Department No Objection Certificate',
         });
-        this.props.updateStep({completed: true });
+        this.props.updateStep({ completed: true });
         this.props.push('/thank-you');
       } else {
         throw response;
@@ -108,7 +110,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-          Ajman MPD - Admin No Objection Certificate Approval
+            Ajman MPD - Admin No Objection Certificate Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
@@ -120,11 +122,13 @@ class AdminApprovalForm extends Component {
               Approve
             </Button>
           </div>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </div>
       </div>
     );
