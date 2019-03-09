@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   otHash: state.app.otHash,
   mpdNocHash: state.app.mpdNocHash,
   files: state.multiDocuments.files,
+  verificationStatuses: state.multiDocuments.verificationStatuses,
   loading: state.app.loading,
 });
 
