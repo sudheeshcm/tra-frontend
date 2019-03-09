@@ -115,7 +115,7 @@ class BuyerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-          MPD - Buyer No Objection Certificate Request
+          Ajman MPD - Buyer No Objection Certificate Request
           </Typography>
 
           <div className="buyer-verification-form-container">

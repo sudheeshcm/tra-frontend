@@ -237,13 +237,11 @@ class BuyerRequestForm extends Component {
               SUBMIT
             </Button>
           </form>
-          <center>
           <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
               <p className={classes.scenarioMsg}>{msg}</p>
             ))}
         </div>
-        </center>      
         </div>
       </div>
     );
