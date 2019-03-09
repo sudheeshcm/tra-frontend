@@ -40,7 +40,7 @@ export default {
     src: '/static/img/ARRA.png',
     entity: 'ARRA',
     actor: 'ARRA Admin',
-    nextMsg: [" Ajman Real estate Regulatory Authority has successfully approved the request of the Ownership Transfer."," The approval has been sent to buyer and seller through SMS and emails."],
+    nextMsg: [" ARRA has successfully approved the request of the Ownership Transfer."," The approval has been sent to buyer and seller through SMS and emails."],
     loginMsg:[],
     scenarioMsg:[" By approving this request, you as a representative of ARRA verify and confirm the request of this Ownership Transfer."],
     actorID: '784197626973565',
