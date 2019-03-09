@@ -71,7 +71,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   6: {
-    primaryColor: '#ececec',
+    primaryColor: '#213076',
     link: '/fewa/buyer-noc-form',
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
@@ -83,7 +83,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   7: {
-    primaryColor: '#ececec',
+    primaryColor: '#213076',
     link: '/fewa/admin-form',
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
@@ -145,7 +145,7 @@ export default {
   12: {
     primaryColor: '#f8f9fa',
     link: '/enbd/admin-form',
-    src: '/static/img/centralBank.png',
+    src: '/static/img/CentralBank.png',
     entity: 'CentralBank',
     actor: 'Central Bank Admin',
     nextMsg: [" You as a representative of the Central bank have successfully performed the requisite KYC/ AML procedures and approve of this property transfer."],
