@@ -7,6 +7,7 @@ const mapStateToProps = state => ({
   buyerId: state.user.currentUser.id,
   files: state.multiDocuments.files,
   loading: state.app.loading,
+  verificationStatuses: state.multiDocuments.verificationStatuses,
 });
 
 

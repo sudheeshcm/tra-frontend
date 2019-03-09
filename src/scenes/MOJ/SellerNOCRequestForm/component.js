@@ -50,10 +50,12 @@ class SellerNOCRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Title Deed',
         required: true,
+        key: 'td-hash',
       },
     ]);
   }
@@ -91,7 +93,7 @@ class SellerNOCRequestForm extends Component {
               color="primary"
               type="submit"
               onClick={this.submitData}
-              disabled={multipleDocumentsFilled(this.props.files, 2)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               SUBMIT
             </Button>

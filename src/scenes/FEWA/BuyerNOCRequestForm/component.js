@@ -51,10 +51,12 @@ class BuyerNOCRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Municipality and Planning Department NOC',
         required: true,
+        key: 'mpd-hash',
       },
     ]);
   }
@@ -120,7 +122,7 @@ class BuyerNOCRequestForm extends Component {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={multipleDocumentsFilled(this.props.files, 2)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               SUBMIT
             </Button>

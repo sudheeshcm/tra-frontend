@@ -6,6 +6,7 @@ import SellerNOCRequestForm from './component';
 const mapStateToProps = state => ({
   files: state.multiDocuments.files,
   loading: state.app.loading,
+  verificationStatuses: state.multiDocuments.verificationStatuses,
 });
 
 const mapDispatchToProps = dispatch => ({

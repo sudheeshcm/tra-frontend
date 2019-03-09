@@ -66,18 +66,22 @@ class BuyerRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Municipality and Planning Department NOC',
         required: true,
+        key: 'mpd-noc-hash',
       },
       {
         title: 'Federal Electricity & Water Authority NOC',
         required: true,
+        key: 'fewa-noc-hash',
       },
       {
         title: 'Ministry Of Justice NOC',
         required: true,
+        key: 'moj-noc-hash',
       },
     ]);
   }
@@ -232,7 +236,7 @@ class BuyerRequestForm extends Component {
               variant="contained"
               color="primary"
               type="submit"
-              disabled={multipleDocumentsFilled(this.props.files, 4)}
+              disabled={(multipleDocumentsFilled(this.props.files, 2) || (this.props.verificationStatuses.includes(false)))}
             >
               SUBMIT
             </Button>
