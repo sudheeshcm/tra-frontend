@@ -66,18 +66,22 @@ class BuyerRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Municipality and Planning Department NOC',
         required: true,
+        key: 'mpd-noc-hash',
       },
       {
         title: 'Federal Electricity & Water Authority NOC',
         required: true,
+        key: 'fewa-noc-hash',
       },
       {
         title: 'Ministry Of Justice NOC',
         required: true,
+        key: 'moj-noc-hash',
       },
     ]);
   }
