@@ -93,20 +93,21 @@ export default {
     },
 
     //Verify each file once API ready
-    async verifyFile(payload, state) {
-      
-      const { file, index } = payload;
-      
+    async verifyFile(payload, state, endpoint) {
+      const { file, index, key } = payload;
+      const data = {
+        key: file.documentHash,
+      };
+
       try {
-        
         dispatch.app.toggleLoading(true);
         const response = await request({
-          method: 'GET',
-          headers: { 'content-type': 'text/plain'},
-          data: 'formData',
-          url: '/ajman/verify',
+          method: 'POST',
+          headers: { 'content-type': 'text/plain' },
+          data,
+          url: endpoint,
         });
-        if(response.requested){
+        if (response.valid) {
           dispatch.app.toggleLoading(false);
           dispatch.multiDocuments.setVerificationStatus({
             verificationStatus: true,
@@ -116,7 +117,6 @@ export default {
             content: 'Verified File',
             type: 'success',
           });
-          
         } else {
           dispatch.app.toggleLoading(false);
           dispatch.multiDocuments.setVerificationStatus({
@@ -129,7 +129,6 @@ export default {
           });
         }
       } catch (error) {
-     
         console.log('error: ', error);
         dispatch.app.toggleLoading(false);
         dispatch.multiDocuments.setVerificationStatus({

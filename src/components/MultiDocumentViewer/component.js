@@ -6,6 +6,8 @@ import FileSaver from 'file-saver';
 import PDF from 'react-pdf-js';
 import hashDocument from '@Utils/hashDocument';
 import Control from './components/Control';
+import dataScenarios from '../../data.js';
+import { getState } from '@rematch/core';
 
 class MultiDocumentViewerComponent extends React.Component {
   static propTypes = {
@@ -133,7 +135,14 @@ class MultiDocumentViewerComponent extends React.Component {
 
     if (fileSize <= 200) {
       const documentHash = await hashDocument(file);
-      this.props.verifyFile({ file, index: this.props.activeIndex });
+      this.props.verifyFile(
+        {
+          file,
+          index: this.props.activeIndex,
+          key: this.props.requiredFiles[this.props.activeIndex].key,
+        },
+        dataScenarios[getState().app.stepDetails.step].verificationEndpoint,
+      );
       this.props.setFile({ file, index: this.props.activeIndex, documentHash });
     } else {
       error = 'PDF size should be less than 200MB';
@@ -318,19 +327,19 @@ class MultiDocumentViewerComponent extends React.Component {
                         onMouseLeave={() => this.setState({ reqDocTitle: '' })}
                         onClick={() => this.props.setActiveIndex({ index })}
                       >
-                       {( this.props.verificationStatuses[index]) ? (
-                          
+                        {this.props.verificationStatuses[index] ? (
                           <img
-                          src="/static/img/verifiedPDF.png"
-                          className="document-navigation__img"
-                          alt="alternate doc"
-                        />
-                       ):
-                       <img
-                       src="/static/img/pdf.png"
-                       className="document-navigation__img"
-                       alt="alternate doc"
-                     />}
+                            src="/static/img/verifiedPDF.png"
+                            className="document-navigation__img"
+                            alt="alternate doc"
+                          />
+                        ) : (
+                          <img
+                            src="/static/img/pdf.png"
+                            className="document-navigation__img"
+                            alt="alternate doc"
+                          />
+                        )}
                       </a>
                     </li>
                   ))}

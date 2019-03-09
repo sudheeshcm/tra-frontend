@@ -50,10 +50,12 @@ class SellerNOCRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Title Deed',
         required: true,
+        key: 'td-hash',
       },
     ]);
   }

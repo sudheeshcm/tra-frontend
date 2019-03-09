@@ -51,10 +51,12 @@ class BuyerNOCRequestForm extends Component {
       {
         title: 'Ownership Transfer',
         required: true,
+        key: 'ot-hash',
       },
       {
         title: 'Municipality and Planning Department NOC',
         required: true,
+        key: 'mpd-hash',
       },
     ]);
   }

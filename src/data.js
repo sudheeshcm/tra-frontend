@@ -81,6 +81,7 @@ export default {
     scenarioMsg: [" Buyer to upload the Ownership Transfer document and  Ajman MPD NOC."],
     actorID: '784199346973961',
     actorPassword: 'randomPassword',
+    verificationEndpoint: 'uae/verify',
   },
   7: {
     primaryColor: '#213076',
@@ -105,6 +106,7 @@ export default {
     scenarioMsg: [" Seller to upload the Ownership Transfer document and  the original Title Deed."],
     actorID: '784198526973565',
     actorPassword: 'randomPassword',
+    verificationEndpoint: 'uae/verify',
   },
   9: {
     primaryColor: '#b08a27',
@@ -129,6 +131,7 @@ export default {
     scenarioMsg: [" Buyer to upload the Ownership Transfer document, Ajman MPD NOC, FEWA NOC and MOJ NOC."],
     actorID: '784199346973961',
     actorPassword: 'randomPassword',
+    verificationEndpoint: 'cb/verify',
   },
   11: {
     primaryColor: '#bd2138',
@@ -165,6 +168,7 @@ export default {
     scenarioMsg: [" Buyer to upload the Ownership Transfer document, Ajman MPD NOC, FEWA NOC, MOJ NOC, the original Title Deed and Bank Mortgage Approval document."],
     actorID: '784199346973961',
     actorPassword: 'randomPassword',
+    verificationEndpoint: 'ajman/verify',
   },
   14: {
     primaryColor: '#bca070',
