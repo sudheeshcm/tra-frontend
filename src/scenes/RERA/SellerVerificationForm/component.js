@@ -35,6 +35,7 @@ const styles = (theme) => ({
   },
   scenarioMsgs : {
     marginTop: theme.spacing.unit * 4,
+
   },
   scenarioMsg: {
     fontSize: 17,
@@ -42,7 +43,6 @@ const styles = (theme) => ({
   //   textAlign: 'center',
     fontFamily: "museo-sans",
     lineHeight: 1.5,
-    fontWeight: 300,
    },
 });
 
@@ -110,13 +110,11 @@ class SellerVerificationForm extends Component {
               APPROVE
             </Button>
           </div>
-          <center>
           <div className={classes.scenarioMsgs} >
             { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
               <p className={classes.scenarioMsg}>{msg}</p>
             ))}
         </div>
-        </center>
         </div>
       </div>
     );
