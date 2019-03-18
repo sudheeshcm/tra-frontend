@@ -4,12 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import { getState } from '@rematch/core';
-import dataScenarios from '../../../data.js';
 
 import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
+import dataScenarios from '../../../data.js';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -31,17 +31,17 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
     fontWeight: 300,
-   },
+  },
 });
 
 class AdminApprovalForm extends Component {
@@ -72,34 +72,33 @@ class AdminApprovalForm extends Component {
     };
     try {
       this.props.toggleLoading(true);
-          const response = await request({
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            data: formData,
-            url: '/uae/approve_fewa_noc',
-          });
-          if (response['fewa-noc-hash']) {
-              let fewaNocHash = response['fewa-noc-hash'];
-              this.props.setVariableInStore({
-                  variables: {
-                    fewaNocHash
-                  },
-                });
-                this.props.toggleLoading(false);
-              this.props.showNotification({
-                content: 'Successfully approved FEWA NOC',
-                type: 'success',
-              });
-            
-              this.props.downloadDocument({
-                documentHash: response['fewa-noc-hash'],
-                title: 'Federal Electricity & Water Authority No Objection Certificate',
-              });
-            
-              this.props.updateStep({ completed: true });
-              this.props.push('/thank-you');
-          }
+      const response = await request({
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        data: formData,
+        url: '/uae/approve_fewa_noc',
+      });
+      if (response['fewa-noc-hash']) {
+        const fewaNocHash = response['fewa-noc-hash'];
+        this.props.setVariableInStore({
+          variables: {
+            fewaNocHash,
+          },
+        });
+        this.props.toggleLoading(false);
+        this.props.showNotification({
+          content: 'Successfully approved EWA NOC',
+          type: 'success',
+        });
 
+        this.props.downloadDocument({
+          documentHash: response['fewa-noc-hash'],
+          title: 'Electricity & Water Authority No Objection Certificate',
+        });
+
+        this.props.updateStep({ completed: true });
+        this.props.push('/thank-you');
+      }
     } catch (error) {
       this.props.toggleLoading(false);
       this.props.showNotification({
@@ -120,7 +119,7 @@ class AdminApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            FEWA - Admin No Objection Certificate Approval
+            EWA - Admin No Objection Certificate Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <form className={classes.formActions} onSubmit={this.submitData}>
@@ -128,11 +127,13 @@ class AdminApprovalForm extends Component {
               Approve
             </Button>
           </form>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </div>
       </div>
     );

@@ -74,7 +74,7 @@ class BuyerRequestForm extends Component {
         key: 'mpd-noc-hash',
       },
       {
-        title: 'Federal Electricity & Water Authority NOC',
+        title: 'Electricity & Water Authority NOC',
         required: true,
         key: 'fewa-noc-hash',
       },
@@ -172,7 +172,7 @@ class BuyerRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            Ajman Bank - Buyer Mortgage Request
+            ABC Bank - Buyer Mortgage Request
           </Typography>
           <form className={classes.formActions} onSubmit={this.submitData}>
             <div>

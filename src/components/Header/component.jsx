@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import dataScenarios from '../../data.js';
 import { getState, dispatch } from '@rematch/core';
+import dataScenarios from '../../data.js';
 
 class Header extends React.Component {
   static propTypes = {
@@ -25,12 +25,16 @@ class Header extends React.Component {
       <AppBar position="absolute" className={classes}>
         <Toolbar>
           <Link
-            className={`link header__wrapper ${dataScenarios[getState().app.stepDetails.step].entity}`}
+            className={`link header__wrapper ${
+              dataScenarios[getState().app.stepDetails.step].entity
+            }`}
             to="/login"
             data-test-id="header__home"
           >
             <img
-              className={`header__logo ${dataScenarios[getState().app.stepDetails.step].entity}`}
+              className={`header__logo ${
+                dataScenarios[getState().app.stepDetails.step].entity
+              }`}
               src="/static/img/TRA-white.png"
               alt="logo"
               onClick={this.resetStorageAndStore}
@@ -41,21 +45,50 @@ class Header extends React.Component {
               noWrap
               className="header__title"
               onClick={this.resetStorageAndStore}
-              style={{ 'cursor': 'pointer' }}
+              style={{ cursor: 'pointer' }}
             >
-              - DTP PoC
+              - Property Ownership transfer Demo
             </Typography>
           </Link>
           <div className="header__links">
-              <a href="http://104.211.10.23" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> Ajman Explorer</a>
-              <a href="http://40.114.125.178/" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> UAE Explorer</a>
-              <a href="http://178.128.215.152:8081/" target="_blank" className={`header__link ${dataScenarios[getState().app.stepDetails.step].entity}`}> CentralBank Explorer</a>
-            </div>
-            <img
-              className={`header__entity ${dataScenarios[getState().app.stepDetails.step].entity}`}
-              src={dataScenarios[getState().app.stepDetails.step].src}
-              alt="entity"
-            />
+            <a
+              href="http://104.211.10.23"
+              target="_blank"
+              className={`header__link ${
+                dataScenarios[getState().app.stepDetails.step].entity
+              }`}
+            >
+              {' '}
+              Chain 1 Explorer
+            </a>
+            <a
+              href="http://40.114.125.178/"
+              target="_blank"
+              className={`header__link ${
+                dataScenarios[getState().app.stepDetails.step].entity
+              }`}
+            >
+              {' '}
+              MainNet Explorer
+            </a>
+            <a
+              href="http://178.128.215.152:8081/"
+              target="_blank"
+              className={`header__link ${
+                dataScenarios[getState().app.stepDetails.step].entity
+              }`}
+            >
+              {' '}
+              CentralBank Explorer
+            </a>
+          </div>
+          <img
+            className={`header__entity ${
+              dataScenarios[getState().app.stepDetails.step].entity
+            }`}
+            src={dataScenarios[getState().app.stepDetails.step].src}
+            alt="entity"
+          />
         </Toolbar>
       </AppBar>
     );

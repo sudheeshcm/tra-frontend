@@ -6,12 +6,12 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import { getState } from '@rematch/core';
-import dataScenarios from '../../../data.js';
 import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
+import dataScenarios from '../../../data.js';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -33,17 +33,16 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
-
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
-   },
+  },
 });
 
 class SellerVerificationForm extends Component {
@@ -96,7 +95,7 @@ class SellerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ARRA - Seller Ownership Transfer Approval
+            RERA - Seller Ownership Transfer Approval
           </Typography>
 
           {loading ? <Loader /> : <div />}
@@ -110,11 +109,13 @@ class SellerVerificationForm extends Component {
               APPROVE
             </Button>
           </div>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </div>
       </div>
     );

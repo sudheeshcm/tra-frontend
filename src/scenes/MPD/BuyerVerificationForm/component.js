@@ -7,11 +7,11 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import { getState } from '@rematch/core';
-import dataScenarios from '../../../data.js';
 import Loader from '@Components/Loader';
 import request from '@Services/ApiService';
+import dataScenarios from '../../../data.js';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -86,7 +86,6 @@ class BuyerVerificationForm extends Component {
       if (response.requested) {
         this.props.toggleLoading(false);
 
-       
         this.props.showNotification({
           content: 'MPD requested successfully',
           type: 'success',
@@ -111,7 +110,7 @@ class BuyerVerificationForm extends Component {
   };
 
   render() {
-    const { classes,loadingApp } = this.props;
+    const { classes, loadingApp } = this.props;
     let verificationComponent;
     if (this.state.started && this.state.verified) {
       verificationComponent = (
@@ -135,9 +134,11 @@ class BuyerVerificationForm extends Component {
     } else {
       verificationComponent = (
         <div className="document-verification_label">
-          {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-            <p className={classes.scenarioMsg}>{msg}</p>
-          ))}
+          {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+            (msg, index) => (
+              <p className={classes.scenarioMsg}>{msg}</p>
+            ),
+          )}
         </div>
       );
     }
@@ -150,7 +151,7 @@ class BuyerVerificationForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            Ajman MPD - Buyer No Objection Certificate Request
+            MPD - Buyer No Objection Certificate Request
           </Typography>
 
           <div className="buyer-verification-form-container">
@@ -165,7 +166,7 @@ class BuyerVerificationForm extends Component {
               <div className="">{verificationComponent}</div>
             )}
           </div>
-{loadingApp ? <Loader /> : <div />}
+          {loadingApp ? <Loader /> : <div />}
           <form className={classes.form} onSubmit={this.submitData}>
             <Button
               variant="contained"
@@ -176,7 +177,6 @@ class BuyerVerificationForm extends Component {
               SUBMIT
             </Button>
           </form>
-
         </div>
       </div>
     );

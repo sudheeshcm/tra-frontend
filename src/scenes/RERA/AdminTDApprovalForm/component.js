@@ -8,7 +8,7 @@ import request from '@Services/ApiService';
 import { getState } from '@rematch/core';
 import dataScenarios from '../../../data.js';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -30,19 +30,17 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
     fontWeight: 300,
-    
-
-   },
+  },
 });
 
 class AdminTDApprovalForm extends Component {
@@ -61,7 +59,7 @@ class AdminTDApprovalForm extends Component {
         required: true,
       },
       {
-        title: 'Federal Electricity & Water Authority NOC',
+        title: 'Electricity & Water Authority NOC',
         required: true,
       },
       {
@@ -100,7 +98,7 @@ class AdminTDApprovalForm extends Component {
       'ot-hash': this.props.otHash,
     };
 
-    //Change API endpoint for Scenario 14
+    // Change API endpoint for Scenario 14
     try {
       this.props.toggleLoading(true);
       const response = await request({
@@ -109,8 +107,6 @@ class AdminTDApprovalForm extends Component {
         data: formData,
         url: '/ajman/approve_td',
       });
-
-      
 
       this.props.setVariableInStore({
         newTDHash: response['new-td-hash'],
@@ -150,19 +146,26 @@ class AdminTDApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ARRA - Admin Title Deed Approval
+            RERA - Admin Title Deed Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>
-            <Button variant="contained" color="primary" type="submit" onClick={this.submitData}>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={this.submitData}
+            >
               APPROVE
             </Button>
           </div>
-        <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </div>
       </div>
     );

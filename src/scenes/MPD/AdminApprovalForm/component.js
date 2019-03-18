@@ -6,10 +6,10 @@ import DocumentViewer from '@Components/DocumentViewer';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import { getState } from '@rematch/core';
-import dataScenarios from '../../../data.js';
 import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
+import dataScenarios from '../../../data.js';
 
 const styles = theme => ({
   title: {
@@ -67,7 +67,7 @@ class AdminApprovalForm extends Component {
       });
 
       if (response['mpd-noc-hash']) {
-        let mpdNocHash = response['mpd-noc-hash'];
+        const mpdNocHash = response['mpd-noc-hash'];
         this.props.setVariableInStore({
           variables: {
             mpdNocHash,
@@ -110,7 +110,7 @@ class AdminApprovalForm extends Component {
 
         <div className="seller-verification-form__contents">
           <Typography variant="h6" className={classes.title}>
-            Ajman MPD - Admin No Objection Certificate Approval
+            MPD - Admin No Objection Certificate Approval
           </Typography>
           {loading ? <Loader /> : <div />}
           <div className={classes.formActions}>

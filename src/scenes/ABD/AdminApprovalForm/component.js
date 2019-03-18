@@ -6,12 +6,12 @@ import MultiDocumentViewer from '@Components/MultiDocumentViewer';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import { getState } from '@rematch/core';
+
+import request from '@Services/ApiService';
+import Loader from '@Components/Loader';
 import dataScenarios from '../../../data.js';
 
- import request from '@Services/ApiService';
-import Loader from '@Components/Loader';
-
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     marginTop: '24px',
     fontWeight: '500',
@@ -33,17 +33,17 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     marginTop: theme.spacing.unit * 3,
   },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
     fontWeight: 300,
-   },
+  },
 });
 
 class AdminApprovalForm extends Component {
@@ -58,7 +58,7 @@ class AdminApprovalForm extends Component {
         required: true,
       },
       {
-        title: 'Federal Electricity & Water Authority NOC',
+        title: 'Electricity & Water Authority NOC',
         required: true,
       },
       {
@@ -95,7 +95,7 @@ class AdminApprovalForm extends Component {
         url: '/cb/approve_mortgage',
       });
       if (response['mortgage-hash']) {
-        let mortgageHash = response['mortgage-hash'];
+        const mortgageHash = response['mortgage-hash'];
         this.props.setVariableInStore({
           variables: {
             mortgageHash,
@@ -144,7 +144,7 @@ class AdminApprovalForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            Ajman Bank - Admin Mortgage Approval
+            ABC Bank - Admin Mortgage Approval
           </Typography>
 
           <div>
@@ -213,11 +213,13 @@ class AdminApprovalForm extends Component {
               Approve
             </Button>
           </form>
-          <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </div>
       </div>
     );

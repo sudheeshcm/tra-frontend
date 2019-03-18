@@ -13,10 +13,10 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { getState, setState } from '@rematch/core';
 
-import dataScenarios from '../../data.js';
 import FingerprintIcon from '@material-ui/icons/Fingerprint';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
+import dataScenarios from '../../data.js';
 // import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 // import dataScenarios from '../../data.js';
 
@@ -55,19 +55,19 @@ const styles = theme => ({
     bottom: '70px',
     fontWeight: '500',
     fontSize: '20px',
-    left: '47%'
+    left: '47%',
   },
-  loginMsgs : {
+  loginMsgs: {
     marginTop: theme.spacing.unit * 4,
   },
   loginMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: 1.5,
     fontWeight: 300,
-   },
+  },
   passwordField: {
     paddingRight: 93,
   },
@@ -83,6 +83,9 @@ const styles = theme => ({
     padding: '0px 0px 0px 10px',
     cursor: 'pointer',
   },
+  label: {
+    fontSize: 8,
+  },
 });
 
 class LoginPage extends React.Component {
@@ -96,9 +99,8 @@ class LoginPage extends React.Component {
   }
 
   componentDidMount() {
-      this.props.resetUser(null);
-      localStorage.removeItem('curretUser');
-
+    this.props.resetUser(null);
+    localStorage.removeItem('curretUser');
   }
 
   handleChange = e => {
@@ -161,11 +163,13 @@ class LoginPage extends React.Component {
                   src="/../../static/icons/uae_pass.png"
                   width="50"
                   height="50"
-                  alt="UAE Pass Logo"
+                  alt="Personal Authenticator Logo"
                   onClick={this.fillData}
                 />
 
-                <label htmlFor="logo">UAE PASS</label>
+                <label className={classes.label} htmlFor="logo">
+                  Personal Authenticator
+                </label>
               </div>
             </FormControl>
 
@@ -197,11 +201,13 @@ class LoginPage extends React.Component {
           </form>
         </Paper>
         <center>
-        <ul className={classes.loginMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].loginMsg.map((msg, index) => (
-              <li className={classes.loginMsg}>{msg}</li>
-            ))}
-        </ul>
+          <ul className={classes.loginMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].loginMsg.map(
+              (msg, index) => (
+                <li className={classes.loginMsg}>{msg}</li>
+              ),
+            )}
+          </ul>
         </center>
       </main>
     );

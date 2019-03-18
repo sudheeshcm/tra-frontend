@@ -73,7 +73,7 @@ class BuyerTDRequestForm extends Component {
         key: 'td-hash',
       },
       {
-        title: 'Federal Electricity & Water Authority NOC',
+        title: 'Electricity & Water Authority NOC',
         required: true,
         key: 'fewa-noc-hash',
       },
@@ -156,7 +156,7 @@ class BuyerTDRequestForm extends Component {
 
         <div className="buyer-fewa-noc-form__contents">
           <Typography variant="h6" className={classes.title}>
-            ARRA - Buyer Title Deed Request
+            RERA - Buyer Title Deed Request
           </Typography>
           <div>
             <FormControl>

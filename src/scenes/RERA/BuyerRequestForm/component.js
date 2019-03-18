@@ -9,12 +9,12 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { getState } from '@rematch/core';
-import dataScenarios from '../../../data.js';
 import Loader from '@Components/Loader';
 
 import request from '@Services/ApiService';
+import dataScenarios from '../../../data.js';
 
-const styles = (theme) => ({
+const styles = theme => ({
   title: {
     fontWeight: '500',
     fontSize: '20px',
@@ -37,7 +37,7 @@ const styles = (theme) => ({
     width: '160px',
     border: '1px solid lightgrey',
   },
-  scenarioMsgs : {
+  scenarioMsgs: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
@@ -46,20 +46,17 @@ const styles = (theme) => ({
       width: 650,
       marginLeft: 'auto',
       marginRight: 'auto',
-
-  }
-},
+    },
+  },
   scenarioMsg: {
     fontSize: 17,
     fontWeight: '200',
-   textAlign: 'left',
-    fontFamily: "inherit",
+    textAlign: 'left',
+    fontFamily: 'inherit',
     lineHeight: '1.5',
     fontWeight: '300',
-    backgroundPosition: "0px 50%",
-
-   },
-   
+    backgroundPosition: '0px 50%',
+  },
 });
 
 class BuyerRequestForm extends Component {
@@ -126,12 +123,12 @@ class BuyerRequestForm extends Component {
   };
 
   render() {
-    const { classes,loading } = this.props;
+    const { classes, loading } = this.props;
 
     return (
       <div className="buyer-request-form">
         <Typography variant="h6" className={classes.title}>
-          ARRA - Buyer Ownership Transfer Request
+          RERA - Buyer Ownership Transfer Request
         </Typography>
         <Card className={classes.infoCard}>
           <CardContent>
@@ -182,11 +179,13 @@ class BuyerRequestForm extends Component {
           <CardActions />
         </Card>
         <center>
-        <div className={classes.scenarioMsgs} >
-            { dataScenarios[getState().app.stepDetails.step].scenarioMsg.map((msg, index) => (
-              <p className={classes.scenarioMsg}>{msg}</p>
-            ))}
-        </div>
+          <div className={classes.scenarioMsgs}>
+            {dataScenarios[getState().app.stepDetails.step].scenarioMsg.map(
+              (msg, index) => (
+                <p className={classes.scenarioMsg}>{msg}</p>
+              ),
+            )}
+          </div>
         </center>
       </div>
     );
