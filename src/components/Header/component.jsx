@@ -72,7 +72,7 @@ class Header extends React.Component {
               MainNet Explorer
             </a>
             <a
-              href="http://178.128.215.152:8081/"
+              href="http://40.121.132.178/"
               target="_blank"
               className={`header__link ${
                 dataScenarios[getState().app.stepDetails.step].entity
