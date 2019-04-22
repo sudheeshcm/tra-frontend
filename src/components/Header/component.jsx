@@ -52,7 +52,7 @@ class Header extends React.Component {
           </Link>
           <div className="header__links">
             <a
-              href="http://104.211.10.23"
+              href="http://52.172.209.140"
               target="_blank"
               className={`header__link ${
                 dataScenarios[getState().app.stepDetails.step].entity
@@ -62,7 +62,7 @@ class Header extends React.Component {
               Chain 1 Explorer
             </a>
             <a
-              href="http://40.114.125.178/"
+              href="http://52.172.189.246/"
               target="_blank"
               className={`header__link ${
                 dataScenarios[getState().app.stepDetails.step].entity
@@ -72,7 +72,7 @@ class Header extends React.Component {
               MainNet Explorer
             </a>
             <a
-              href="http://40.121.132.178/"
+              href="http://52.172.215.29/"
               target="_blank"
               className={`header__link ${
                 dataScenarios[getState().app.stepDetails.step].entity
