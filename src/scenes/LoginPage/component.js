@@ -79,7 +79,6 @@ const styles = theme => ({
   },
   logo: {
     display: 'flex',
-    flexFlow: 'wrap',
     padding: '0px 0px 0px 10px',
     cursor: 'pointer',
   },
@@ -158,9 +157,9 @@ class LoginPage extends React.Component {
                 value={this.state.id}
               />
               <div className={classes.logo}>
-                <img
+              <img
                   id="logo"
-                  src="/../../static/icons/uae_pass.png"
+                  src="/../../static/icons/uPort.png"
                   width="50"
                   height="50"
                   alt="Personal Authenticator Logo"
@@ -168,7 +167,7 @@ class LoginPage extends React.Component {
                 />
 
                 <label className={classes.label} htmlFor="logo">
-                  Personal Authenticator
+                  uPort Authenticator
                 </label>
               </div>
             </FormControl>

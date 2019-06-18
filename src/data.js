@@ -10,7 +10,7 @@ import React from 'react';
 
 export default {
   1: {
-    primaryColor: '#404040',
+    primaryColor: '#5c50ca',
     link: '/rera/buyer-form',
     src: '/static/img/ARRA.png',
     entity: 'ARRA',
@@ -27,7 +27,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   2: {
-    primaryColor: '#404040',
+    primaryColor: '#5c50ca',
     link: '/rera/seller-form',
     src: '/static/img/ARRA.png',
     entity: 'ARRA',
@@ -44,7 +44,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   3: {
-    primaryColor: '#404040',
+    primaryColor: '#5c50ca',
     link: '/rera/admin-form',
     src: '/static/img/ARRA.png',
     entity: 'ARRA',
@@ -61,7 +61,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   4: {
-    primaryColor: '#750720',
+    primaryColor: '#5c50ca',
     link: '/mpd/buyer-verification-form',
     src: '/static/img/MPD.png',
     entity: 'MPD',
@@ -75,7 +75,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   5: {
-    primaryColor: '#750720',
+    primaryColor: '#5c50ca',
     link: '/mpd/admin-form',
     src: '/static/img/MPD.png',
     entity: 'MPD',
@@ -93,7 +93,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   6: {
-    primaryColor: '#2babe2',
+    primaryColor: '#5c50ca',
     link: '/fewa/buyer-noc-form',
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
@@ -114,7 +114,7 @@ export default {
     verificationEndpoint: 'uae/verify',
   },
   7: {
-    primaryColor: '#2babe2',
+    primaryColor: '#5c50ca',
     link: '/fewa/admin-form',
     src: '/static/img/FEWA.png',
     entity: 'FEWA',
@@ -139,7 +139,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   8: {
-    primaryColor: '#f8f9fa',
+    primaryColor: '#5c50ca',
     link: '/moj/seller-noc-form',
     src: '/static/img/MOJ.png',
     entity: 'MOJ',
@@ -160,7 +160,7 @@ export default {
     verificationEndpoint: 'uae/verify',
   },
   9: {
-    primaryColor: '#f8f9fa',
+    primaryColor: '#5c50ca',
     link: '/moj/admin-form',
     src: '/static/img/MOJ.png',
     entity: 'MOJ',
@@ -185,7 +185,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   10: {
-    primaryColor: '#1a6486',
+    primaryColor: '#5c50ca',
     link: '/abd/buyer-request-form',
     src: '/static/img/ABD.png',
     entity: 'ABD',
@@ -205,7 +205,7 @@ export default {
     verificationEndpoint: 'cb/verify',
   },
   11: {
-    primaryColor: '#1a6486',
+    primaryColor: '#5c50ca',
     link: '/abd/admin-form',
     src: '/static/img/ABD.png',
     entity: 'ABD',
@@ -228,9 +228,9 @@ export default {
     actorPassword: 'randomPassword',
   },
   12: {
-    primaryColor: '#c19320',
+    primaryColor: '#5c50ca',
     link: '/enbd/admin-form',
-    src: '/static/img/CentralBank.png',
+    src: '/static/img/centralBank.png',
     entity: 'CentralBank',
     actor: 'Central Bank Admin',
     nextMsg: [
@@ -244,7 +244,7 @@ export default {
     actorPassword: 'randomPassword',
   },
   13: {
-    primaryColor: '#404040',
+    primaryColor: '#5c50ca',
     link: '/rera/buyer-td-form',
     src: '/static/img/ARRA.png',
     entity: 'ARRA',
@@ -270,7 +270,7 @@ export default {
     verificationEndpoint: 'ajman/verify',
   },
   14: {
-    primaryColor: '#404040',
+    primaryColor: '#5c50ca',
     link: '/rera/admin-td-form',
     src: '/static/img/ARRA.png',
     entity: 'ARRA',

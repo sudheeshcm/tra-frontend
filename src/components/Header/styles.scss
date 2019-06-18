@@ -12,7 +12,7 @@
   }
 
   &.MOJ {
-    color: #000;
+    color: #fff;
   }
 }
 
@@ -49,9 +49,10 @@ h6.header__title {
 }
 
 .header__links {
-  display: inline-block;
-  padding: 0 9%;
-  text-align: center;
+  display:flex;
+  @media screen and (min-width: 1366px) {
+    margin-left: 200px;
+  }
 }
 
 .header__link {
@@ -64,10 +65,15 @@ h6.header__title {
   font-family: Roboto, Helvetica, Arial, sans-serif;
 
   &.MOJ {
-    color: #000;
+    color: #fff;
   }
 }
 
 .header__link:hover {
-  color: black;
+  color: #fff;
+}
+
+.header__wrapper {
+  display: flex;
+    flex-flow: row wrap
 }
