@@ -60,7 +60,7 @@
     "@material-ui/styles": "^3.0.0-alpha.10",
     "@rematch/core": "^0.6.0",
     "@rematch/loading": "^1.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.2",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
